@@ -29,12 +29,12 @@ public class Teraingen : MonoBehaviour
 
 
                 //max height
-                if (hight + 8 < y + yOffset || y + yOffset > 128 || (DanRate > 75 || DanRate > grassRate * 125) && hight + 63 > y + yOffset)
+                if (hight + 8 < y + yOffset || y + yOffset > 12800 || (DanRate > 75 || DanRate > grassRate * 125) && hight + 63 > y + yOffset)
                 {
                     result[x, y] = BlockType.bgAir;
                 }
                 //mountains
-                else if (y + yOffset > mount && y + yOffset < 128)
+                else if (y + yOffset > mount && y + yOffset < 12800)
                 {
                     if (dirtRate < 0.5)
                     {

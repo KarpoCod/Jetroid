@@ -260,6 +260,12 @@ MonoBehaviour:
   offset: {x: 0, y: 15}
   ChunkPrefab: {fileID: 5204137682881531203, guid: 8e179ca5b9edd3f4c9c390c57bb15e3f, type: 3}
   Player: {fileID: 608271504}
+  PPos: {x: 12800, y: 20, z: 0}
+  PlayerChunk: {x: 0, y: 0}
+  seed: 0
+  BlockWorldPos: {x: 0, y: 0, z: 0}
+  BlockCenter: {x: 0, y: 0, z: 0}
+  UptdChunk: {x: 0, y: 0}
 --- !u!4 &1342638340
 Transform:
   m_ObjectHideFlags: 0
@@ -288,11 +294,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8061114378512599393, guid: 3c5de5b66be09a145818090a4575f413, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.44
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8061114378512599393, guid: 3c5de5b66be09a145818090a4575f413, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.04
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8061114378512599393, guid: 3c5de5b66be09a145818090a4575f413, type: 3}
       propertyPath: m_LocalPosition.z
