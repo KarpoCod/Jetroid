@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: DamStone
   m_EditorClassIdentifier: 
   ID: 2
-  BT: 0
+  BT: 2
   TileNumber: 0
   Texture: {fileID: 11400000, guid: 12e055b8ef7dacc479fcaa5c5dbc1d61, type: 2}

@@ -71,7 +71,7 @@ public class ChunkRenderer : MonoBehaviour
     {
         Vector3Int blockPos = new Vector3Int(x, y, 0);
 
-        BgChunk.SetTile(blockPos, tileBlocks[(int)ChunkData.BgBlocks[x, y]]);
+        BgChunk.SetTile(blockPos, blTyp.FirstOrDefault(b => b.BT == ChunkData.BgBlocks[x, y]).Texture);
 
     }
 

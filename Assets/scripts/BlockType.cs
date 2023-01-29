@@ -1,9 +1,9 @@
 public enum BlockType : byte
 {
-    stone = 1,
-    damagedStone = 0,
-    dirt = 2,
-    bgDirt = 3,
-    bgAir = 4,
-    grass = 13
+    stone = 4,
+    damagedStone = 2,
+    dirt = 5,
+    bgDirt = 1,
+    bgAir = 0,
+    grass = 3
 }

@@ -122,9 +122,6 @@ public class WorldGen : MonoBehaviour
 
                             if (BlockWorldPos.x < 0) BlockWorldPos.x--;
                             if (BlockWorldPos.y < 0) BlockWorldPos.y--;
-                            Debug.Log(BlockCenter);
-                            Debug.Log(BlockWorldPos);
-                            Debug.Log(UptdChunk);
                             ChunkDatas[UptdChunk].Chunk.SetBlock(new Vector3Int(mod(BlockWorldPos.x, ChunkRenderer.chunkWide), mod(BlockWorldPos.y, ChunkRenderer.chunkWide), 0), BlockType.damagedStone);
                         }
                     }
@@ -161,11 +158,10 @@ public class WorldGen : MonoBehaviour
                 }
                 catch
                 {
-                    Debug.LogWarning("chunk is already created!");
+                    continue;
                 }     
             }
         }
-        Debug.LogWarning("chunks updated");
     }
 
     int mod(int a, int b)
@@ -177,7 +173,7 @@ public class WorldGen : MonoBehaviour
         }
         else
         {
-            res = ChunkRenderer.chunkWide - (-a % b) ;
+            res = ChunkRenderer.chunkWide - ((-a-1) % b)-1 ;
         }
         return res;
     }
