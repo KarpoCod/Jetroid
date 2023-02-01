@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 2
   BT: 2
-  TileNumber: 0
+  TileNumber: 1
   Texture: {fileID: 11400000, guid: 12e055b8ef7dacc479fcaa5c5dbc1d61, type: 2}

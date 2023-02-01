@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Dirt
   m_EditorClassIdentifier: 
   ID: 5
-  BT: 1
-  TileNumber: 0
-  Texture: {fileID: 0}
+  BT: 5
+  TileNumber: 2
+  Texture: {fileID: 11400000, guid: 3ef805911bfb1024abfdb6cdae5ab094, type: 2}
