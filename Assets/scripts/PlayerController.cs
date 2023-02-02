@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        if (absVelY <= standingThreshold)
+        if (absVelY <= standingThreshold && Physics2D.Raycast(transform.position + new Vector3(1, 0, 0), -Vector2.up, 3, LayerMask.GetMask("FG")) || Physics2D.Raycast(transform.position + new Vector3(-1, 0, 0), -Vector2.up, 3, LayerMask.GetMask("FG")))
         {
             standing = true;
         }
@@ -57,8 +57,10 @@ public class PlayerController : MonoBehaviour
         }*/
         if (horizontalInput != 0)
         {
-
-            animator.SetInteger("AnimState", 1);
+			if (standing)
+			{
+            	animator.SetInteger("AnimState", 1);
+			}
    /*         if (absVelX < maxVelocity.x)
             {
                 forceX = Speed * Time.deltaTime * horizontalInput;
@@ -109,11 +111,10 @@ public class PlayerController : MonoBehaviour
             }
             animator.SetInteger("AnimState", 2);
         }
-        else if (absVelY > 0 && !standing && verticalInput > 0)
-        {
-            animator.SetInteger("AnimState", 3);
-        }
-        
+        if (!standing && verticalInput == 0)
+		{
+			animator.SetInteger("AnimState", 3);
+		}
 
         body2D.AddForce(new Vector2(forceX, forceY));
     }
