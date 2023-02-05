@@ -88,7 +88,7 @@ public class WorldGen : MonoBehaviour
                 {
                     for (int y = -ChunkRenderer.size; y <= ChunkRenderer.size; y++)
                     {
-                        BlockWorldPos = Vector3Int.FloorToInt(BlockCenter) + new Vector3Int(x, y, 0);
+                        BlockWorldPos = Vector3Int.FloorToInt(BlockCenter + new Vector3(0.5f, 0.5f, 0.5f)) + new Vector3Int(x, y, 0);
                         if (BlockWorldPos.x < 0) BlockWorldPos.x -= ChunkRenderer.chunkWide - 1;
                         if (BlockWorldPos.y < 0) BlockWorldPos.y -= ChunkRenderer.chunkWide - 1;
 
@@ -96,9 +96,9 @@ public class WorldGen : MonoBehaviour
 
                         if (BlockWorldPos.x < 0) BlockWorldPos.x--;
                         if (BlockWorldPos.y < 0) BlockWorldPos.y--;
-                        Debug.Log(BlockCenter);
-                        Debug.Log(BlockWorldPos);
-                        Debug.Log(UptdChunk);
+                        //Debug.Log(BlockCenter);
+                        //Debug.Log(BlockWorldPos);
+                        //Debug.Log(UptdChunk);
                         ChunkDatas[UptdChunk].Chunk.DeleteBlock(new Vector3Int(mod(BlockWorldPos.x, ChunkRenderer.chunkWide), mod(BlockWorldPos.y, ChunkRenderer.chunkWide), 0));
                     }
                 }

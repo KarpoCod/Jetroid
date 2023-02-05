@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e1610bbd774be4f44b51bad6bc30c747, type: 3}
+  m_Sprite: {fileID: 1225675009, guid: a6bb5772a1fe0f445907c34bbb20a285, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -120,8 +120,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 1
-  m_LinearDrag: 1
+  m_Mass: 1.6017885
+  m_LinearDrag: 0.5
   m_AngularDrag: 0
   m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: 6a973bd21f92a0e4e8baa6ec9929d770, type: 2}
@@ -147,7 +147,7 @@ MonoBehaviour:
   Speed: 12
   jetSpeed: 20
   airMultiplier: 0.1
-  standingThreshold: 4
+  standingThreshold: 0.1
   boost: 4
   maxVelocity: {x: 60, y: 100}
   Player: {fileID: 8061114378512599394}
@@ -167,7 +167,7 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 16, y: 16}
     newSize: {x: 16, y: 16}
     adaptiveTilingThreshold: 0.5
@@ -176,15 +176,15 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -3, y: 5.9108834}
-      - {x: -4.2615814, y: 2.1203723}
-      - {x: -5.937749, y: 2.0016222}
-      - {x: -6.075814, y: -5.0104184}
-      - {x: -3.1961858, y: -4.976279}
+    - - {x: 3.9846988, y: -3.2749119}
+      - {x: 3.6240244, y: 6.008416}
+      - {x: -1.8306627, y: 6.0539474}
+      - {x: -3.009188, y: 4.6823063}
+      - {x: -4.024708, y: 2.188242}
+      - {x: -2.673384, y: -0.53523666}
+      - {x: -4.0231423, y: -1.1328111}
+      - {x: -4.1749372, y: -4.6803207}
+      - {x: -2.9771414, y: -4.7572336}
       - {x: -3.109949, y: -7.914662}
       - {x: 5.1307907, y: -7.890047}
-      - {x: 4.041673, y: -5.285302}
-      - {x: 5.35463, y: -4.817483}
-      - {x: 5.3553066, y: -3.29975}
-      - {x: 4.09665, y: -0.5393491}
-      - {x: 3.8454883, y: 5.910884}
+      - {x: 4.043233, y: -6.201226}
