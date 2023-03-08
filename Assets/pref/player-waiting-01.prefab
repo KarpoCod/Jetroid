@@ -81,7 +81,7 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
+  m_DrawMode: 1
   m_Size: {x: 16, y: 16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
@@ -146,11 +146,14 @@ MonoBehaviour:
   PlayerZ: 0
   Speed: 12
   jetSpeed: 20
+  jumpForce: 5
   airMultiplier: 0.1
   standingThreshold: 0.1
   boost: 4
   maxVelocity: {x: 60, y: 100}
   Player: {fileID: 8061114378512599394}
+  Jet: 0
+  AnimSt: 0
 --- !u!60 &8061114378512599396
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -171,7 +174,7 @@ PolygonCollider2D:
     oldSize: {x: 16, y: 16}
     newSize: {x: 16, y: 16}
     adaptiveTilingThreshold: 0.5
-    drawMode: 0
+    drawMode: 1
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Points:

@@ -1,0 +1,140 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: blocks
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Standalone
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 12
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: -1066052816, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: -1820151021, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: -41586299, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: 521130006, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: 516042204, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: 53442805, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: 93115474, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: 892892630, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: -971110923, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: -633376035, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: 636644905, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: 184938549, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: 1498177234, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: 405177580, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: -304122467, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: -1786131030, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: -340479238, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: 1544550631, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: -1585323116, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: 731355180, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: 1748974364, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: -911272998, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: -918019159, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: -455405810, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: 2001224576, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: -63308202, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: -866972197, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: 1143870698, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: 1240795783, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: -1230741569, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: 1710499893, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: -1864376098, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: -865155405, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: 1966138965, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: -1985293058, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: 538143625, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: 1140963700, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: 547737977, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: 420735441, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: -2006902626, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: 573406957, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  - {fileID: 1123679648, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - cave-sprites_0
+  - cave-sprites_1
+  - cave-sprites_2
+  - cave-sprites_3
+  - cave-sprites_4
+  - cave-sprites_5
+  - cave-sprites_6
+  - cave-sprites_7
+  - cave-sprites_8
+  - cave-sprites_9
+  - cave-sprites_13
+  - cave-sprites_12
+  - cave-sprites_11
+  - cave-sprites_10
+  - cave-sprites_26
+  - cave-sprites_17
+  - cave-sprites_27
+  - cave-sprites_16
+  - cave-sprites_24
+  - cave-sprites_15
+  - cave-sprites_25
+  - cave-sprites_39
+  - cave-sprites_14
+  - cave-sprites_22
+  - cave-sprites_38
+  - cave-sprites_23
+  - cave-sprites_20
+  - cave-sprites_19
+  - cave-sprites_21
+  - cave-sprites_18
+  - cave-sprites_31
+  - cave-sprites_30
+  - cave-sprites_33
+  - cave-sprites_28
+  - cave-sprites_32
+  - cave-sprites_29
+  - cave-sprites_35
+  - cave-sprites_34
+  - cave-sprites_37
+  - cave-sprites_36
+  - cave-sprites_40
+  - cave-sprites_41
+  m_RenderDataMap: {}
+  m_Tag: blocks
+  m_IsVariant: 0

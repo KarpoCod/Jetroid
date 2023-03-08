@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public GameObject Player;
 
 	public bool Jet;
+	public int AnimSt;
 
     private bool standing;
 
@@ -45,7 +46,7 @@ public class PlayerController : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        if (absVelY <= standingThreshold && Physics2D.Raycast(transform.position + new Vector3(1, 0, 0), -Vector2.up, 1.05f, LayerMask.GetMask("FG")) || Physics2D.Raycast(transform.position + new Vector3(-1, 0, 0), -Vector2.up, 1.05f, LayerMask.GetMask("FG")))
+        if (absVelY <= standingThreshold && Physics2D.Raycast(transform.position + new Vector3(0.5f, 0, 0), -Vector2.up, 1.05f, LayerMask.GetMask("FG")) || Physics2D.Raycast(transform.position + new Vector3(-0.5f, 0, 0), -Vector2.up, 1.05f, LayerMask.GetMask("FG")))
         {
             standing = true;
         }
@@ -62,7 +63,7 @@ public class PlayerController : MonoBehaviour
         {
 			if (standing)
 			{
-            	animator.SetInteger("AnimState", 1);
+            	AnimSt = 1;
 			}
    /*         if (absVelX < maxVelocity.x)
             {
@@ -78,7 +79,7 @@ public class PlayerController : MonoBehaviour
                     transform.localScale = new Vector3(1 * PlayerXScale, -1 * PlayerYScale, 1);
 
                 }
-                animator.SetInteger("AnimState", 2);
+                AnimSt = 2;
             }
             else if (absVelX < maxVelocity.x)
             {
@@ -102,7 +103,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             transform.rotation = Quaternion.Euler(0, 0, PlayerZ);
-            animator.SetInteger("AnimState", 0);
+            AnimSt = 0;
             transform.localScale = new Vector3(PlayerXScale, 1 * PlayerYScale, 1);
         }
 
@@ -112,7 +113,7 @@ public class PlayerController : MonoBehaviour
             {
                 forceY = jetSpeed * Time.deltaTime * verticalInput * 75;
             }
-            animator.SetInteger("AnimState", 2);
+            AnimSt = 2;
         }
 		else if (verticalInput > 0 && !Jet && standing)
         {
@@ -125,7 +126,7 @@ public class PlayerController : MonoBehaviour
 		}
         if (!standing && (verticalInput == 0 || !Jet))
 		{
-			animator.SetInteger("AnimState", 3);
+			AnimSt = 3;
 		}
 		
 		if (standing && forceY == 0 && forceX == 0)
@@ -138,6 +139,7 @@ public class PlayerController : MonoBehaviour
 		}
 
 		animator.SetBool("jet", Jet);
+		animator.SetInteger("AnimState", AnimSt);
         body2D.AddForce(new Vector2(forceX, forceY));
     }
 }

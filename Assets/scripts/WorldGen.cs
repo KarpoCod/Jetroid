@@ -29,27 +29,11 @@ public class WorldGen : MonoBehaviour
 
         Debug.Log(PPos);
         PlayerChunk = new Vector2Int((int)(PPos.x) / ChunkRenderer.chunkWide, (int)PPos.y / ChunkRenderer.chunkWide);
-        updateChunks();
-
+        StartCoroutine(updateChunks());
+		StartCoroutine(Spawn());
        
         Debug.Log(PlayerChunk);
-        Vector3 cord = new Vector3(-1, -1, -1);
-        for (int y = PlayerChunk.y - ChunkSpawnRad;  y < PlayerChunk.y + ChunkSpawnRad; y++)
-        {
-            for(int x = PlayerChunk.x - ChunkSpawnRad;  x < PlayerChunk.x + ChunkSpawnRad; x++)
-            {
-                SpawnChunk = ChunkDatas[new Vector2Int(x, y)];
-                cord = SpawnChunk.Chunk.setSpawn(x, y);
-                if (cord != new Vector3(-1, -1, -1))
-                {
-                    cord += new Vector3(x * ChunkRenderer.chunkWide, y * ChunkRenderer.chunkWide, 0); 
-                    break;
-                }
-            }
-            if (cord != new Vector3(-1, -1, -1)) break;
-        }
-        CurrentChunk = new Vector2((int)cord.x / ChunkRenderer.chunkWide,(int) cord.y / ChunkRenderer.chunkWide);
-        Player.transform.position = cord;
+        
     }
 
 
@@ -60,12 +44,26 @@ public class WorldGen : MonoBehaviour
         if (CurrentChunk != PlayerChunk)
         {
             CurrentChunk = PlayerChunk;
-            updateChunks();
+            StartCoroutine(updateChunks());
         }
 
         CheckInput();
     }
 
+	IEnumerator Spawn()
+	{
+		yield return StartCoroutine(updateChunks());
+		Vector3 cord = new Vector3(-1, -1, -1);
+        
+        SpawnChunk = ChunkDatas[new Vector2Int(PlayerChunk.x, PlayerChunk.y)];
+        cord = SpawnChunk.Chunk.setSpawn(PlayerChunk.x, PlayerChunk.y);
+                
+		
+        CurrentChunk = new Vector2((int)cord.x / ChunkRenderer.chunkWide,(int) cord.y / ChunkRenderer.chunkWide);
+        Player.transform.position = cord;
+
+		yield return null;
+	}
 
     void CheckInput()
     {
@@ -96,9 +94,6 @@ public class WorldGen : MonoBehaviour
 
                         if (BlockWorldPos.x < 0) BlockWorldPos.x--;
                         if (BlockWorldPos.y < 0) BlockWorldPos.y--;
-                        //Debug.Log(BlockCenter);
-                        //Debug.Log(BlockWorldPos);
-                        //Debug.Log(UptdChunk);
                         ChunkDatas[UptdChunk].Chunk.DeleteBlock(new Vector3Int(mod(BlockWorldPos.x, ChunkRenderer.chunkWide), mod(BlockWorldPos.y, ChunkRenderer.chunkWide), 0));
                     }
                 }
@@ -134,7 +129,7 @@ public class WorldGen : MonoBehaviour
         }
     }
 
-    public void updateChunks()
+    public IEnumerator updateChunks()
     {
         PlayerChunk = new Vector2Int((int)(PPos.x) / ChunkRenderer.chunkWide, (int)PPos.y / ChunkRenderer.chunkWide);
         for (int x = -ChunkSpawnRad + PlayerChunk.x; x <= ChunkSpawnRad + PlayerChunk.x; x++)
@@ -159,7 +154,8 @@ public class WorldGen : MonoBehaviour
                 catch
                 {
                     continue;
-                }     
+                }  
+				yield return null;   
             }
         }
     }

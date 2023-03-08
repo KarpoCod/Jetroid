@@ -187,7 +187,7 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 0
   m_HDR: 1
-  m_AllowMSAA: 0
+  m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 0
@@ -260,7 +260,7 @@ MonoBehaviour:
   offset: {x: 0, y: 15}
   ChunkPrefab: {fileID: 5204137682881531203, guid: 8e179ca5b9edd3f4c9c390c57bb15e3f, type: 3}
   Player: {fileID: 608271504}
-  PPos: {x: 12800, y: 20, z: 0}
+  PPos: {x: 0, y: 80, z: 0}
   PlayerChunk: {x: 0, y: 0}
   seed: 0
   BlockWorldPos: {x: 0, y: 0, z: 0}
@@ -335,6 +335,10 @@ PrefabInstance:
     - target: {fileID: 8061114378512599394, guid: 3c5de5b66be09a145818090a4575f413, type: 3}
       propertyPath: m_Name
       value: player-waiting-01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8061114378512599398, guid: 3c5de5b66be09a145818090a4575f413, type: 3}
+      propertyPath: Jet
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c5de5b66be09a145818090a4575f413, type: 3}

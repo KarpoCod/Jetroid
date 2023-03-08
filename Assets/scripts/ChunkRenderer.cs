@@ -57,22 +57,20 @@ public class ChunkRenderer : MonoBehaviour
     }
 
     private void GenerateBlock(int x, int y)
-    {
+    {	
         Vector3Int blockPos = new Vector3Int(x, y, 0);
 
         if (ChunkData.Blocks[x, y] == BlockType.bgAir)return;
 		
 		BlockInfo inf = blTyp.FirstOrDefault(b => b.BT == ChunkData.Blocks[x, y]);
         Chunk.SetTile(blockPos, inf.Texture);
-
     }
 
     private void GenerateBgBlock(int x, int y)
-    {
+    {	
         Vector3Int blockPos = new Vector3Int(x, y, 0);
 
         BgChunk.SetTile(blockPos, blTyp.FirstOrDefault(b => b.BT == ChunkData.BgBlocks[x, y]).Texture);
-
     }
 
     public void DeleteBlock(Vector3Int position)

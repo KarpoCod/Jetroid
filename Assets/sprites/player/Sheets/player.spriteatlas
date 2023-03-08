@@ -1,0 +1,158 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: player
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 0
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Standalone
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 2
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 8
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: a79154d22d2fe6a418cd477c4d2a32ec, type: 3}
+    - {fileID: 2800000, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
+    - {fileID: 2800000, guid: a6bb5772a1fe0f445907c34bbb20a285, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 1826776510, guid: a6bb5772a1fe0f445907c34bbb20a285, type: 3}
+  - {fileID: -934509735, guid: a6bb5772a1fe0f445907c34bbb20a285, type: 3}
+  - {fileID: 1077160509, guid: a6bb5772a1fe0f445907c34bbb20a285, type: 3}
+  - {fileID: 1758805607, guid: a6bb5772a1fe0f445907c34bbb20a285, type: 3}
+  - {fileID: 1225675009, guid: a6bb5772a1fe0f445907c34bbb20a285, type: 3}
+  - {fileID: 671775050, guid: a6bb5772a1fe0f445907c34bbb20a285, type: 3}
+  - {fileID: 1467300830, guid: a6bb5772a1fe0f445907c34bbb20a285, type: 3}
+  - {fileID: -2068074951, guid: a6bb5772a1fe0f445907c34bbb20a285, type: 3}
+  - {fileID: -1336964245, guid: a6bb5772a1fe0f445907c34bbb20a285, type: 3}
+  - {fileID: -847763358, guid: a6bb5772a1fe0f445907c34bbb20a285, type: 3}
+  - {fileID: -523225961, guid: a79154d22d2fe6a418cd477c4d2a32ec, type: 3}
+  - {fileID: -1879272334, guid: a79154d22d2fe6a418cd477c4d2a32ec, type: 3}
+  - {fileID: 894618552, guid: a79154d22d2fe6a418cd477c4d2a32ec, type: 3}
+  - {fileID: -1359012266, guid: a79154d22d2fe6a418cd477c4d2a32ec, type: 3}
+  - {fileID: 1726190775, guid: a79154d22d2fe6a418cd477c4d2a32ec, type: 3}
+  - {fileID: 824959874, guid: a79154d22d2fe6a418cd477c4d2a32ec, type: 3}
+  - {fileID: -658575685, guid: a79154d22d2fe6a418cd477c4d2a32ec, type: 3}
+  - {fileID: -1030616741, guid: a79154d22d2fe6a418cd477c4d2a32ec, type: 3}
+  - {fileID: -893906816, guid: a79154d22d2fe6a418cd477c4d2a32ec, type: 3}
+  - {fileID: 382021658, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
+  - {fileID: 1522602273, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
+  - {fileID: -527644521, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
+  - {fileID: 512894936, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
+  - {fileID: 296596497, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
+  - {fileID: -1992468317, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
+  - {fileID: 553532999, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
+  - {fileID: 2045562558, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
+  - {fileID: -2026311879, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
+  - {fileID: 2012386038, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
+  - {fileID: -399237743, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
+  - {fileID: 655411711, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
+  - {fileID: 798116724, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
+  - {fileID: -184997760, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
+  - {fileID: 1255444459, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
+  - {fileID: -567652870, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
+  - {fileID: 1120362561, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
+  - {fileID: -1967735881, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
+  - {fileID: 234047822, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
+  - {fileID: 496649774, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
+  - {fileID: -1980584615, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
+  - {fileID: 1391582583, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
+  - {fileID: -1779468653, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
+  - {fileID: 448938793, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
+  - {fileID: 57499662, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
+  - {fileID: 727619130, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
+  - {fileID: -1007444597, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
+  - {fileID: -2055403384, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
+  - {fileID: -1843099752, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
+  - {fileID: 651841246, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
+  - {fileID: -595325575, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - PlayerWait_8
+  - PlayerWait_9
+  - PlayerWait_2
+  - PlayerWait_3
+  - PlayerWait_0
+  - PlayerWait_1
+  - PlayerWait_6
+  - PlayerWait_7
+  - PlayerWait_4
+  - PlayerWait_5
+  - PlayerGo_3
+  - PlayerGo_2
+  - PlayerGo_1
+  - PlayerGo_0
+  - PlayerGo_7
+  - PlayerGo_6
+  - PlayerGo_5
+  - PlayerGo_4
+  - PlayerGo_8
+  - PlayerJet_7
+  - PlayerJet_8
+  - PlayerJet_9
+  - PlayerJet_13
+  - PlayerJet_12
+  - PlayerJet_11
+  - PlayerJet_10
+  - PlayerJet_26
+  - PlayerJet_17
+  - PlayerJet_27
+  - PlayerJet_16
+  - PlayerJet_24
+  - PlayerJet_15
+  - PlayerJet_25
+  - PlayerJet_14
+  - PlayerJet_22
+  - PlayerJet_23
+  - PlayerJet_20
+  - PlayerJet_19
+  - PlayerJet_21
+  - PlayerJet_18
+  - PlayerJet_30
+  - PlayerJet_0
+  - PlayerJet_1
+  - PlayerJet_28
+  - PlayerJet_2
+  - PlayerJet_29
+  - PlayerJet_3
+  - PlayerJet_4
+  - PlayerJet_5
+  - PlayerJet_6
+  m_RenderDataMap: {}
+  m_Tag: player
+  m_IsVariant: 0
