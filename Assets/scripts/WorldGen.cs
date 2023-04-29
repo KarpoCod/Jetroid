@@ -9,6 +9,7 @@ public class WorldGen : MonoBehaviour
     public Dictionary<Vector2Int, ChunkData> ChunkDatas = new Dictionary<Vector2Int, ChunkData>();
     public ChunkRenderer ChunkPrefab;
     public GameObject Player;
+    public GameObject World;
     public ChunkData SpawnChunk;
     private ChunkData CheckChunk;
     private Vector2 CurrentChunk;
@@ -19,35 +20,44 @@ public class WorldGen : MonoBehaviour
     public Vector3Int BlockWorldPos;
     public Vector3 BlockCenter;
     public Vector2Int UptdChunk;
+    public bool ready = false;
 
 
 
-    void Start()
+
+    public void gen_world()
     {
-        seed = (int)(Time.realtimeSinceStartup * 1000000);
-        Cam = Camera.main;
-
-        Debug.Log(PPos);
         PlayerChunk = new Vector2Int((int)(PPos.x) / ChunkRenderer.chunkWide, (int)PPos.y / ChunkRenderer.chunkWide);
         StartCoroutine(updateChunks());
-		StartCoroutine(Spawn());
-       
         Debug.Log(PlayerChunk);
         
     }
 
+    public void create_world()
+    {
+        seed = (int)(Time.realtimeSinceStartup * 1000000 % 1000000000);
+        Cam = Camera.main;
+
+        Debug.Log(PPos);
+
+        StartCoroutine(Spawn());
+        gen_world();
+    }
 
     void Update()
     {
-        PPos = Player.transform.position;
-        PlayerChunk = new Vector2Int((int) (PPos.x) / ChunkRenderer.chunkWide, (int)PPos.y / ChunkRenderer.chunkWide);
-        if (CurrentChunk != PlayerChunk)
+        if (ready)
         {
-            CurrentChunk = PlayerChunk;
-            StartCoroutine(updateChunks());
+            PPos = Player.transform.position;
+            PlayerChunk = new Vector2Int((int)(PPos.x) / ChunkRenderer.chunkWide, (int)PPos.y / ChunkRenderer.chunkWide);
+            if (CurrentChunk != PlayerChunk)
+            {
+                CurrentChunk = PlayerChunk;
+                StartCoroutine(updateChunks());
+            }
+            CheckInput();
         }
-
-        CheckInput();
+        
     }
 
 	IEnumerator Spawn()
@@ -95,6 +105,7 @@ public class WorldGen : MonoBehaviour
                         if (BlockWorldPos.x < 0) BlockWorldPos.x--;
                         if (BlockWorldPos.y < 0) BlockWorldPos.y--;
                         ChunkDatas[UptdChunk].Chunk.DeleteBlock(new Vector3Int(mod(BlockWorldPos.x, ChunkRenderer.chunkWide), mod(BlockWorldPos.y, ChunkRenderer.chunkWide), 0));
+                        
                     }
                 }
             }
@@ -174,5 +185,12 @@ public class WorldGen : MonoBehaviour
         return res;
     }
         
+    public void destroy()
+    {
+        foreach (KeyValuePair<Vector2Int, ChunkData> ReadCh in ChunkDatas)
+        {
+            Destroy(ReadCh.Value.Chunk);
+        }
+    }
 }
  

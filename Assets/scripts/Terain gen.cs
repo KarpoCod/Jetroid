@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Teraingen : MonoBehaviour
 {
     public static BlockType[,] GenerateTaerrain(int xOffset, int yOffset, int seed)

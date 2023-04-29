@@ -53,6 +53,7 @@ public class ChunkRenderer : MonoBehaviour
 
     public void SetBlock(Vector3Int blockPos, BlockType BlockT)
     {
+        ChunkData.Blocks[blockPos.x, blockPos.y] = BlockT;
         Chunk.SetTile(blockPos, blTyp.FirstOrDefault(b => b.BT == BlockT).Texture);
     }
 
@@ -75,7 +76,7 @@ public class ChunkRenderer : MonoBehaviour
 
     public void DeleteBlock(Vector3Int position)
     {
-
+        ChunkData.Blocks[position.x, position.y] = BlockType.bgAir;
         Chunk.SetTile(position, null);
 
     }
