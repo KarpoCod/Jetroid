@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
@@ -12,12 +12,12 @@ public class LoadManager : MonoBehaviour
     public BlockInfo[] blTyp;
     public WorldGen WorldPrefab;
     public GameObject PlayerPrefab;
-    private int count = 1;
     private string fToSave = " ";
     public WorldGen world;
     private Vector3 PlayerPos;
     public CameraFolow Cam;
     public GameObject LoadMan;
+
 
     public void Save_World()
     {
@@ -27,27 +27,31 @@ public class LoadManager : MonoBehaviour
         fToSave = PlayerPos.x + "p" + PlayerPos.y + "p" + world.seed + "p";
         foreach (KeyValuePair<Vector2Int, ChunkData> ReadCh in ChunkDatas)
         {
-            fToSave += 'c' + ReadCh.Key.x + '/' + ReadCh.Key.y + '/';
-            //Debug.Log(fToSave);
+            string chToSave = "c" + ReadCh.Key.x + "/" + ReadCh.Key.y + "/";
+            //int count = 1;
             foreach (int bl in ReadCh.Value.Blocks)
             {
-                //if (fToSave.Length == 0) { return; }
-                if (fToSave.Substring(fToSave.Length - 2) == (bl / 10).ToString() + (bl % 10).ToString()) { count++; }
-                else if (fToSave.Substring(fToSave.Length - 2) != (bl / 10).ToString() + (bl % 10).ToString() && count != 1)
+                /*//if (fToSave.Length == 0) { return; }
+                if (chToSave.Substring(chToSave.Length - 2) == (bl / 10).ToString() + (bl % 10).ToString()) { count++; }
+                else if (chToSave.Substring(chToSave.Length - 2) != (bl / 10).ToString() + (bl % 10).ToString() && count > 1)
                 {
-                    fToSave = fToSave.Remove(fToSave.Length - 6, 6);
-                    fToSave += 'n' + (count / 100).ToString() + (count % 100 / 10).ToString() + (count % 10).ToString() + (bl / 10).ToString() + (bl % 10).ToString();
+                    chToSave = chToSave.Remove(chToSave.Length - 6, 6);
+                    chToSave += "n" + (count / 100).ToString() + (count % 100 / 10).ToString() + (count % 10).ToString() + (bl / 10).ToString() + (bl % 10).ToString();
                     count = 1;
                 }
-                else { fToSave += "n" + "001" + (bl / 10).ToString() + (bl % 10).ToString(); }
+                else { chToSave += "n" + "001" + (bl / 10).ToString() + (bl % 10).ToString(); }*/
+
+                chToSave += "n" + (bl / 10).ToString() + (bl % 10).ToString();
+
             }
-            if (count != 1)
+            /*if (count != 1)
             {
-                int bl = int.Parse(fToSave.Substring(fToSave.Length - 2));
-                fToSave = fToSave.Remove(fToSave.Length - 6, 6);
-                fToSave += 'n' + (count / 100).ToString() + (count % 100 / 10).ToString() + (count % 10).ToString() + (bl / 10).ToString() + (bl % 10).ToString();
+                int bl = int.Parse(chToSave.Substring(chToSave.Length - 2));
+                chToSave = chToSave.Remove(chToSave.Length - 6, 6);
+                chToSave += "n" + (count / 100).ToString() + ((count % 100) / 10).ToString() + (count % 10).ToString() + (bl / 10).ToString() + (bl % 10).ToString();
                 count = 1;
-            }
+            }*/
+            fToSave += chToSave;
         }
       
         BinaryFormatter form = new BinaryFormatter();
@@ -56,10 +60,11 @@ public class LoadManager : MonoBehaviour
         form.Serialize(stream, fToSave);
         stream.Close();
     }
-    
+
 
     public void LoadWorld()
     {
+        if(world != null) { exit(); }
         string path = Application.persistentDataPath + "WorldSave.dat";
         
         if (File.Exists(path))
@@ -71,35 +76,35 @@ public class LoadManager : MonoBehaviour
             string data = (string)formatter.Deserialize(stream);
             stream.Close();
 
+
+            world.destroy();
             Destroy(world.World);
+
             world = Instantiate(WorldPrefab, new Vector3(0, 0, 0), Quaternion.identity);
 
             world.World.SetActive(true);
-            //world.Player = player;
+            world.Player = player;
             // Загрузка данных о положении игрока
             string[] positionData = data.Split('p');
-            Debug.Log("{" + positionData[0] + "}" + positionData[1] + "/" + positionData[2]);
             float posX = float.Parse(positionData[0]);
             float posY = float.Parse(positionData[1]);
             int seed = int.Parse(positionData[2]);
             //player = Instantiate(PlayerPrefab, new Vector3(posX, posY, 0f), Quaternion.identity, transform);
 
             if (player == null) { Instantiate(PlayerPrefab, new Vector3(posX, posY, 0f), Quaternion.identity); }
+            else { player.transform.position = new Vector3(posX, posY, 0f); }
             world.seed = seed;
             
 
             /// Извлечение данных из строки сохранения
             Dictionary<Vector2Int, ChunkData> ChunkDatas = new Dictionary<Vector2Int, ChunkData>();
-
-            string[] chunks = data.Split('c');
             int i = 0;
+            string[] chunks = positionData[3].Split('c');
             foreach (string ch in chunks)
             {
-                Debug.Log(ch);
-                if (i == 0) { i++; continue; } /// Пропустить первый блок
+                if (i == 0) { i++; continue; }
                 string[] parts = ch.Split('/');
                 
-                Debug.Log("(" + parts[0] + ")  " + parts[1]);
                 int x = int.Parse(parts[0]);
                 int y = int.Parse(parts[1]);
                 var chunkData = new ChunkData();
@@ -108,35 +113,39 @@ public class LoadManager : MonoBehaviour
 
                 
                 string[] blockData = (parts[2].Substring(1)).Split('n');
-                //int[] ChunkBlocks = new int[ChunkRenderer.chunkWide * ChunkRenderer.chunkWide];
+                BlockType[,] ChunkBlocks = new BlockType[ChunkRenderer.chunkWide, ChunkRenderer.chunkWide];
                 int con = 0;
                 foreach (string blockDat in blockData)
                 {
-                    Debug.Log(blockDat.Length);
-                    if (blockDat.Length > 4)
+                    /*if (blockDat.Length > 4)
                     {
-                        Debug.Log("lox");
                         int count = int.Parse(blockDat.Substring(0, 3));
-                        int blockID = int.Parse(blockDat.Substring(2, 2));
+                        int blockID = int.Parse(blockDat.Substring(3, 2));
                         for (int k = 0; k < count; k++)
                         {
                             //ChunkBlocks[con] = blockID;
 
-                            chunkData.Blocks[con % ChunkRenderer.chunkWide, con / ChunkRenderer.chunkWide] =  BlockType.damagedStone;
+                            ChunkBlocks[con % ChunkRenderer.chunkWide, con / ChunkRenderer.chunkWide] = (blTyp.FirstOrDefault(b => b.ID == blockID)).BT;
                             con++;
                         }
-                    }
+
+
+                    }*/
+
+                    int blockID = int.Parse(blockDat);
+                    ChunkBlocks[(con / ChunkRenderer.chunkWide), (con % ChunkRenderer.chunkWide)] = (blTyp.FirstOrDefault(b => b.ID == blockID)).BT;
+                    con++;
                 }
+                chunkData.Blocks = ChunkBlocks;
 
                 chunkData.BgBlocks = Teraingen.GenerateBG(xpos, ypos, seed);
                 world.ChunkDatas.Add(new Vector2Int(x, y), chunkData);
 
-                var chunk = Instantiate(world.ChunkPrefab, new Vector3(xpos, ypos, 0), Quaternion.identity, transform);
+                var chunk = Instantiate(world.ChunkPrefab, new Vector3(xpos, ypos, 0), Quaternion.identity, world.World.transform);
                 chunk.ChunkData = chunkData;
                 chunkData.Chunk = chunk;
                 chunkData.seed = world.seed;
                 chunk.ParentWorld = world;
-
                 //world.LoadChunk(ChunkDatas[new Vector2Int(x, y)]);
             }
 

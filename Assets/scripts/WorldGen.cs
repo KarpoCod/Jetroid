@@ -14,7 +14,7 @@ public class WorldGen : MonoBehaviour
     private ChunkData CheckChunk;
     private Vector2 CurrentChunk;
     private Camera Cam;
-    public Vector3 PPos = new Vector3(0, 0, 0);
+    public Vector3 PPos;
     public Vector2Int PlayerChunk;
     public int seed;
     public Vector3Int BlockWorldPos;
@@ -27,18 +27,19 @@ public class WorldGen : MonoBehaviour
 
     public void gen_world()
     {
+        PPos = Player.transform.position;
+
         PlayerChunk = new Vector2Int((int)(PPos.x) / ChunkRenderer.chunkWide, (int)PPos.y / ChunkRenderer.chunkWide);
         StartCoroutine(updateChunks());
-        Debug.Log(PlayerChunk);
+
         
     }
 
     public void create_world()
     {
+        PPos = Player.transform.position;
         seed = (int)(Time.realtimeSinceStartup * 1000000 % 1000000000);
         Cam = Camera.main;
-
-        Debug.Log(PPos);
 
         StartCoroutine(Spawn());
         gen_world();
@@ -105,7 +106,7 @@ public class WorldGen : MonoBehaviour
                         if (BlockWorldPos.x < 0) BlockWorldPos.x--;
                         if (BlockWorldPos.y < 0) BlockWorldPos.y--;
                         ChunkDatas[UptdChunk].Chunk.DeleteBlock(new Vector3Int(mod(BlockWorldPos.x, ChunkRenderer.chunkWide), mod(BlockWorldPos.y, ChunkRenderer.chunkWide), 0));
-                        
+                        ChunkDatas[UptdChunk].Blocks[mod(BlockWorldPos.x, ChunkRenderer.chunkWide), mod(BlockWorldPos.y, ChunkRenderer.chunkWide)] = BlockType.bgAir;
                     }
                 }
             }
@@ -129,6 +130,7 @@ public class WorldGen : MonoBehaviour
                             if (BlockWorldPos.x < 0) BlockWorldPos.x--;
                             if (BlockWorldPos.y < 0) BlockWorldPos.y--;
                             ChunkDatas[UptdChunk].Chunk.SetBlock(new Vector3Int(mod(BlockWorldPos.x, ChunkRenderer.chunkWide), mod(BlockWorldPos.y, ChunkRenderer.chunkWide), 0), BlockType.damagedStone);
+                            ChunkDatas[UptdChunk].Blocks[mod(BlockWorldPos.x, ChunkRenderer.chunkWide), mod(BlockWorldPos.y, ChunkRenderer.chunkWide)] = BlockType.damagedStone;
                         }
                     }
                 } 
@@ -152,15 +154,23 @@ public class WorldGen : MonoBehaviour
                     var chunkData = new ChunkData();
                     int xpos = x * ChunkRenderer.chunkWide;
                     int ypos = y * ChunkRenderer.chunkWide;
-                    chunkData.Blocks = Teraingen.GenerateTaerrain(xpos, ypos, seed);
-                    chunkData.BgBlocks = Teraingen.GenerateBG(xpos, ypos, seed);
-                    ChunkDatas.Add(new Vector2Int(x, y), chunkData);
-
-                    var chunk = Instantiate(ChunkPrefab, new Vector3(xpos, ypos, 0), Quaternion.identity, transform);
-                    chunk.ChunkData = chunkData;
-                    chunkData.Chunk = chunk;
-                    chunkData.seed = seed;
-                    chunk.ParentWorld = this;
+                    try
+                    {
+                        chunkData.Blocks = ChunkDatas[new Vector2Int(x, y)].Blocks;
+                        chunkData.BgBlocks = Teraingen.GenerateBG(xpos, ypos, seed);
+                    }
+                    catch
+                    {
+                        chunkData.Blocks = Teraingen.GenerateTaerrain(xpos, ypos, seed);
+                        chunkData.BgBlocks = Teraingen.GenerateBG(xpos, ypos, seed);
+                        ChunkDatas.Add(new Vector2Int(x, y), chunkData);
+                        var chunk = Instantiate(ChunkPrefab, new Vector3(xpos, ypos, 0), Quaternion.identity, transform);
+                        chunk.ChunkData = chunkData;
+                        chunkData.Chunk = chunk;
+                        chunkData.seed = seed;
+                        chunk.ParentWorld = this;
+                    }
+  
                 }
                 catch
                 {
