@@ -4,6 +4,7 @@ using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 
 public class LoadManager : MonoBehaviour
@@ -18,6 +19,29 @@ public class LoadManager : MonoBehaviour
     public CameraFolow Cam;
     public GameObject LoadMan;
 
+
+    private void Awake()
+    {
+        int op = DataHold.WorldOperation;
+        switch(op)
+        {
+            case 0:
+                Save_World();
+                break;
+            case 1:
+                LoadWorld();
+                break;
+            case 2:
+                create();
+                break;
+            case 3:
+                destroy();
+                break;
+            case 4:
+                exit();
+                break;
+        }
+    }
 
     public void Save_World()
     {
@@ -64,7 +88,7 @@ public class LoadManager : MonoBehaviour
 
     public void LoadWorld()
     {
-        if(world != null) { exit(); }
+        if(world != null) { destroy(); }
         string path = Application.persistentDataPath + "WorldSave.dat";
         
         if (File.Exists(path))
@@ -138,7 +162,7 @@ public class LoadManager : MonoBehaviour
                 }
                 chunkData.Blocks = ChunkBlocks;
 
-                chunkData.BgBlocks = Teraingen.GenerateBG(xpos, ypos, seed);
+                chunkData.BgBlocks = world.Teraingen.GenerateBG(xpos, ypos, seed);
                 world.ChunkDatas.Add(new Vector2Int(x, y), chunkData);
 
                 var chunk = Instantiate(world.ChunkPrefab, new Vector3(xpos, ypos, 0), Quaternion.identity, world.World.transform);
@@ -163,20 +187,9 @@ public class LoadManager : MonoBehaviour
             //world.ChunkDatas = ChunkDatas;
         }
     }
-
-    void exit()
+    public void create()
     {
-        world.destroy();
-        Destroy(world.World);
-        player.SetActive(false);
-        //Destroy(world);
-        //Destroy(player);
-        //Cam.target = LoadMan;
-    }
-
-    void create()
-    {
-        if (world != null) { exit(); }
+        if (world != null) { destroy(); }
 
         world = Instantiate(WorldPrefab, new Vector3(0, 0, 0), Quaternion.identity);
 
@@ -188,4 +201,21 @@ public class LoadManager : MonoBehaviour
         world.ready = true;
         Cam.target = player;    
     }
+
+    public void destroy()
+    { 
+        world.destroy();
+        Destroy(world.World);
+        player.SetActive(false);
+        //Destroy(world);
+        //Destroy(player);
+        //Cam.target = LoadMan;
+    }
+
+    public void exit()
+    {
+        Save_World();
+        SceneManager.LoadScene("Game Menu");
+    }
+
 }

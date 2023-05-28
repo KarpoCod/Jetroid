@@ -1,23 +1,81 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
+
+
 public class Teraingen : MonoBehaviour
 {
-    public static BlockType[,] GenerateTaerrain(int xOffset, int yOffset, int seed)
+    public int BaseHight = 0;
+    public NoiseOctaveSettings[] HOctaves;
+    public NoiseOctaveSettings[] DOctaves;
+    public NoiseOctaveSettings[] AOctaves;
+
+    [Serializable]
+    public class NoiseOctaveSettings
     {
+        public FastNoiseLite.NoiseType NoiseType;
+        public float Frequency = 0.2f; 
+        public float Amplitude = 1 ;
+    }
+
+    public FastNoiseLite[] HoctaveNoises;
+    public FastNoiseLite[] DoctaveNoises;
+    public FastNoiseLite[] AoctaveNoises;
+
+    public void Awake()
+    {
+        HoctaveNoises = new FastNoiseLite[HOctaves.Length];
+        DoctaveNoises = new FastNoiseLite[DOctaves.Length];
+        AoctaveNoises = new FastNoiseLite[AOctaves.Length];
+        for (int i = 0; i < HOctaves.Length; i++)
+        {
+            HoctaveNoises[i] = new FastNoiseLite();
+            HoctaveNoises[i].SetNoiseType(HOctaves[i].NoiseType);
+            HoctaveNoises[i].SetFrequency(HOctaves[i].Frequency);
+        }
+        for (int i = 0; i < DOctaves.Length; i++)
+        {
+            DoctaveNoises[i] = new FastNoiseLite();
+            DoctaveNoises[i].SetNoiseType(DOctaves[i].NoiseType);
+            DoctaveNoises[i].SetFrequency(DOctaves[i].Frequency);
+        }
+        for (int i = 0; i < AOctaves.Length; i++)
+        {
+            AoctaveNoises[i] = new FastNoiseLite();
+            AoctaveNoises[i].SetNoiseType(AOctaves[i].NoiseType);
+            AoctaveNoises[i].SetFrequency(AOctaves[i].Frequency);
+        }
+    }
+
+    public BlockType[,] GenerateTaerrain(int xOffset, int yOffset, int seed)
+    {
+
         int chunkWide = ChunkRenderer.chunkWide;
         int mount = 80;
-        //int grass = 70;
-        //int dungeons = 60;
+        int grass = 70;
+        int dungeons = 60;
 
         var result = new BlockType[chunkWide, chunkWide];
+
         for (int x=0; x < chunkWide; x++)
         {
             for(int y=0; y < chunkWide; y++)
             {
-                float hight = (2f * Mathf.PerlinNoise((x+xOffset+seed) / 3201f, 0) 
+                float hight = GetHight(x + xOffset, 0, seed, HOctaves, HoctaveNoises);
+
+                if(hight < y + yOffset)
+                {
+                    result[x, y] = BlockType.bgAir;
+                }
+                else
+                {
+                    result[x, y] = BlockType.stone;
+                }
+
+                /*float hight = (2f * Mathf.PerlinNoise((x+xOffset+seed) / 3201f, 0) 
                     + 0.5f * Mathf.PerlinNoise((x + xOffset + seed) / 104f, 0) 
                     + 0.25f * Mathf.PerlinNoise((x + xOffset + seed) / 15f, 0))/ 2.75f * 120f;
 
@@ -69,7 +127,7 @@ public class Teraingen : MonoBehaviour
                 {
                     result[x, y] = BlockType.stone;
                 }
-                
+                */
 
                 
             }
@@ -77,7 +135,7 @@ public class Teraingen : MonoBehaviour
         return result;
     }
 
-    public static BlockType[,] GenerateBG(int xOffset, int yOffset, int seed)
+    public BlockType[,] GenerateBG(int xOffset, int yOffset, int seed)
     {
         int chunkWide = ChunkRenderer.chunkWide;
         var result = new BlockType[chunkWide, chunkWide];
@@ -85,9 +143,7 @@ public class Teraingen : MonoBehaviour
         {
             for (int y = 0; y < chunkWide; y++)
             {
-                float hight = Mathf.PerlinNoise((x + xOffset + seed * 3) / 11f, (y + yOffset + seed * 7) / 9f)
-                    + 0.5f * Mathf.PerlinNoise((x + xOffset + seed * 2) / 14f, (y + yOffset + seed * 6) / 9f)
-                    + 0.25f * Mathf.PerlinNoise((x + xOffset + seed * 7) / 6f, (y + yOffset + seed * 9) / 14f);
+                float hight = GetHight(x + xOffset, 0, seed, HOctaves, HoctaveNoises);
                 float bgRate = 0.8f + 0.4f * Mathf.PerlinNoise((x + xOffset + seed * 3) / 11f, (y + yOffset + seed * 7) / 9f);
                 float Bioms = Mathf.PerlinNoise((x + xOffset + seed * 3) * 5f, (y + yOffset + seed * 2) * 5f);
 
@@ -100,6 +156,20 @@ public class Teraingen : MonoBehaviour
                     result[x, y] = BlockType.bgDirt;
                 }
             }
+        }
+        return result;
+    }
+
+     float GetHight(float x, float y, int seed, NoiseOctaveSettings[] Octaves, FastNoiseLite[] octaveNoises)
+    {
+
+        float result = BaseHight;
+
+        for(int i = 0; i < Octaves.Length; i++)
+        {
+            octaveNoises[i].SetSeed(seed);
+            float noise = octaveNoises[i].GetNoise(x, y);
+            result += noise * Octaves[i].Amplitude / 2;
         }
         return result;
     }

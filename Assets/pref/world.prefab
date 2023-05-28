@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3734662676031197137}
   - component: {fileID: 3734662676031197142}
+  - component: {fileID: 4019706669996018544}
   m_Layer: 2
   m_Name: world
   m_TagString: Untagged
@@ -56,3 +57,38 @@ MonoBehaviour:
   BlockCenter: {x: 0, y: 0, z: 0}
   UptdChunk: {x: 0, y: 0}
   ready: 0
+  Teraingen: {fileID: 4019706669996018544}
+--- !u!114 &4019706669996018544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3734662676031197143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87ec961cf940b69448015c3bc453fb9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BaseHight: 0
+  HOctaves:
+  - NoiseType: 4
+    Frequency: 0.001
+    Amplitude: 2000
+  - NoiseType: 4
+    Frequency: 0.01
+    Amplitude: 500
+  - NoiseType: 1
+    Frequency: 0.02
+    Amplitude: 100
+  - NoiseType: 3
+    Frequency: 0.05
+    Amplitude: 20
+  DOctaves:
+  - NoiseType: 0
+    Frequency: 0
+    Amplitude: 0
+  AOctaves:
+  - NoiseType: 0
+    Frequency: 0
+    Amplitude: 0
