@@ -70,6 +70,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87ec961cf940b69448015c3bc453fb9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mount: 80
+  grass: 60
+  dungeons: -20
   BaseHight: 0
   HOctaves:
   - NoiseType: 4
@@ -85,10 +88,22 @@ MonoBehaviour:
     Frequency: 0.05
     Amplitude: 20
   DOctaves:
+  - NoiseType: 5
+    Frequency: 0.02
+    Amplitude: 50
   - NoiseType: 0
-    Frequency: 0
-    Amplitude: 0
+    Frequency: 0.03
+    Amplitude: 75
+  - NoiseType: 3
+    Frequency: 0.05
+    Amplitude: 75
   AOctaves:
-  - NoiseType: 0
-    Frequency: 0
-    Amplitude: 0
+  - NoiseType: 2
+    Frequency: 0.005
+    Amplitude: -150
+  - NoiseType: 4
+    Frequency: 0.02
+    Amplitude: 50
+  - NoiseType: 3
+    Frequency: 0.02
+    Amplitude: 50

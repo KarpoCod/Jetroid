@@ -42,7 +42,8 @@ public class WorldGen : MonoBehaviour
             chunkData.BgBlocks = Teraingen.GenerateBG(xpos, ypos, seed);
 
         }
-            StartCoroutine(updateChunks());
+        PlayerChunk = new Vector2Int((int)(PPos.x) / ChunkRenderer.chunkWide, (int)PPos.y / ChunkRenderer.chunkWide);
+        StartCoroutine(updateChunks(PlayerChunk));
 
         
     }
@@ -52,7 +53,7 @@ public class WorldGen : MonoBehaviour
         seed = (int)(Time.realtimeSinceStartup * 1000000 % 10000);
         Cam = Camera.main;
 
-        StartCoroutine(Spawn());
+        Spawn();
         gen_world();
     }
 
@@ -65,16 +66,17 @@ public class WorldGen : MonoBehaviour
             if (CurrentChunk != PlayerChunk)
             {
                 CurrentChunk = PlayerChunk;
-                StartCoroutine(updateChunks());
+                StartCoroutine(updateChunks(PlayerChunk));
             }
             CheckInput();
         }
         
     }
 
-	IEnumerator Spawn()
+	void Spawn()
 	{
-		yield return StartCoroutine(updateChunks());
+        PlayerChunk = new Vector2Int((int)(PPos.x) / ChunkRenderer.chunkWide, (int)PPos.y / ChunkRenderer.chunkWide);
+        StartCoroutine(updateChunks(PlayerChunk));
 		Vector3 cord = new Vector3(-1, -1, -1);
         
         SpawnChunk = ChunkDatas[new Vector2Int(PlayerChunk.x, PlayerChunk.y)];
@@ -84,7 +86,6 @@ public class WorldGen : MonoBehaviour
         CurrentChunk = new Vector2((int)cord.x / ChunkRenderer.chunkWide,(int) cord.y / ChunkRenderer.chunkWide);
         Player.transform.position = cord;
 
-		yield return null;
 	}
 
     void CheckInput()
@@ -153,14 +154,16 @@ public class WorldGen : MonoBehaviour
         }
     }
 
-    public IEnumerator updateChunks()
+    public IEnumerator updateChunks(Vector2Int PChunk)
     {
-        PlayerChunk = new Vector2Int((int)(PPos.x) / ChunkRenderer.chunkWide, (int)PPos.y / ChunkRenderer.chunkWide);
-        for (int x = -ChunkSpawnRad + PlayerChunk.x; x <= ChunkSpawnRad + PlayerChunk.x; x++)
+        for (int x = 0; x <= ChunkSpawnRad; x++)
         {
-            for (int y = -ChunkSpawnRad + PlayerChunk.y; y <= ChunkSpawnRad + PlayerChunk.y; y++)
+            for (int y = 0; y <= ChunkSpawnRad; y++)
             {
-                StartCoroutine(updtChunk(x, y));
+                StartCoroutine(updtChunk(x + PChunk.x, y + PChunk.y));
+                StartCoroutine(updtChunk(x + PChunk.x, -y + PChunk.y));
+                StartCoroutine(updtChunk(-x + PChunk.x, y + PChunk.y));
+                StartCoroutine(updtChunk(-x + PChunk.x, -y + PChunk.y));
                 yield return null;
             }
         }
@@ -183,9 +186,7 @@ public class WorldGen : MonoBehaviour
             chunk.ParentWorld = this;
 
         }
-        catch
-        {
-        }
+        catch { }
         yield return null;
     }
 

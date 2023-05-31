@@ -8,6 +8,11 @@ using UnityEngine;
 
 public class Teraingen : MonoBehaviour
 {
+
+    public int mount = 80;
+    public int grass = 60;
+    public int dungeons = -40;
+
     public int BaseHight = 0;
     public NoiseOctaveSettings[] HOctaves;
     public NoiseOctaveSettings[] DOctaves;
@@ -54,9 +59,7 @@ public class Teraingen : MonoBehaviour
     {
 
         int chunkWide = ChunkRenderer.chunkWide;
-        int mount = 80;
-        int grass = 70;
-        int dungeons = 60;
+        
 
         var result = new BlockType[chunkWide, chunkWide];
 
@@ -65,10 +68,20 @@ public class Teraingen : MonoBehaviour
             for(int y=0; y < chunkWide; y++)
             {
                 float hight = GetHight(x + xOffset, 0, seed, HOctaves, HoctaveNoises);
+                float danRate = GetHight(x + xOffset, y + yOffset, seed, DOctaves, DoctaveNoises);
+                float grassRate = GetHight(x + xOffset, y + yOffset, seed, AOctaves, AoctaveNoises);
 
-                if(hight < y + yOffset)
+                if (hight < y + yOffset)
                 {
                     result[x, y] = BlockType.bgAir;
+                }
+                else if(danRate < dungeons)
+                {
+                    result[x, y] = BlockType.bgAir;
+                }
+                else if (danRate < dungeons && grassRate < dungeons + 5 || grassRate > grass)
+                {
+                    result[x, y] = BlockType.grass;
                 }
                 else
                 {
@@ -144,16 +157,16 @@ public class Teraingen : MonoBehaviour
             for (int y = 0; y < chunkWide; y++)
             {
                 float hight = GetHight(x + xOffset, 0, seed, HOctaves, HoctaveNoises);
-                float bgRate = 0.8f + 0.4f * Mathf.PerlinNoise((x + xOffset + seed * 3) / 11f, (y + yOffset + seed * 7) / 9f);
-                float Bioms = Mathf.PerlinNoise((x + xOffset + seed * 3) * 5f, (y + yOffset + seed * 2) * 5f);
+                float bgRate = GetHight(x + xOffset, y + yOffset, seed, DOctaves, DoctaveNoises);
+                float B = Mathf.PerlinNoise((x + xOffset + seed * 3) * 5f, (y + yOffset + seed * 2) * 5f);
 
-                if (hight > bgRate)
+                if (bgRate < dungeons - 15 * B && hight > y + yOffset)
                 {
-                    result[x, y] = BlockType.bgAir;
+                    result[x, y] = BlockType.bgDirt;
                 }
                 else
                 {
-                    result[x, y] = BlockType.bgDirt;
+                    result[x, y] = BlockType.bgAir;
                 }
             }
         }
