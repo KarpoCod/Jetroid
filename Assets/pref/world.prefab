@@ -77,16 +77,16 @@ MonoBehaviour:
   HOctaves:
   - NoiseType: 4
     Frequency: 0.001
-    Amplitude: 2000
+    Amplitude: 1000
   - NoiseType: 4
     Frequency: 0.01
-    Amplitude: 500
+    Amplitude: 250
   - NoiseType: 1
     Frequency: 0.02
-    Amplitude: 100
+    Amplitude: 50
   - NoiseType: 3
     Frequency: 0.05
-    Amplitude: 20
+    Amplitude: 10
   DOctaves:
   - NoiseType: 5
     Frequency: 0.02
