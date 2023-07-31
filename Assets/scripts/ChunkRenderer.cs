@@ -13,6 +13,8 @@ public class ChunkRenderer : MonoBehaviour
     public ChunkData ChunkData;
     public WorldGen ParentWorld;
 
+    public Vector2Int pos;
+
     public Tilemap Chunk;
     public Tilemap BgChunk;
     public TileBase[] tileBlocks = new TileBase[0];
@@ -35,6 +37,11 @@ public class ChunkRenderer : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Mathf.Abs(ParentWorld.CurrentChunk.x - pos.x) > ParentWorld.ChunkSpawnRad || Mathf.Abs(ParentWorld.CurrentChunk.y - pos.y) > ParentWorld.ChunkSpawnRad) gameObject.SetActive(false);
+    }
+
     public Vector3 setSpawn(int xOffset, int yOffset)
     {
         Vector3 coords = new Vector3(-1, -1, -1);
@@ -43,8 +50,8 @@ public class ChunkRenderer : MonoBehaviour
             for (int y = 1; y < chunkWide - 2; y++)
             {
                 coords = new Vector3(x + xOffset * chunkWide + 0.5f, y + yOffset * chunkWide + 0.5f, 0f);
-                if ((ChunkData.Blocks[x , y ] == BlockType.bgAir || ChunkData.Blocks[x, y] == BlockType.bgDirt) && (ChunkData.Blocks[x + 1, y] == BlockType.bgAir || ChunkData.Blocks[x + 1, y] == BlockType.bgDirt)
-                    && (ChunkData.Blocks[x, y + 1 ] == BlockType.bgAir || ChunkData.Blocks[x, y + 1] == BlockType.bgDirt) && (ChunkData.Blocks[x + 1, y + 1] == BlockType.bgAir || ChunkData.Blocks[x + 1, y + 1] == BlockType.bgDirt)) return coords;
+                if (ChunkData.Blocks[x , y ] == BlockType.bgAir && ChunkData.Blocks[x + 1, y] == BlockType.bgAir 
+                    && ChunkData.Blocks[x, y + 1 ] == BlockType.bgAir && ChunkData.Blocks[x + 1, y + 1] == BlockType.bgAir) return coords;
             
             }
         }

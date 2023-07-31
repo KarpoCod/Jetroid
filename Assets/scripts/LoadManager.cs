@@ -18,6 +18,8 @@ public class LoadManager : MonoBehaviour
     private Vector3 PlayerPos;
     public CameraFolow Cam;
     public GameObject LoadMan;
+    public GameObject Canvas;
+    public bool menu = false;
 
 
     private void Awake()
@@ -41,6 +43,27 @@ public class LoadManager : MonoBehaviour
                 exit();
                 break;
         }
+    }
+
+    private void Update()
+    {
+        if (Input.GetButtonDown("Cancel"))
+        {
+            if (menu)
+            {
+                Canvas.gameObject.SetActive(false);
+                Time.timeScale = 1;
+                menu = false;
+            }
+            else
+            {
+                Canvas.gameObject.SetActive(true);
+                Time.timeScale = 0;
+                menu = true;
+            }
+
+        }
+
     }
 
     public void Save_World()
@@ -88,6 +111,7 @@ public class LoadManager : MonoBehaviour
 
     public void LoadWorld()
     {
+        Time.timeScale = 1;
         if(world != null) { destroy(); }
         string path = Application.persistentDataPath + "WorldSave.dat";
         
@@ -104,7 +128,7 @@ public class LoadManager : MonoBehaviour
             world.destroy();
             Destroy(world.World);
 
-            world = Instantiate(WorldPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+            world = Instantiate(WorldPrefab, new Vector3(0, 0, 0), Quaternion.identity, transform);
 
             world.World.SetActive(true);
             world.Player = player;
@@ -187,11 +211,13 @@ public class LoadManager : MonoBehaviour
             //world.ChunkDatas = ChunkDatas;
         }
     }
+
     public void create()
     {
+        Time.timeScale = 1;
         if (world != null) { destroy(); }
 
-        world = Instantiate(WorldPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        world = Instantiate(WorldPrefab, new Vector3(0, 0, 0), Quaternion.identity, transform);
 
         if (player == null) { player = Instantiate(PlayerPrefab, new Vector3(0, 0, 0), Quaternion.identity); }
         else {  player.SetActive(true); }
@@ -199,11 +225,12 @@ public class LoadManager : MonoBehaviour
         world.Player = player;
         world.create_world();
         world.ready = true;
-        Cam.target = player;    
+        Cam.target = player;
     }
 
     public void destroy()
-    { 
+    {
+        Time.timeScale = 1;
         world.destroy();
         Destroy(world.World);
         player.SetActive(false);
@@ -215,6 +242,7 @@ public class LoadManager : MonoBehaviour
     public void exit()
     {
         Save_World();
+        Time.timeScale = 1;
         SceneManager.LoadScene("Game Menu");
     }
 

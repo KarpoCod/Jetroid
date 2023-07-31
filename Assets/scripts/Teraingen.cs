@@ -151,9 +151,6 @@ public class Teraingen : MonoBehaviour
     public BlockType[,] GenerateBG(int xOffset, int yOffset, int seed)
     {
         int chunkWide = ChunkRenderer.chunkWide;
-        FastNoiseLite Noise = new FastNoiseLite();
-        Noise.SetSeed(seed);
-        Noise.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
         var result = new BlockType[chunkWide, chunkWide];
         for (int x = 0; x < chunkWide; x++)
         {
@@ -161,7 +158,7 @@ public class Teraingen : MonoBehaviour
             {
                 float hight = GetHight(x + xOffset, 0, seed, HOctaves, HoctaveNoises);
                 float bgRate = GetHight(x + xOffset, y + yOffset, seed, DOctaves, DoctaveNoises);
-                float B = Noise.GetNoise(x, y);
+                float B = Mathf.PerlinNoise((x + xOffset + seed * 3) * 5f, (y + yOffset + seed * 2) * 5f);
 
                 if (bgRate < dungeons - 15 * B && hight > y + yOffset)
                 {
@@ -189,6 +186,4 @@ public class Teraingen : MonoBehaviour
         }
         return result;
     }
-
-
 }

@@ -50,6 +50,8 @@ MonoBehaviour:
   ChunkPrefab: {fileID: 5204137682881531203, guid: 8e179ca5b9edd3f4c9c390c57bb15e3f, type: 3}
   Player: {fileID: 8061114378512599394, guid: 3c5de5b66be09a145818090a4575f413, type: 3}
   World: {fileID: 3734662676031197143}
+  Canvas: {fileID: 0}
+  CurrentChunk: {x: 0, y: 0}
   PPos: {x: 0, y: 80, z: 0}
   PlayerChunk: {x: 0, y: 0}
   seed: 0
@@ -58,6 +60,7 @@ MonoBehaviour:
   UptdChunk: {x: 0, y: 0}
   ready: 0
   Teraingen: {fileID: 4019706669996018544}
+  menu: 0
 --- !u!114 &4019706669996018544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,16 +80,16 @@ MonoBehaviour:
   HOctaves:
   - NoiseType: 4
     Frequency: 0.001
-    Amplitude: 1000
+    Amplitude: 2000
   - NoiseType: 4
     Frequency: 0.01
-    Amplitude: 250
+    Amplitude: 500
   - NoiseType: 1
     Frequency: 0.02
-    Amplitude: 50
+    Amplitude: 100
   - NoiseType: 3
     Frequency: 0.05
-    Amplitude: 10
+    Amplitude: 20
   DOctaves:
   - NoiseType: 5
     Frequency: 0.02

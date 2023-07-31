@@ -7,12 +7,15 @@ public class WorldGen : MonoBehaviour
     public int ChunkSpawnRad = 3;
     public Vector2 offset = new Vector2(0, 13);
     public Dictionary<Vector2Int, ChunkData> ChunkDatas = new Dictionary<Vector2Int, ChunkData>();
+
     public ChunkRenderer ChunkPrefab;
     public GameObject Player;
     public GameObject World;
+
+
     public ChunkData SpawnChunk;
     private ChunkData CheckChunk;
-    private Vector2 CurrentChunk;
+    public Vector2Int CurrentChunk;
     private Camera Cam;
     public Vector3 PPos;
     public Vector2Int PlayerChunk;
@@ -22,6 +25,9 @@ public class WorldGen : MonoBehaviour
     public Vector2Int UptdChunk;
     public bool ready = false;
     public Teraingen Teraingen;
+    public Vector2Int[,] CurrentChunks;
+    public Vector2Int[,] PrewChunks;
+
 
 
 
@@ -66,7 +72,10 @@ public class WorldGen : MonoBehaviour
             if (CurrentChunk != PlayerChunk)
             {
                 CurrentChunk = PlayerChunk;
+                //DeactChunks();
+                //updtChunkPrin(PlayerChunk.x, PlayerChunk.y);
                 StartCoroutine(updateChunks(PlayerChunk));
+
             }
             CheckInput();
         }
@@ -83,13 +92,14 @@ public class WorldGen : MonoBehaviour
         cord = SpawnChunk.Chunk.setSpawn(PlayerChunk.x, PlayerChunk.y);
                 
 		
-        CurrentChunk = new Vector2((int)cord.x / ChunkRenderer.chunkWide,(int) cord.y / ChunkRenderer.chunkWide);
+        CurrentChunk = new Vector2Int((int)cord.x / ChunkRenderer.chunkWide,(int) cord.y / ChunkRenderer.chunkWide);
         Player.transform.position = cord;
 
 	}
 
     void CheckInput()
     {
+       
         Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition) - PPos;
 
 
@@ -103,22 +113,12 @@ public class WorldGen : MonoBehaviour
             if (Input.GetButtonDown("Fire1"))
             {
                 BlockCenter = hitInfo.point;
-                BlockWorldPos = new Vector3Int(0, 0, 0);
-                UptdChunk = new Vector2Int(0, 0);
                 for (int x = -ChunkRenderer.size; x <= ChunkRenderer.size; x++)
                 {
                     for (int y = -ChunkRenderer.size; y <= ChunkRenderer.size; y++)
                     {
-                        BlockWorldPos = Vector3Int.FloorToInt(BlockCenter + new Vector3(0.5f, 0.5f, 0.5f)) + new Vector3Int(x, y, 0);
-                        if (BlockWorldPos.x < 0) BlockWorldPos.x -= ChunkRenderer.chunkWide - 1;
-                        if (BlockWorldPos.y < 0) BlockWorldPos.y -= ChunkRenderer.chunkWide - 1;
-
-                        UptdChunk = new Vector2Int(BlockWorldPos.x / ChunkRenderer.chunkWide, BlockWorldPos.y / ChunkRenderer.chunkWide);
-
-                        if (BlockWorldPos.x < 0) BlockWorldPos.x--;
-                        if (BlockWorldPos.y < 0) BlockWorldPos.y--;
-                        ChunkDatas[UptdChunk].Chunk.DeleteBlock(new Vector3Int(mod(BlockWorldPos.x, ChunkRenderer.chunkWide), mod(BlockWorldPos.y, ChunkRenderer.chunkWide), 0));
-                        ChunkDatas[UptdChunk].Blocks[mod(BlockWorldPos.x, ChunkRenderer.chunkWide), mod(BlockWorldPos.y, ChunkRenderer.chunkWide)] = BlockType.bgAir;
+                        BlockWorldPos = Vector3Int.FloorToInt(BlockCenter) + new Vector3Int(x, y, 0);
+                        DeleteBlock(BlockWorldPos);
                     }
                 }
             }
@@ -127,22 +127,13 @@ public class WorldGen : MonoBehaviour
                 if(!Physics2D.Raycast(PPos, mouse, 3, LayerMask.GetMask("FG")))
                 {
                     BlockCenter = hitInfo.point;
-                    BlockWorldPos = new Vector3Int(0, 0, 0);
-                    UptdChunk = new Vector2Int(0, 0);
+
                     for (int x = -ChunkRenderer.size; x <= ChunkRenderer.size; x++)
                     {
                         for (int y = -ChunkRenderer.size; y <= ChunkRenderer.size; y++)
                         {
                             BlockWorldPos = Vector3Int.FloorToInt(BlockCenter) + new Vector3Int(x, y, 0);
-                            if (BlockWorldPos.x < 0) BlockWorldPos.x -= ChunkRenderer.chunkWide - 1;
-                            if (BlockWorldPos.y < 0) BlockWorldPos.y -= ChunkRenderer.chunkWide - 1;
-
-                            UptdChunk = new Vector2Int(BlockWorldPos.x / ChunkRenderer.chunkWide, BlockWorldPos.y / ChunkRenderer.chunkWide);
-
-                            if (BlockWorldPos.x < 0) BlockWorldPos.x--;
-                            if (BlockWorldPos.y < 0) BlockWorldPos.y--;
-                            ChunkDatas[UptdChunk].Chunk.SetBlock(new Vector3Int(mod(BlockWorldPos.x, ChunkRenderer.chunkWide), mod(BlockWorldPos.y, ChunkRenderer.chunkWide), 0), BlockType.damagedStone);
-                            ChunkDatas[UptdChunk].Blocks[mod(BlockWorldPos.x, ChunkRenderer.chunkWide), mod(BlockWorldPos.y, ChunkRenderer.chunkWide)] = BlockType.damagedStone;
+                            SetBlock(BlockType.damagedStone, BlockWorldPos);
                         }
                     }
                 } 
@@ -154,24 +145,57 @@ public class WorldGen : MonoBehaviour
         }
     }
 
+    public void SetBlock(BlockType bt, Vector3Int BlockWorldPos)
+    {
+        if (BlockWorldPos.x < 0) BlockWorldPos.x -= ChunkRenderer.chunkWide - 1;
+        if (BlockWorldPos.y < 0) BlockWorldPos.y -= ChunkRenderer.chunkWide - 1;
+
+        UptdChunk = new Vector2Int(BlockWorldPos.x / ChunkRenderer.chunkWide, BlockWorldPos.y / ChunkRenderer.chunkWide);
+
+        if (BlockWorldPos.x < 0) BlockWorldPos.x--;
+        if (BlockWorldPos.y < 0) BlockWorldPos.y--;
+        ChunkDatas[UptdChunk].Chunk.SetBlock(new Vector3Int(mod(BlockWorldPos.x, ChunkRenderer.chunkWide), mod(BlockWorldPos.y, ChunkRenderer.chunkWide), 0), bt);
+        ChunkDatas[UptdChunk].Blocks[mod(BlockWorldPos.x, ChunkRenderer.chunkWide), mod(BlockWorldPos.y, ChunkRenderer.chunkWide)] = bt;
+    }
+
+    public void DeleteBlock(Vector3Int BlockWorldPos)
+    {
+        
+        if (BlockWorldPos.x < 0) BlockWorldPos.x -= ChunkRenderer.chunkWide - 1;
+        if (BlockWorldPos.y < 0) BlockWorldPos.y -= ChunkRenderer.chunkWide - 1;
+
+        UptdChunk = new Vector2Int(BlockWorldPos.x / ChunkRenderer.chunkWide, BlockWorldPos.y / ChunkRenderer.chunkWide);
+
+        if (BlockWorldPos.x < 0) BlockWorldPos.x--;
+        if (BlockWorldPos.y < 0) BlockWorldPos.y--;
+        ChunkDatas[UptdChunk].Chunk.DeleteBlock(new Vector3Int(mod(BlockWorldPos.x, ChunkRenderer.chunkWide), mod(BlockWorldPos.y, ChunkRenderer.chunkWide), 0));
+        ChunkDatas[UptdChunk].Blocks[mod(BlockWorldPos.x, ChunkRenderer.chunkWide), mod(BlockWorldPos.y, ChunkRenderer.chunkWide)] = BlockType.bgAir;
+    }
+
+
     public IEnumerator updateChunks(Vector2Int PChunk)
     {
+        CurrentChunks = new Vector2Int [2 * ChunkSpawnRad + 1, 2 * ChunkSpawnRad + 1];
+        StartCoroutine(updtChunk(PChunk.x, PChunk.y));
         for (int x = 0; x <= ChunkSpawnRad; x++)
         {
             for (int y = 0; y <= ChunkSpawnRad; y++)
             {
+                if (x == 0 && y == 0) yield return null;
                 StartCoroutine(updtChunk(x + PChunk.x, y + PChunk.y));
                 StartCoroutine(updtChunk(x + PChunk.x, -y + PChunk.y));
                 StartCoroutine(updtChunk(-x + PChunk.x, y + PChunk.y));
                 StartCoroutine(updtChunk(-x + PChunk.x, -y + PChunk.y));
+
                 yield return null;
             }
         }
+
     }
 
-    public IEnumerator updtChunk(int x, int y)
+    void updtChunkPrin(int x, int y)
     {
-        try
+        if (!ChunkDatas.ContainsKey(new Vector2Int(x, y)))
         {
             var chunkData = new ChunkData();
             int xpos = x * ChunkRenderer.chunkWide;
@@ -186,7 +210,31 @@ public class WorldGen : MonoBehaviour
             chunk.ParentWorld = this;
 
         }
-        catch { }
+    }
+
+    public IEnumerator updtChunk(int x, int y)
+    {
+            if (!ChunkDatas.ContainsKey(new Vector2Int(x, y)))
+            {
+                var chunkData = new ChunkData();
+                int xpos = x * ChunkRenderer.chunkWide;
+                int ypos = y * ChunkRenderer.chunkWide;
+                chunkData.Blocks = Teraingen.GenerateTaerrain(xpos, ypos, seed);
+                chunkData.BgBlocks = Teraingen.GenerateBG(xpos, ypos, seed);
+                ChunkDatas.Add(new Vector2Int(x, y), chunkData);
+                var chunk = Instantiate(ChunkPrefab, new Vector3(xpos, ypos, 0), Quaternion.identity, transform);
+                chunk.ChunkData = chunkData;
+                chunkData.Chunk = chunk;
+                chunkData.seed = seed;
+                chunk.pos = new Vector2Int(x, y);
+                chunk.ParentWorld = this;
+
+            }
+            else
+            {
+                ChunkDatas[new Vector2Int(x, y)].Chunk.gameObject.SetActive(true);
+            }
+        
         yield return null;
     }
 

@@ -150,7 +150,7 @@ MonoBehaviour:
   airMultiplier: 0.1
   standingThreshold: 0.1
   boost: 2
-  maxVelocity: {x: 60, y: 100}
+  maxVelocity: {x: 50, y: 20}
   Player: {fileID: 8061114378512599394}
   Jet: 1
   AnimSt: 0
@@ -191,3 +191,4 @@ PolygonCollider2D:
       - {x: -3.109949, y: -7.914662}
       - {x: 5.1307907, y: -7.890047}
       - {x: 4.043233, y: -6.201226}
+  m_UseDelaunayMesh: 0

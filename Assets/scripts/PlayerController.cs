@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
         {
             standing = false;
         }
-
+        
         /*if (absVelY < maxVelocity.y)
         {
             forceY = jetSpeed * Time.deltaTime * verticalInput;
@@ -71,7 +71,8 @@ public class PlayerController : MonoBehaviour
             }*/
             if (verticalInput < 0 && Jet)
             {
-                forceX = Speed * Time.deltaTime * horizontalInput * boost * 150;
+                if (absVelX < maxVelocity.x) forceX = Speed * Time.deltaTime * horizontalInput * boost * 150;
+
 
                 transform.rotation = Quaternion.Euler(0, 0, -90);
                 if (horizontalInput < 0)
@@ -140,6 +141,7 @@ public class PlayerController : MonoBehaviour
 
 		animator.SetBool("jet", Jet);
 		animator.SetInteger("AnimState", AnimSt);
+
         body2D.AddForce(new Vector2(forceX, forceY));
     }
 }
