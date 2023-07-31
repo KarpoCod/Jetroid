@@ -145,7 +145,7 @@ MonoBehaviour:
   PlayerYScale: 0.125
   PlayerZ: 0
   Speed: 12
-  jetSpeed: 20
+  jetSpeed: 40
   jumpForce: 5
   airMultiplier: 0.1
   standingThreshold: 0.1

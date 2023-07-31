@@ -49,21 +49,26 @@ public class LoadManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel"))
         {
-            if (menu)
-            {
-                Canvas.gameObject.SetActive(false);
-                Time.timeScale = 1;
-                menu = false;
-            }
-            else
-            {
-                Canvas.gameObject.SetActive(true);
-                Time.timeScale = 0;
-                menu = true;
-            }
+            Pause();
 
         }
 
+    }
+
+    public void Pause()
+    {
+        if (menu)
+        {
+            Canvas.gameObject.SetActive(false);
+            Time.timeScale = 1;
+            menu = false;
+        }
+        else
+        {
+            Canvas.gameObject.SetActive(true);
+            Time.timeScale = 0;
+            menu = true;
+        }
     }
 
     public void Save_World()

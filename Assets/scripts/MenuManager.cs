@@ -26,6 +26,9 @@ public class MenuManager : MonoBehaviour
         }
         dropdown.ClearOptions();
         dropdown.AddOptions(resolutions);
+        string resol = Screen.currentResolution.width.ToString() + "x" + Screen.currentResolution.height.ToString();
+
+        dropdown.value = resolutions.IndexOf(resol);
     }
 
     public void Load()
@@ -44,6 +47,11 @@ public class MenuManager : MonoBehaviour
     {
         mainCanv.SetActive(false);
         setCanv.SetActive(true);
+    }
+
+    public void Exit()
+    {
+        Application.Quit();
     }
 
     public void MainMenu()

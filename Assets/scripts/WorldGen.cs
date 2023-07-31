@@ -5,31 +5,33 @@ using UnityEngine;
 public class WorldGen : MonoBehaviour
 {
     public int ChunkSpawnRad = 3;
+    public float buildCD = 0.2f;
+    public float digCD = 0.15f;
+    private float CD = 1f;
+
     public Vector2 offset = new Vector2(0, 13);
     public Dictionary<Vector2Int, ChunkData> ChunkDatas = new Dictionary<Vector2Int, ChunkData>();
 
     public ChunkRenderer ChunkPrefab;
     public GameObject Player;
     public GameObject World;
+    public int seed;
+    public Teraingen Teraingen;
 
+    public bool ready = false;
 
     public ChunkData SpawnChunk;
     private ChunkData CheckChunk;
+
     public Vector2Int CurrentChunk;
+    public Vector2Int PlayerChunk;
+
     private Camera Cam;
     public Vector3 PPos;
-    public Vector2Int PlayerChunk;
-    public int seed;
+
     public Vector3Int BlockWorldPos;
     public Vector3 BlockCenter;
     public Vector2Int UptdChunk;
-    public bool ready = false;
-    public Teraingen Teraingen;
-    public Vector2Int[,] CurrentChunks;
-    public Vector2Int[,] PrewChunks;
-
-
-
 
 
     public void gen_world()
@@ -78,6 +80,7 @@ public class WorldGen : MonoBehaviour
 
             }
             CheckInput();
+            if (CD < 1) CD += Time.deltaTime;
         }
         
     }
@@ -110,8 +113,9 @@ public class WorldGen : MonoBehaviour
         if (hitInfo != false)
         {
             Debug.DrawRay(PPos, hitP, Color.yellow);
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetButton("Fire1") && CD > digCD)
             {
+                CD = 0;
                 BlockCenter = hitInfo.point;
                 for (int x = -ChunkRenderer.size; x <= ChunkRenderer.size; x++)
                 {
@@ -122,8 +126,9 @@ public class WorldGen : MonoBehaviour
                     }
                 }
             }
-            if (Input.GetButtonDown("Fire2"))
+            else if (Input.GetButton("Fire2") && CD > buildCD && Mathf.Abs(hitP.x) > 0.5 && Mathf.Abs(hitP.y) > 0.5)
             {
+                CD = 0;
                 if(!Physics2D.Raycast(PPos, mouse, 3, LayerMask.GetMask("FG")))
                 {
                     BlockCenter = hitInfo.point;
@@ -175,7 +180,6 @@ public class WorldGen : MonoBehaviour
 
     public IEnumerator updateChunks(Vector2Int PChunk)
     {
-        CurrentChunks = new Vector2Int [2 * ChunkSpawnRad + 1, 2 * ChunkSpawnRad + 1];
         StartCoroutine(updtChunk(PChunk.x, PChunk.y));
         for (int x = 0; x <= ChunkSpawnRad; x++)
         {
