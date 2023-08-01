@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
+    private bool bind;
     private bool isFullScreen;
     public GameObject setCanv;
     public GameObject mainCanv;
@@ -14,6 +15,8 @@ public class MenuManager : MonoBehaviour
     List<string> resolutions;
     public Toggle FullScreenTog;
     public Dropdown dropdown;
+    public Slider brightness;
+    public Text fire1;
 
     public void Awake()
     {
@@ -61,7 +64,18 @@ public class MenuManager : MonoBehaviour
     }
 
     ///settings
-    
+
+    /*public string BindButton()
+    {
+        while (true) { if(Input.anyKeyDown) break; }
+        return Input.inputString;
+    }*/
+
+    public void Brightness()
+    {
+        Screen.brightness = brightness.value;
+    }
+
     public void ToggleFullScreen()
     {
         isFullScreen = !isFullScreen;
@@ -70,10 +84,13 @@ public class MenuManager : MonoBehaviour
 
     }
 
-    public void Quality()
+    /*public void Fire1()
     {
-
-    }
+        fire1.text = "press button to bind";
+        string inp = BindButton();
+        fire1.text = inp;
+        
+    }*/
 
     public void Resolution(int r)
     {
