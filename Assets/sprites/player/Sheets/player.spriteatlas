@@ -92,6 +92,7 @@ SpriteAtlas:
   - {fileID: 234047822, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
   - {fileID: 496649774, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
   - {fileID: -1980584615, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
+  - {fileID: 2110147934, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
   - {fileID: 1391582583, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
   - {fileID: -1779468653, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
   - {fileID: 448938793, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
@@ -143,6 +144,7 @@ SpriteAtlas:
   - PlayerJet_19
   - PlayerJet_21
   - PlayerJet_18
+  - PlayerJet_31
   - PlayerJet_30
   - PlayerJet_0
   - PlayerJet_1

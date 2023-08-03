@@ -3,7 +3,7 @@ guid: 90d1a0b406b67584ea76b1e72f5a6393
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -20,6 +20,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
@@ -63,7 +64,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
-  cookieLightType: 0
+  swizzle: 50462976
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -144,10 +145,10 @@ TextureImporter:
       name: PlayerJet_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 224
-        width: 32
-        height: 32
+        x: 5
+        y: 233
+        width: 22
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -165,10 +166,10 @@ TextureImporter:
       name: PlayerJet_1
       rect:
         serializedVersion: 2
-        x: 32
-        y: 224
-        width: 32
-        height: 32
+        x: 37
+        y: 233
+        width: 22
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,7 +177,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ffe85b7c77cc5494da8f6f5bc6b1d151
+      spriteID: c40ee6b93ae845c45ba81f3c9b00b654
       internalID: 448938793
       vertices: []
       indices: 
@@ -186,10 +187,10 @@ TextureImporter:
       name: PlayerJet_2
       rect:
         serializedVersion: 2
-        x: 64
-        y: 224
-        width: 32
-        height: 32
+        x: 69
+        y: 233
+        width: 22
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -197,7 +198,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 26f7650348edad743ba9c3a9b65562ca
+      spriteID: f17c4cc846482df4789fe3298f407d34
       internalID: 727619130
       vertices: []
       indices: 
@@ -207,10 +208,10 @@ TextureImporter:
       name: PlayerJet_3
       rect:
         serializedVersion: 2
-        x: 96
-        y: 224
-        width: 32
-        height: 32
+        x: 101
+        y: 233
+        width: 22
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -218,7 +219,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d25cc7d2bf160954d930d57c32a7cede
+      spriteID: ca9038986c7a8704a82c1c96dd3e6ed2
       internalID: -2055403384
       vertices: []
       indices: 
@@ -228,10 +229,10 @@ TextureImporter:
       name: PlayerJet_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 192
-        width: 32
-        height: 32
+        x: 5
+        y: 200
+        width: 22
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -239,7 +240,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7c2dc770a7ab98c4c817a9f95f4abcf2
+      spriteID: b147d91946be1b84d96cef999f9b9486
       internalID: -1843099752
       vertices: []
       indices: 
@@ -249,10 +250,10 @@ TextureImporter:
       name: PlayerJet_5
       rect:
         serializedVersion: 2
-        x: 32
-        y: 192
-        width: 32
-        height: 32
+        x: 39
+        y: 200
+        width: 22
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -260,7 +261,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d1ac89110277fbb468cfbffc97710563
+      spriteID: 12346b34dc5482e43a47ef6bab5b345d
       internalID: 651841246
       vertices: []
       indices: 
@@ -270,10 +271,10 @@ TextureImporter:
       name: PlayerJet_6
       rect:
         serializedVersion: 2
-        x: 64
-        y: 192
-        width: 32
-        height: 32
+        x: 69
+        y: 201
+        width: 22
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -281,7 +282,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ece3a5dad9aa3284e9c33d2f4c12b876
+      spriteID: b405526ae4566c4458eccfa2c1e7b5a0
       internalID: -595325575
       vertices: []
       indices: 
@@ -291,10 +292,10 @@ TextureImporter:
       name: PlayerJet_7
       rect:
         serializedVersion: 2
-        x: 96
-        y: 192
-        width: 32
-        height: 32
+        x: 101
+        y: 201
+        width: 22
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -302,7 +303,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d6c83c69f15eee48b97c1c1b293e280
+      spriteID: 0555dfcf799c37e4888a6a59c2720afe
       internalID: 382021658
       vertices: []
       indices: 
@@ -312,10 +313,10 @@ TextureImporter:
       name: PlayerJet_8
       rect:
         serializedVersion: 2
-        x: 0
-        y: 160
-        width: 32
-        height: 32
+        x: 5
+        y: 169
+        width: 22
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -323,7 +324,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa36aff4186ab834680564e1ded97dd6
+      spriteID: a531c08cd7f641c4fbdb9b7f66e2e567
       internalID: 1522602273
       vertices: []
       indices: 
@@ -333,10 +334,10 @@ TextureImporter:
       name: PlayerJet_9
       rect:
         serializedVersion: 2
-        x: 32
-        y: 160
-        width: 32
-        height: 32
+        x: 39
+        y: 169
+        width: 22
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -344,7 +345,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b117b694dadfa64bbb96d13c643b59a
+      spriteID: 60f6f8648dbcab9418d8b249c16dc975
       internalID: -527644521
       vertices: []
       indices: 
@@ -354,10 +355,10 @@ TextureImporter:
       name: PlayerJet_10
       rect:
         serializedVersion: 2
-        x: 64
-        y: 160
-        width: 32
-        height: 32
+        x: 66
+        y: 172
+        width: 29
+        height: 22
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -365,7 +366,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9966d7c13167bea40a32b68e1ace22b2
+      spriteID: d85f68bdf0ba6094cbe84ff0314bb046
       internalID: 553532999
       vertices: []
       indices: 
@@ -375,10 +376,10 @@ TextureImporter:
       name: PlayerJet_11
       rect:
         serializedVersion: 2
-        x: 96
-        y: 160
-        width: 32
-        height: 32
+        x: 99
+        y: 172
+        width: 29
+        height: 22
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -386,7 +387,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 142afb1b6ac51dd44bb8d388cb9aec2c
+      spriteID: 289b5d8c5ecc756479f0f6020d02a52f
       internalID: -1992468317
       vertices: []
       indices: 
@@ -396,10 +397,10 @@ TextureImporter:
       name: PlayerJet_12
       rect:
         serializedVersion: 2
-        x: 0
-        y: 128
-        width: 32
-        height: 32
+        x: 1
+        y: 139
+        width: 30
+        height: 22
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -407,7 +408,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e9050e3befd3ca448a7d576c169b39a1
+      spriteID: 7cdfb8497b1cf914982e4bc1cad5de2f
       internalID: 296596497
       vertices: []
       indices: 
@@ -417,10 +418,10 @@ TextureImporter:
       name: PlayerJet_13
       rect:
         serializedVersion: 2
-        x: 32
-        y: 128
-        width: 32
-        height: 32
+        x: 39
+        y: 137
+        width: 20
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -428,7 +429,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3fc3585d662218b4082438291854fa1e
+      spriteID: eb52aebbd4b0ca44e911f74cf30fb242
       internalID: 512894936
       vertices: []
       indices: 
@@ -438,10 +439,10 @@ TextureImporter:
       name: PlayerJet_14
       rect:
         serializedVersion: 2
-        x: 64
-        y: 128
-        width: 32
-        height: 32
+        x: 68
+        y: 137
+        width: 21
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -449,7 +450,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c21b51f13dfb7664daddd237d595cc61
+      spriteID: 6dbef80ec20873d479b3711f67ea178d
       internalID: 1255444459
       vertices: []
       indices: 
@@ -459,10 +460,10 @@ TextureImporter:
       name: PlayerJet_15
       rect:
         serializedVersion: 2
-        x: 96
-        y: 128
-        width: 32
-        height: 32
+        x: 100
+        y: 137
+        width: 20
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -470,7 +471,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e5fa23c1641187d44b90df740dd282c4
+      spriteID: 3afe1596514b5da4bb7a8dbc2177a650
       internalID: 798116724
       vertices: []
       indices: 
@@ -480,10 +481,10 @@ TextureImporter:
       name: PlayerJet_16
       rect:
         serializedVersion: 2
-        x: 0
-        y: 96
-        width: 32
-        height: 32
+        x: 5
+        y: 102
+        width: 19
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -491,7 +492,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e7893715183e74d458717e9a7360920a
+      spriteID: 2a973d942374b894a9cb10131d860bb7
       internalID: -399237743
       vertices: []
       indices: 
@@ -501,10 +502,10 @@ TextureImporter:
       name: PlayerJet_17
       rect:
         serializedVersion: 2
-        x: 32
-        y: 96
-        width: 32
-        height: 32
+        x: 39
+        y: 102
+        width: 19
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -512,7 +513,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ecc261ea250bb7647a2f1c30e69fdbf9
+      spriteID: 68e6f5dbd8d98d34aad6d0c55f06a425
       internalID: -2026311879
       vertices: []
       indices: 
@@ -522,10 +523,10 @@ TextureImporter:
       name: PlayerJet_18
       rect:
         serializedVersion: 2
-        x: 64
-        y: 96
-        width: 32
-        height: 32
+        x: 68
+        y: 102
+        width: 19
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -533,7 +534,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f950b06669ae0454c823dc6103ced14f
+      spriteID: c18290a29a6e76c46bdae5eb97c7f1e8
       internalID: -1980584615
       vertices: []
       indices: 
@@ -543,10 +544,10 @@ TextureImporter:
       name: PlayerJet_19
       rect:
         serializedVersion: 2
-        x: 96
-        y: 96
-        width: 32
-        height: 32
+        x: 100
+        y: 102
+        width: 19
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -554,7 +555,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 13dd697353ca42b4b97b2f549d34c661
+      spriteID: 6785f75f3c464e448ac34ade62beee3f
       internalID: 234047822
       vertices: []
       indices: 
@@ -564,10 +565,10 @@ TextureImporter:
       name: PlayerJet_20
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
-        width: 32
-        height: 32
+        x: 5
+        y: 69
+        width: 19
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -575,7 +576,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d128cdf8f0bf5a148921a7fa9132f3fe
+      spriteID: 12c4a1dc7ee608c4a95dfe2b19c729d9
       internalID: -1967735881
       vertices: []
       indices: 
@@ -585,10 +586,10 @@ TextureImporter:
       name: PlayerJet_21
       rect:
         serializedVersion: 2
-        x: 32
-        y: 64
-        width: 32
-        height: 32
+        x: 39
+        y: 69
+        width: 22
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -596,7 +597,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e17805e95cdf6e48998847deafc880e
+      spriteID: 04681a2ba66fc3d4aabf24fb77adc72b
       internalID: 496649774
       vertices: []
       indices: 
@@ -606,10 +607,10 @@ TextureImporter:
       name: PlayerJet_22
       rect:
         serializedVersion: 2
-        x: 64
-        y: 64
-        width: 32
-        height: 32
+        x: 68
+        y: 69
+        width: 22
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -617,7 +618,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a1b4b8c68d6661940af9ca1e0caf1274
+      spriteID: db738e12fc9e02f4a9b2829b13347319
       internalID: -567652870
       vertices: []
       indices: 
@@ -627,10 +628,10 @@ TextureImporter:
       name: PlayerJet_23
       rect:
         serializedVersion: 2
-        x: 96
-        y: 64
-        width: 32
-        height: 32
+        x: 99
+        y: 69
+        width: 22
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -638,7 +639,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b4a4f065aa0700345b885cbc5cae5906
+      spriteID: cad1c33ae1d60b04993880c5af1970a2
       internalID: 1120362561
       vertices: []
       indices: 
@@ -648,10 +649,10 @@ TextureImporter:
       name: PlayerJet_24
       rect:
         serializedVersion: 2
-        x: 0
-        y: 32
-        width: 32
-        height: 32
+        x: 5
+        y: 37
+        width: 22
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -659,7 +660,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2759aeb4dd63a00419d90ea6d09337eb
+      spriteID: 651ccba151da2fa42a1f73ceb42e533c
       internalID: 655411711
       vertices: []
       indices: 
@@ -669,10 +670,10 @@ TextureImporter:
       name: PlayerJet_25
       rect:
         serializedVersion: 2
-        x: 32
-        y: 32
-        width: 32
-        height: 32
+        x: 39
+        y: 37
+        width: 22
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -680,7 +681,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e5fa4c1fddab95b448958031f933def9
+      spriteID: 18e5a86411657474384361b0f29e8a23
       internalID: -184997760
       vertices: []
       indices: 
@@ -690,10 +691,10 @@ TextureImporter:
       name: PlayerJet_26
       rect:
         serializedVersion: 2
-        x: 64
-        y: 32
-        width: 32
-        height: 32
+        x: 68
+        y: 37
+        width: 22
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -701,7 +702,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 34a9595cc47b1e146b3a5855bf719929
+      spriteID: ad647aec3d341ad428258bc14d6dbc7a
       internalID: 2045562558
       vertices: []
       indices: 
@@ -711,10 +712,10 @@ TextureImporter:
       name: PlayerJet_27
       rect:
         serializedVersion: 2
-        x: 96
-        y: 32
-        width: 32
-        height: 32
+        x: 99
+        y: 37
+        width: 22
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -722,7 +723,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8740e6b12e539c74fa6d0487f020a51b
+      spriteID: 0ce54417f33341c4fb8875cb16896aae
       internalID: 2012386038
       vertices: []
       indices: 
@@ -732,10 +733,10 @@ TextureImporter:
       name: PlayerJet_28
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
+        x: 5
+        y: 4
+        width: 22
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -743,7 +744,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8dcc2df3b83766f449ac67ee967ecf79
+      spriteID: 9c72691e90d24704b8126692bda57949
       internalID: 57499662
       vertices: []
       indices: 
@@ -753,10 +754,10 @@ TextureImporter:
       name: PlayerJet_29
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
+        x: 39
+        y: 4
+        width: 22
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -764,7 +765,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: be2cbcc8e4da5224a9a79d6904e8a927
+      spriteID: 31e9386d4b825da4a9f695dc04c2874f
       internalID: -1007444597
       vertices: []
       indices: 
@@ -774,10 +775,10 @@ TextureImporter:
       name: PlayerJet_30
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
+        x: 68
+        y: 4
+        width: 22
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -785,8 +786,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ca31d24cb3245d409265005812247e4
+      spriteID: 5b47fb7dfc0293f4d99aa16e3778de60
       internalID: 1391582583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerJet_31
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 4
+        width: 22
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d72d36180808a454ead0ed3217026863
+      internalID: 2110147934
       vertices: []
       indices: 
       edges: []
@@ -825,6 +847,7 @@ TextureImporter:
       PlayerJet_27: 2012386038
       PlayerJet_11: -1992468317
       PlayerJet_23: 1120362561
+      PlayerJet_31: 2110147934
       PlayerJet_2: 727619130
       PlayerJet_12: 296596497
       PlayerJet_18: -1980584615
@@ -835,7 +858,6 @@ TextureImporter:
       PlayerJet_26: 2045562558
   spritePackingTag: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
