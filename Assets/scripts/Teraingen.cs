@@ -55,6 +55,12 @@ public class Teraingen : MonoBehaviour
         }
     }
 
+    public int GetFirstAir(int xOffset, int seed)
+    {
+        float hight = GetHight(xOffset, 0, seed, HOctaves, HoctaveNoises);
+        return (int)Math.Ceiling(hight + 1);
+    }
+
     public BlockType[,] GenerateTaerrain(int xOffset, int yOffset, int seed)
     {
 
