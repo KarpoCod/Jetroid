@@ -139,7 +139,7 @@ public class PlayerController : MonoBehaviour
 		animator.SetBool("jet", Jet);
 		animator.SetInteger("AnimState", AnimSt);
 
-        body2D.velocity = new Vector2((forceX == 0 || Mathf.Abs(body2D.velocity.x) < Mathf.Abs(VelocityX)) ? VelocityX : body2D.velocity.x, (forceY == 0 && standing) ? VelocityY : body2D.velocity.y);
+        body2D.velocity = new Vector2((Mathf.Abs(body2D.velocity.x) < Mathf.Abs(VelocityX)) ? VelocityX : body2D.velocity.x, (forceY == 0 && standing) ? VelocityY : body2D.velocity.y);
         body2D.AddForce(new Vector2(forceX, forceY));
     }
 }
