@@ -49,9 +49,9 @@ MonoBehaviour:
   ChunkSpawnRad: 5
   buildCD: 0.2
   digCD: 0.15
+  CanBuild: 1
   offset: {x: 0, y: 15}
   ChunkPrefab: {fileID: 5204137682881531203, guid: 8e179ca5b9edd3f4c9c390c57bb15e3f, type: 3}
-  Cursor: {fileID: 5611355428973241318}
   Player: {fileID: 8061114378512599394, guid: 3c5de5b66be09a145818090a4575f413, type: 3}
   World: {fileID: 3734662676031197143}
   seed: 0
@@ -80,28 +80,22 @@ MonoBehaviour:
   dungeons: -20
   BaseHight: 0
   HOctaves:
-  - NoiseType: 4
+  - NoiseType: 3
     Frequency: 0.001
-    Amplitude: 2000
+    Amplitude: 600
   - NoiseType: 4
-    Frequency: 0.01
-    Amplitude: 500
+    Frequency: 0.005
+    Amplitude: 200
   - NoiseType: 1
-    Frequency: 0.02
-    Amplitude: 100
-  - NoiseType: 3
-    Frequency: 0.05
-    Amplitude: 20
-  DOctaves:
-  - NoiseType: 5
-    Frequency: 0.02
+    Frequency: 0.01
     Amplitude: 50
-  - NoiseType: 0
-    Frequency: 0.03
-    Amplitude: 75
   - NoiseType: 3
-    Frequency: 0.05
-    Amplitude: 75
+    Frequency: 0.02
+    Amplitude: 10
+  DOctaves:
+  - NoiseType: 3
+    Frequency: 0.06
+    Amplitude: 300
   AOctaves:
   - NoiseType: 2
     Frequency: 0.005
@@ -128,7 +122,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6804011201040620797
 Transform:
   m_ObjectHideFlags: 0
@@ -186,7 +180,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_Sprite: {fileID: -1585323116, guid: eb4268377c06d674087b2e1d5a9fdbf6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.36862746}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
