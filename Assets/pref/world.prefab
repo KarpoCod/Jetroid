@@ -81,12 +81,21 @@ MonoBehaviour:
   BaseHight: 0
   HOctaves:
   - NoiseType: 3
-    Frequency: 0.05
-    Amplitude: 1
-  DOctaves:
-  - NoiseType: 5
+    Frequency: 0.001
+    Amplitude: 600
+  - NoiseType: 4
+    Frequency: 0.005
+    Amplitude: 200
+  - NoiseType: 1
+    Frequency: 0.01
+    Amplitude: 50
+  - NoiseType: 3
     Frequency: 0.02
-    Amplitude: 1
+    Amplitude: 10
+  DOctaves:
+  - NoiseType: 3
+    Frequency: 0.06
+    Amplitude: 300
   AOctaves:
   - NoiseType: 2
     Frequency: 0.005

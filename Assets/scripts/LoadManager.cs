@@ -62,12 +62,14 @@ public class LoadManager : MonoBehaviour
             Canvas.gameObject.SetActive(false);
             Time.timeScale = 1;
             menu = false;
+            world.CanBuild = true;
         }
         else
         {
             Canvas.gameObject.SetActive(true);
             Time.timeScale = 0;
             menu = true;
+            world.CanBuild = false;
         }
     }
 
