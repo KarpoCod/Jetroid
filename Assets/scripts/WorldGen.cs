@@ -15,12 +15,13 @@ public class WorldGen : MonoBehaviour
     public float buildCD = 0.2f;
     public float digCD = 0.15f;
     private float CD = 1f;
+    public Boolean CanBuild = true;
 
     public Vector2 offset = new Vector2(0, 13);
     public Dictionary<Vector2Int, ChunkData> ChunkDatas = new Dictionary<Vector2Int, ChunkData>();
 
     public ChunkRenderer ChunkPrefab;
-    public GameObject Cursor;
+    //public GameObject Cursor;
     public GameObject Player;
     public GameObject World;
     public int seed;
@@ -74,7 +75,7 @@ public class WorldGen : MonoBehaviour
     {
         seed = (int)(Time.realtimeSinceStartup * 1000000 % 10000);
         Cam = Camera.main;
-
+        Player.transform.position = new Vector3(Player.transform.position.x, Teraingen.GetFirstAir((int)Math.Floor(Player.transform.position.x), seed), 0);
         //Spawn();
         gen_world();
     }
@@ -93,7 +94,7 @@ public class WorldGen : MonoBehaviour
                 updateChunks(PlayerChunk);
 
             }
-            CheckInput();
+            if (CanBuild) CheckInput();
 
             while (generatedResultsPrin.TryDequeue(out var chunkDat))
             {
@@ -163,8 +164,8 @@ public class WorldGen : MonoBehaviour
         
         if (hitInfo != false)
         {
-            Cursor.SetActive(true);
-            Cursor.transform.position = Vector3Int.FloorToInt(hitInfo.point);
+            //Cursor.SetActive(true);
+            //Cursor.transform.position = Vector3Int.FloorToInt(hitInfo.point);
             Debug.DrawRay(PPos, hitP, Color.yellow);
             if (Input.GetButton("Fire1") && CD > digCD)
             {
@@ -199,7 +200,7 @@ public class WorldGen : MonoBehaviour
         }
         else
         {
-            Cursor.SetActive(false);
+            //Cursor.SetActive(false);
             Debug.DrawRay(PPos, mouse, Color.red);
         }
     }
