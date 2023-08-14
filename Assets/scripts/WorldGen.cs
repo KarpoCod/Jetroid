@@ -75,7 +75,6 @@ public class WorldGen : MonoBehaviour
         seed = (int)(Time.realtimeSinceStartup * 1000000 % 10000);
         Cam = Camera.main;
 
-        //Spawn();
         gen_world();
     }
 
