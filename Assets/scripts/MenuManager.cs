@@ -10,12 +10,13 @@ public class MenuManager : MonoBehaviour
     private bool isFullScreen;
     public GameObject setCanv;
     public GameObject mainCanv;
-    public WorldGen world;
 
     Resolution[] rsl;
     List<string> resolutions;
     public Toggle FullScreenTog;
     public Dropdown dropdown;
+    public Slider brightness;
+    public Text fire1;
 
     public void Awake()
     {
@@ -28,11 +29,9 @@ public class MenuManager : MonoBehaviour
         }
         dropdown.ClearOptions();
         dropdown.AddOptions(resolutions);
-        string resol = Screen.width.ToString() + "x" + Screen.height.ToString();
+        string resol = Screen.currentResolution.width.ToString() + "x" + Screen.currentResolution.height.ToString();
 
         dropdown.value = resolutions.IndexOf(resol);
-        world.create_world();
-        world.ready = true;
     }
 
     public void Load()
@@ -66,6 +65,17 @@ public class MenuManager : MonoBehaviour
 
     ///settings
 
+    /*public string BindButton()
+    {
+        while (true) { if(Input.anyKeyDown) break; }
+        return Input.inputString;
+    }*/
+
+    public void Brightness()
+    {
+        Screen.brightness = brightness.value;
+    }
+
     public void ToggleFullScreen()
     {
         isFullScreen = !isFullScreen;
@@ -74,6 +84,13 @@ public class MenuManager : MonoBehaviour
 
     }
 
+    /*public void Fire1()
+    {
+        fire1.text = "press button to bind";
+        string inp = BindButton();
+        fire1.text = inp;
+        
+    }*/
 
     public void Resolution(int r)
     {

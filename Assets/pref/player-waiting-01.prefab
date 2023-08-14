@@ -122,12 +122,12 @@ Rigidbody2D:
   m_UseAutoMass: 1
   m_Mass: 1.6017885
   m_LinearDrag: 0.5
-  m_AngularDrag: 0
-  m_GravityScale: 1
+  m_AngularDrag: 0.5
+  m_GravityScale: 3
   m_Material: {fileID: 6200000, guid: 6a973bd21f92a0e4e8baa6ec9929d770, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &8061114378512599398
 MonoBehaviour:
@@ -145,12 +145,12 @@ MonoBehaviour:
   PlayerYScale: 0.125
   PlayerZ: 0
   Speed: 12
-  jetSpeed: 40
+  jetForce: 7000
   jumpForce: 5
-  airMultiplier: 0.1
+  airMultiplier: 0.5
   standingThreshold: 0.1
   boost: 2
-  maxVelocity: {x: 50, y: 20}
+  maxVelocity: {x: 50, y: 15}
   Player: {fileID: 8061114378512599394}
   Jet: 1
   AnimSt: 0
