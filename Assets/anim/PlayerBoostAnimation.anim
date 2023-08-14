@@ -7,7 +7,7 @@ AnimationClip:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: PlayerBoostAnimation
-  serializedVersion: 6
+  serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
   m_UseHighQualityCurve: 1
@@ -43,6 +43,7 @@ AnimationClip:
       typeID: 212
       customType: 23
       isPPtrCurve: 1
+      isIntCurve: 0
     pptrCurveMapping:
     - {fileID: 553532999, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
     - {fileID: -1992468317, guid: 90d1a0b406b67584ea76b1e72f5a6393, type: 3}
