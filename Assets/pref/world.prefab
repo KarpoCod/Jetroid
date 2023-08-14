@@ -51,7 +51,6 @@ MonoBehaviour:
   digCD: 0.15
   offset: {x: 0, y: 15}
   ChunkPrefab: {fileID: 5204137682881531203, guid: 8e179ca5b9edd3f4c9c390c57bb15e3f, type: 3}
-  Cursor: {fileID: 5611355428973241318}
   Player: {fileID: 8061114378512599394, guid: 3c5de5b66be09a145818090a4575f413, type: 3}
   World: {fileID: 3734662676031197143}
   seed: 0
