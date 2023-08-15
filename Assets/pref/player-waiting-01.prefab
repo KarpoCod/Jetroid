@@ -123,7 +123,7 @@ Rigidbody2D:
   m_Mass: 1.6017885
   m_LinearDrag: 0.5
   m_AngularDrag: 0.5
-  m_GravityScale: 3
+  m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: 6a973bd21f92a0e4e8baa6ec9929d770, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -144,8 +144,8 @@ MonoBehaviour:
   PlayerXScale: 0.125
   PlayerYScale: 0.125
   PlayerZ: 0
-  Speed: 12
-  jetForce: 7000
+  Speed: 7
+  jetForce: 2500
   jumpForce: 5
   airMultiplier: 0.5
   standingThreshold: 0.1
