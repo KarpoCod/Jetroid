@@ -80,32 +80,37 @@ public class LoadManager : MonoBehaviour
         PlayerPos = player.transform.position;
         fToSave = PlayerPos.x + "p" + PlayerPos.y + "p" + world.seed + "p";
         foreach (KeyValuePair<Vector2Int, ChunkData> ReadCh in ChunkDatas)
-        {
-            string chToSave = "c" + ReadCh.Key.x + "/" + ReadCh.Key.y + "/";
-            //int count = 1;
-            foreach (int bl in ReadCh.Value.Blocks)
+        {            
+            if (ReadCh.Value != null)
             {
-                /*//if (fToSave.Length == 0) { return; }
-                if (chToSave.Substring(chToSave.Length - 2) == (bl / 10).ToString() + (bl % 10).ToString()) { count++; }
-                else if (chToSave.Substring(chToSave.Length - 2) != (bl / 10).ToString() + (bl % 10).ToString() && count > 1)
+                string chToSave = "c" + ReadCh.Key.x + "/" + ReadCh.Key.y + "/";
+
+                //int count = 1;
+                foreach (int bl in ReadCh.Value.Blocks)
                 {
-                    chToSave = chToSave.Remove(chToSave.Length - 6, 6);
-                    chToSave += "n" + (count / 100).ToString() + (count % 100 / 10).ToString() + (count % 10).ToString() + (bl / 10).ToString() + (bl % 10).ToString();
-                    count = 1;
+                    /*//if (fToSave.Length == 0) { return; }
+                    if (chToSave.Substring(chToSave.Length - 2) == (bl / 10).ToString() + (bl % 10).ToString()) { count++; }
+                    else if (chToSave.Substring(chToSave.Length - 2) != (bl / 10).ToString() + (bl % 10).ToString() && count > 1)
+                    {
+                        chToSave = chToSave.Remove(chToSave.Length - 6, 6);
+                        chToSave += "n" + (count / 100).ToString() + (count % 100 / 10).ToString() + (count % 10).ToString() + (bl / 10).ToString() + (bl % 10).ToString();
+                        count = 1;
+                    }
+                    else { chToSave += "n" + "001" + (bl / 10).ToString() + (bl % 10).ToString(); }*/
+
+                    chToSave += "n" + (bl / 10).ToString() + (bl % 10).ToString();
+
                 }
-                else { chToSave += "n" + "001" + (bl / 10).ToString() + (bl % 10).ToString(); }*/
-
-                chToSave += "n" + (bl / 10).ToString() + (bl % 10).ToString();
-
+                /*if (count != 1)
+                {
+                    int bl = int.Parse(chToSave.Substring(chToSave.Length - 2));
+                    chToSave = chToSave.Remove(chToSave.Length - 6, 6);
+                    chToSave += "n" + (count / 100).ToString() + ((count % 100) / 10).ToString() + (count % 10).ToString() + (bl / 10).ToString() + (bl % 10).ToString();
+                    count = 1;
+                }*/
+                fToSave += chToSave;
             }
-            /*if (count != 1)
-            {
-                int bl = int.Parse(chToSave.Substring(chToSave.Length - 2));
-                chToSave = chToSave.Remove(chToSave.Length - 6, 6);
-                chToSave += "n" + (count / 100).ToString() + ((count % 100) / 10).ToString() + (count % 10).ToString() + (bl / 10).ToString() + (bl % 10).ToString();
-                count = 1;
-            }*/
-            fToSave += chToSave;
+            
         }
       
         BinaryFormatter form = new BinaryFormatter();

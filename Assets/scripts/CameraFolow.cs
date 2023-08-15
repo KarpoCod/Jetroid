@@ -15,7 +15,7 @@ public class CameraFolow : MonoBehaviour
     private void Awake()
     {
         var cam = GetComponent<Camera>();
-        cam.orthographicSize = (Screen.height / 2f) / scale;
+        cam.orthographicSize = scale;
     }
 
     void Start()

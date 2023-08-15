@@ -65,7 +65,6 @@ public class WorldGen : MonoBehaviour
             
 
         }
-        Thread.Sleep(500);
         updateChunks(PlayerChunk);
         Player.transform.position = PPos;
         
@@ -75,9 +74,10 @@ public class WorldGen : MonoBehaviour
     {
         seed = (int)(Time.realtimeSinceStartup * 1000000 % 10000);
         Cam = Camera.main;
-        Player.transform.position = new Vector3(Player.transform.position.x, Teraingen.GetFirstAir((int)Math.Floor(Player.transform.position.x), seed), 0);
+       
         //Spawn();
         gen_world();
+        Player.transform.position = new Vector3(Player.transform.position.x, Teraingen.GetFirstAir((int)Math.Floor(Player.transform.position.x), seed), 0);
     }
 
     void Update()

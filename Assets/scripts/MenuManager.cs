@@ -46,7 +46,7 @@ public class MenuManager : MonoBehaviour
             float s = Time.deltaTime * speed;
             int ty = world.Teraingen.GetFirstAir((int)Math.Floor(cam.transform.position.x), world.seed);
             float cy = cam.transform.position.y;
-            float ys = (MathF.Abs(cy - ty) < 0.01) ? ty : cy + (ty - cy) * 0.3f;
+            float ys = (MathF.Abs(cy - ty) < 0.01) ? ty : cy + (ty - cy) * 0.05f;
             cam.transform.position = new Vector3(cam.transform.position.x + s, ys, -5);
         }
         catch{ }
