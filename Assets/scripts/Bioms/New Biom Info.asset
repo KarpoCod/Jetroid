@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfa7ae999e7304b4691dfe867b6cee86, type: 3}
+  m_Name: New Biom Info
+  m_EditorClassIdentifier: 
+  index: 0
+  name: Flat
+  mount: 0
+  grass: 0
+  dungeons: 0
+  HOctaves:
+  - NoiseType: 3
+    Frequency: 0.001
+    Amplitude: 600
+  - NoiseType: 4
+    Frequency: 0.005
+    Amplitude: 200
+  - NoiseType: 1
+    Frequency: 0.01
+    Amplitude: 50
+  - NoiseType: 3
+    Frequency: 0.02
+    Amplitude: 10
+  DOctaves:
+  - NoiseType: 3
+    Frequency: 0.06
+    Amplitude: 300
+  AOctaves:
+  - NoiseType: 2
+    Frequency: 0.005
+    Amplitude: -150
+  - NoiseType: 4
+    Frequency: 0.02
+    Amplitude: 50
+  - NoiseType: 3
+    Frequency: 0.02
+    Amplitude: 50

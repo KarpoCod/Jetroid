@@ -45,6 +45,7 @@ public class WorldGen : MonoBehaviour
 
     public void gen_world()
     {
+        Teraingen.Generate();
         PPos = Player.transform.position;
 
         if (PPos.x < 0) PPos.x -= 1;
