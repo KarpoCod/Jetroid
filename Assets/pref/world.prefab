@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 412f25bdafd25d5479b68416b648656d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChunkSpawnRad: 4
+  ChunkSpawnRad: 3
   buildCD: 0.2
   digCD: 0.15
   CanBuild: 1

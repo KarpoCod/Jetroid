@@ -74,8 +74,7 @@ public class WorldGen : MonoBehaviour
     {
         seed = (int)(Time.realtimeSinceStartup * 1000000 % 10000);
         Cam = Camera.main;
-       
-        //Spawn();
+
         gen_world();
         Player.transform.position = new Vector3(Player.transform.position.x, Teraingen.GetFirstAir((int)Math.Floor(Player.transform.position.x), seed), 0);
     }
@@ -98,32 +97,24 @@ public class WorldGen : MonoBehaviour
 
             while (generatedResultsPrin.TryDequeue(out var chunkDat))
             {
-                if (ChunkDatas[chunkDat.coords] == null) createChunkPrin(chunkDat);
+                if (Mathf.Abs(chunkDat.coords.x - PlayerChunk.x) <= ChunkSpawnRad || Mathf.Abs(chunkDat.coords.y - PlayerChunk.y) <= ChunkSpawnRad)
+                {
+                    if (ChunkDatas[chunkDat.coords] == null) createChunkPrin(chunkDat);
+                }
+                
             }
 
             if (generatedResults.TryDequeue(out var chunkData))
             {
                 if (Mathf.Abs(chunkData.coords.x - PlayerChunk.x) <= ChunkSpawnRad || Mathf.Abs(chunkData.coords.y - PlayerChunk.y) <= ChunkSpawnRad)
                 {
-                    StartCoroutine(createChunk(chunkData));
+                    createChunkPrin(chunkData);
                 }
             }
 
             if (CD < 1) CD += Time.deltaTime;
         }
         
-    }
-
-    public IEnumerator createChunk(ChunkData chunkData)
-    {
-        ChunkDatas[new Vector2Int(chunkData.coords.x, chunkData.coords.y)] = chunkData;
-        var chunk = Instantiate(ChunkPrefab, new Vector3(chunkData.coords.x * ChunkRenderer.chunkWide, chunkData.coords.y * ChunkRenderer.chunkWide, 0), Quaternion.identity, transform);
-        chunk.ChunkData = chunkData;
-        chunkData.Chunk = chunk;
-        chunkData.seed = seed;
-        chunk.pos = new Vector2Int(chunkData.coords.x, chunkData.coords.y);
-        chunk.ParentWorld = this;
-        yield return null;
     }
 
     public void createChunkPrin(ChunkData chunkData)
@@ -137,20 +128,6 @@ public class WorldGen : MonoBehaviour
         chunk.ParentWorld = this;
     }
 
-    void Spawn()
-	{
-        PlayerChunk = new Vector2Int((int)(PPos.x) / ChunkRenderer.chunkWide, (int)PPos.y / ChunkRenderer.chunkWide);
-        updateChunks(PlayerChunk);
-		Vector3 cord = new Vector3(-1, -1, -1);
-        
-        //SpawnChunk = ChunkDatas[new Vector2Int(PlayerChunk.x, PlayerChunk.y)];
-        //cord = SpawnChunk.Chunk.setSpawn(PlayerChunk.x, PlayerChunk.y);
-                
-		
-        CurrentChunk = new Vector2Int((int)cord.x / ChunkRenderer.chunkWide,(int) cord.y / ChunkRenderer.chunkWide);
-        Player.transform.position = cord;
-
-	}
 
     void CheckInput()
     {
