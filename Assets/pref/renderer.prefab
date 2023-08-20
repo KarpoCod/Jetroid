@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentWorld: {fileID: 0}
+  pos: {x: 0, y: 0}
   Chunk: {fileID: 2984509045503546018}
   BgChunk: {fileID: 4868753766086186087}
   tileBlocks:
@@ -394,6 +395,7 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+  m_UseDelaunayMesh: 0
 --- !u!50 &2901225100509995609
 Rigidbody2D:
   serializedVersion: 4
@@ -410,7 +412,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 6a973bd21f92a0e4e8baa6ec9929d770, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0

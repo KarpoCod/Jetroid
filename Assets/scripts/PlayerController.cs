@@ -8,9 +8,9 @@ public class PlayerController : MonoBehaviour
     public float PlayerYScale;
     public float PlayerZ;
     public float Speed = 50;
-    public float jetSpeed = 40;
+    public float jetForce = 40;
     public float jumpForce = 5;
-    public float airMultiplier = 0.1f;
+    public float airMultiplier = 0.4f;
     public float standingThreshold = 4f;
     public float boost = 4f;
     public Vector2 maxVelocity = new Vector2(60, 100);
@@ -41,6 +41,8 @@ public class PlayerController : MonoBehaviour
     {
         float forceY = 0;
         float forceX = 0;
+        float VelocityX = 0;
+        float VelocityY = 0;
         var absVelX = Mathf.Abs(body2D.velocity.x);
         var absVelY = Mathf.Abs(body2D.velocity.y);
         float horizontalInput = Input.GetAxis("Horizontal");
@@ -71,22 +73,25 @@ public class PlayerController : MonoBehaviour
             }*/
             if (verticalInput < 0 && Jet)
             {
-                if (absVelX < maxVelocity.x) forceX = Speed * Time.deltaTime * horizontalInput * boost * 150;
+                if (absVelX < maxVelocity.x) VelocityX = Speed * horizontalInput * boost;
 
-
-                transform.rotation = Quaternion.Euler(0, 0, -90);
                 if (horizontalInput < 0)
                 {
-                    transform.localScale = new Vector3(1 * PlayerXScale, -1 * PlayerYScale, 1);
+                    transform.localScale = new Vector3(-1 * PlayerXScale, 1 * PlayerYScale, 1);
 
                 }
-                AnimSt = 2;
+                else if (horizontalInput > 0)
+                {
+                    transform.localScale = new Vector3(1 * PlayerXScale, 1 * PlayerYScale, 1);
+
+                }
+                AnimSt = 4;
             }
             else if (absVelX < maxVelocity.x)
             {
                 transform.rotation = Quaternion.Euler(0, 0, 0);
-                var newSpeed = Speed * Time.deltaTime * horizontalInput * 150;
-                forceX = standing ? newSpeed : (newSpeed * airMultiplier);
+                var newSpeed = Speed * horizontalInput;
+                VelocityX = standing ? newSpeed : (newSpeed * airMultiplier);
                 if (horizontalInput < 0)
                 {
                     transform.localScale = new Vector3(-1 * PlayerXScale, 1 * PlayerYScale, 1);
@@ -95,24 +100,20 @@ public class PlayerController : MonoBehaviour
                 {
                     transform.localScale = new Vector3(1 * PlayerXScale, 1 * PlayerYScale, 1);
                 }
-                else
-                {
-                    transform.localScale = new Vector3(1 * PlayerXScale, -1 * PlayerYScale, 1);
-                }
+                AnimSt = standing ? 1 : 3;
             }
         }
         else
         {
             transform.rotation = Quaternion.Euler(0, 0, PlayerZ);
             AnimSt = 0;
-            transform.localScale = new Vector3(PlayerXScale, 1 * PlayerYScale, 1);
         }
 
         if (verticalInput > 0 && Jet)
         {
             if (absVelY < maxVelocity.y)
             {
-                forceY = jetSpeed * Time.deltaTime * verticalInput * 75;
+                forceY = jetForce * Time.deltaTime * verticalInput;
             }
             AnimSt = 2;
         }
@@ -121,7 +122,7 @@ public class PlayerController : MonoBehaviour
 			if (jumpCd <= 0)
 			{
 				jumpCd = 0.1f;
-				forceY = jumpForce * 75;
+				VelocityY = jumpForce * 75;
 				Debug.Log("Jumping!");
 			}
 		}
@@ -130,10 +131,6 @@ public class PlayerController : MonoBehaviour
 			AnimSt = 3;
 		}
 		
-		if (standing && forceY == 0 && forceX == 0)
-		{
-			body2D.velocity = new Vector2(0, 0);
-		}
 		if (jumpCd >= 0)
 		{
 			jumpCd -= Time.deltaTime;
@@ -142,6 +139,7 @@ public class PlayerController : MonoBehaviour
 		animator.SetBool("jet", Jet);
 		animator.SetInteger("AnimState", AnimSt);
 
+        body2D.velocity = new Vector2((Mathf.Abs(body2D.velocity.x) < Mathf.Abs(VelocityX)) ? VelocityX : body2D.velocity.x, (forceY == 0 && standing) ? VelocityY : body2D.velocity.y);
         body2D.AddForce(new Vector2(forceX, forceY));
     }
 }
