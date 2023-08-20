@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraFolow : MonoBehaviour
@@ -13,7 +15,7 @@ public class CameraFolow : MonoBehaviour
     private void Awake()
     {
         var cam = GetComponent<Camera>();
-        cam.orthographicSize = scale;
+        cam.orthographicSize = (Screen.height / 2f) / scale;
     }
 
     void Start()

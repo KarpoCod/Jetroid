@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using System;
 
 public class MenuManager : MonoBehaviour
 {
@@ -11,15 +10,13 @@ public class MenuManager : MonoBehaviour
     private bool isFullScreen;
     public GameObject setCanv;
     public GameObject mainCanv;
-    public WorldGen world;
-    public Camera cam;
-    public int speed;
 
     Resolution[] rsl;
     List<string> resolutions;
     public Toggle FullScreenTog;
     public Dropdown dropdown;
-
+    public Slider brightness;
+    public Text fire1;
 
     public void Awake()
     {
@@ -32,24 +29,9 @@ public class MenuManager : MonoBehaviour
         }
         dropdown.ClearOptions();
         dropdown.AddOptions(resolutions);
-        string resol = Screen.width.ToString() + "x" + Screen.height.ToString();
+        string resol = Screen.currentResolution.width.ToString() + "x" + Screen.currentResolution.height.ToString();
 
         dropdown.value = resolutions.IndexOf(resol);
-        world.create_world();
-        world.ready = true;
-    }
-
-    public void Update()
-    {
-        try
-        {
-            float s = Time.deltaTime * speed;
-            int ty = world.Teraingen.GetFirstAir((int)Math.Floor(cam.transform.position.x), world.seed);
-            float cy = cam.transform.position.y;
-            float ys = (MathF.Abs(cy - ty) < 0.01) ? ty : cy + (ty - cy) * 0.05f;
-            cam.transform.position = new Vector3(cam.transform.position.x + s, ys, -5);
-        }
-        catch{ }
     }
 
     public void Load()
@@ -83,7 +65,16 @@ public class MenuManager : MonoBehaviour
 
     ///settings
 
-   
+    /*public string BindButton()
+    {
+        while (true) { if(Input.anyKeyDown) break; }
+        return Input.inputString;
+    }*/
+
+    public void Brightness()
+    {
+        Screen.brightness = brightness.value;
+    }
 
     public void ToggleFullScreen()
     {
@@ -92,6 +83,14 @@ public class MenuManager : MonoBehaviour
         FullScreenTog.isOn = isFullScreen;
 
     }
+
+    /*public void Fire1()
+    {
+        fire1.text = "press button to bind";
+        string inp = BindButton();
+        fire1.text = inp;
+        
+    }*/
 
     public void Resolution(int r)
     {
