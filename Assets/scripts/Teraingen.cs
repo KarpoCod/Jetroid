@@ -55,6 +55,13 @@ public class Teraingen : MonoBehaviour
         }
     }
 
+    public int GetFirstAir(int xOffset, int seed)
+    {
+        for (int i = 10; i == 0; i--) { Debug.Log(i + " to start"); }
+        float hight = GetHight(xOffset, 0, seed, HOctaves, HoctaveNoises);
+        return (int)Math.Ceiling(hight + 1);
+    }
+
     public BlockType[,] GenerateTaerrain(int xOffset, int yOffset, int seed)
     {
 
@@ -174,16 +181,22 @@ public class Teraingen : MonoBehaviour
     }
 
      float GetHight(float x, float y, int seed, NoiseOctaveSettings[] Octaves, FastNoiseLite[] octaveNoises)
-    {
-
+     {
         float result = BaseHight;
 
-        for(int i = 0; i < Octaves.Length; i++)
-        {
-            octaveNoises[i].SetSeed(seed);
-            float noise = octaveNoises[i].GetNoise(x, y);
-            result += noise * Octaves[i].Amplitude / 2;
-        }
+            for (int i = 0; i < Octaves.Length; i++)
+            {
+                    try
+                    {
+
+                        octaveNoises[i].SetSeed(seed);
+                        float noise = octaveNoises[i].GetNoise(x, y);
+                        result += noise * Octaves[i].Amplitude / 2;
+                    }
+                    catch { }
+            }
+     
+        
         return result;
-    }
+     }
 }
