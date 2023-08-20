@@ -21,6 +21,7 @@ public class WorldGen : MonoBehaviour
     public Dictionary<Vector2Int, ChunkData> ChunkDatas = new Dictionary<Vector2Int, ChunkData>();
 
     public ChunkRenderer ChunkPrefab;
+    //public GameObject Cursor;
     public GameObject Player;
     public GameObject World;
     public int seed;
