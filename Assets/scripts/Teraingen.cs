@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+//using System.Diagnostics;
 using UnityEngine;
 
 
@@ -91,11 +92,11 @@ public class Teraingen : MonoBehaviour
                 {
                     result[x, y] = BlockType.bgAir;
                 }
-                else if(danRate < biom.dungeons)
+                else if(danRate < biom.dungeonsRate)
                 {
                     result[x, y] = BlockType.bgAir;
                 }
-                else if (danRate < biom.dungeons && grassRate < biom.dungeons + 5 || grassRate > biom.grass)
+                else if (danRate < biom.dungeonsRate && grassRate < biom.dungeonsRate + 5 || grassRate > biom.grassRate)
                 {
                     result[x, y] = BlockType.grass;
                 }
@@ -177,7 +178,7 @@ public class Teraingen : MonoBehaviour
                 float bgRate = GetHight(x + xOffset, y + yOffset, seed, biom.DOctaves, DoctaveNoises[biom.index]);
                 float B = Mathf.PerlinNoise((x + xOffset + seed * 3) * 5f, (y + yOffset + seed * 2) * 5f);
 
-                if (bgRate < biom.dungeons - 15 * B && hight > y + yOffset)
+                if (bgRate < biom.dungeonsRate - 15 * B && hight > y + yOffset)
                 {
                     result[x, y] = BlockType.bgDirt;
                 }
@@ -212,6 +213,13 @@ public class Teraingen : MonoBehaviour
 
     public BiomInfo SetBiom(int xOffset,int seed)
     {
-        return bioms[0];
+        FastNoiseLite noise = new FastNoiseLite();
+        noise.SetSeed(seed);
+        noise.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
+        noise.SetFrequency(0.003f);
+        int res = (int)Math.Ceiling(MathF.Abs(noise.GetNoise(xOffset, 0))) * bioms.Length;
+        if (res == bioms.Length) { res--; }
+        Debug.Log(res);
+        return bioms[res];
     }
 }
