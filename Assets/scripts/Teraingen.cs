@@ -33,7 +33,7 @@ public class Teraingen : MonoBehaviour
     public FastNoiseLite[][] AoctaveNoises;
 
 
-    public void Generate()
+    public void awake()
     {
         foreach (BiomInfo biom in bioms)
         {
