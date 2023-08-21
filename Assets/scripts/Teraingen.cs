@@ -24,17 +24,19 @@ public class Teraingen : MonoBehaviour
     public class NoiseOctaveSettings
     {
         public FastNoiseLite.NoiseType NoiseType;
-        public float Frequency = 0.2f; 
-        public float Amplitude = 1 ;
+        public float Frequency = 0.2f;
+        public float Amplitude = 1;
     }
 
     public FastNoiseLite[][] HoctaveNoises;
     public FastNoiseLite[][] DoctaveNoises;
     public FastNoiseLite[][] AoctaveNoises;
 
-
-    public void awake()
+    public void Awake()
     {
+        HoctaveNoises = new FastNoiseLite[bioms.Length][];
+        DoctaveNoises = new FastNoiseLite[bioms.Length][];
+        AoctaveNoises = new FastNoiseLite[bioms.Length][];
         foreach (BiomInfo biom in bioms)
         {
             HoctaveNoises[biom.index] = new FastNoiseLite[biom.HOctaves.Length];

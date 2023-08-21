@@ -21,7 +21,7 @@ public class MenuManager : MonoBehaviour
     public Dropdown dropdown;
 
 
-    public void Awake()
+    public void Start()
     {
         isFullScreen = Screen.fullScreen;
         resolutions = new List<string>();
