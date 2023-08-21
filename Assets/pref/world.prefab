@@ -75,37 +75,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87ec961cf940b69448015c3bc453fb9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mount: 80
-  grass: 60
-  dungeons: -20
+  bioms:
+  - {fileID: 11400000, guid: 084620d3a9c1cb84ea6b045c1dadd5c8, type: 2}
   BaseHight: 0
-  HOctaves:
-  - NoiseType: 3
-    Frequency: 0.001
-    Amplitude: 600
-  - NoiseType: 4
-    Frequency: 0.005
-    Amplitude: 200
-  - NoiseType: 1
-    Frequency: 0.01
-    Amplitude: 50
-  - NoiseType: 3
-    Frequency: 0.02
-    Amplitude: 10
-  DOctaves:
-  - NoiseType: 3
-    Frequency: 0.06
-    Amplitude: 300
-  AOctaves:
-  - NoiseType: 2
-    Frequency: 0.005
-    Amplitude: -150
-  - NoiseType: 4
-    Frequency: 0.02
-    Amplitude: 50
-  - NoiseType: 3
-    Frequency: 0.02
-    Amplitude: 50
+  numOfBioms: 1
 --- !u!1 &5611355428973241318
 GameObject:
   m_ObjectHideFlags: 0
