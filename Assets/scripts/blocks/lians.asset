@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efca21dc5538dac4c8d15ae9bbed79b0, type: 3}
   m_Name: lians
   m_EditorClassIdentifier: 
-  ID: 0
-  BT: 0
-  TileNumber: 0
-  Texture: {fileID: 0}
+  ID: 7
+  BT: 7
+  TileNumber: 39
+  Texture: {fileID: 11400000, guid: 99e7b1f8d3938a644839bb899593f1b4, type: 2}

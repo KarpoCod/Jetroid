@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: VirusDamDirt
   m_EditorClassIdentifier: 
   ID: 6
-  BT: 0
-  TileNumber: 7
+  BT: 6
+  TileNumber: 23
   Texture: {fileID: 11400000, guid: cb33c903a58679043818f8b7f9c00c3d, type: 2}

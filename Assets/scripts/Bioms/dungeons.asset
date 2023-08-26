@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfa7ae999e7304b4691dfe867b6cee86, type: 3}
   m_Name: dungeons
   m_EditorClassIdentifier: 
-  index: 1
+  index: 0
   name: dungeons
-  mountRate: 10
-  grassRate: 100000
-  dungeonsRate: 50
+  mountRate: 0
+  grassRate: 0
+  dungeonsRate: 0
   stone: 4
-  grass: 3
-  dirt: 5
-  special: 0
+  grass: 7
+  dirt: 0
+  special: 6
   HOctaves:
   - NoiseType: 3
     Frequency: 0.001
