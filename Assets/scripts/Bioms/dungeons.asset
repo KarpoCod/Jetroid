@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfa7ae999e7304b4691dfe867b6cee86, type: 3}
   m_Name: dungeons
   m_EditorClassIdentifier: 
-  index: 1
+  index: 2
   name: dungeons
   mountRate: 10
-  grassRate: 100000
+  grassRate: 10
   dungeonsRate: 50
   stone: 4
   grass: 3
