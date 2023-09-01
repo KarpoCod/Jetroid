@@ -12,33 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfa7ae999e7304b4691dfe867b6cee86, type: 3}
   m_Name: dungeons
   m_EditorClassIdentifier: 
-  index: 2
+  index: 0
   name: dungeons
   mountRate: 10
-  grassRate: 10
-  dungeonsRate: 50
+  grassRate: 0
+  dungeonsRate: 0
   stone: 4
   grass: 3
-  dirt: 5
+  dirt: 0
   special: 0
   HOctaves:
   - NoiseType: 3
-    Frequency: 0.001
-    Amplitude: 600
-  - NoiseType: 4
-    Frequency: 0.005
-    Amplitude: 200
-  DOctaves:
-  - NoiseType: 1
     Frequency: 0.01
-    Amplitude: 50
-  AOctaves:
-  - NoiseType: 2
-    Frequency: 0.005
-    Amplitude: -150
+    Amplitude: 200
   - NoiseType: 4
-    Frequency: 0.02
-    Amplitude: 50
+    Frequency: 0.05
+    Amplitude: 30
+  DOctaves:
   - NoiseType: 3
-    Frequency: 0.02
-    Amplitude: 50
+    Frequency: 0.04
+    Amplitude: 300
+  AOctaves:
+  - NoiseType: 3
+    Frequency: -0.01
+    Amplitude: 190
