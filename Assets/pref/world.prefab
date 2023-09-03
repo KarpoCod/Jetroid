@@ -77,6 +77,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bioms:
   - {fileID: 11400000, guid: 44b58ae955e6f914586891ca661808fb, type: 2}
+  - {fileID: 11400000, guid: a29245ae056ce7943a353f6bc6fd61c0, type: 2}
   BaseHight: 0
 --- !u!1 &5611355428973241318
 GameObject:

@@ -164,10 +164,11 @@ public class Teraingen : MonoBehaviour
         FastNoiseLite noise = new FastNoiseLite();
         noise.SetSeed(seed);
         noise.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
-        noise.SetFrequency(0.003f);
+        noise.SetFrequency(0.03f);
         int res = (int)Math.Ceiling(MathF.Abs(noise.GetNoise(xOffset, 0))) * bioms.Length;
         if (res == bioms.Length) { res--; }
         Debug.Log(res);
+        res = 1;
         return bioms[res];
     }
 }
