@@ -168,7 +168,7 @@ public class Teraingen : MonoBehaviour
         int res = (int)Math.Ceiling(MathF.Abs(noise.GetNoise(xOffset, 0))) * bioms.Length;
         if (res == bioms.Length) { res--; }
         Debug.Log(res);
-        res = 1;
+        //res = 1;
         return bioms[res];
     }
 }
