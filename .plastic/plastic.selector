@@ -1,0 +1,4 @@
+repository "Jetroid@KarpGame@cloud"
+  path "/"
+    br "/main"
+    co "/main"

@@ -1,7 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-//using System.Diagnostics;
+using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 
@@ -11,15 +12,6 @@ public class Teraingen : MonoBehaviour
 {
     public BiomInfo[] bioms;
     public int BaseHight = 0;
-
-    /*public int mount = 80;
-    public int grass = 60;
-    public int dungeons = -40;
-
-    
-    public NoiseOctaveSettings[] HOctaves;
-    public NoiseOctaveSettings[] DOctaves;
-    public NoiseOctaveSettings[] AOctaves;*/
 
     [Serializable]
     public class NoiseOctaveSettings
@@ -74,42 +66,40 @@ public class Teraingen : MonoBehaviour
 
     public BlockType[,] GenerateTaerrain(int xOffset, int yOffset, int seed)
     {
-        BiomInfo biom = SetBiom(xOffset,seed);
+        BiomInfo biom = SetBiom(xOffset, seed);
         int chunkWide = ChunkRenderer.chunkWide;
-        
-
         var result = new BlockType[chunkWide, chunkWide];
-
-        for (int x=0; x < chunkWide; x++)
+        Task.Factory.StartNew(() =>
         {
-            for(int y=0; y < chunkWide; y++)
+            for (int x = 0; x < chunkWide; x++)
             {
-                float hight = GetHight(x + xOffset, 0, seed, biom.HOctaves, HoctaveNoises[biom.index]);
-                float danRate = GetHight(x + xOffset, y + yOffset, seed, biom.DOctaves, DoctaveNoises[biom.index]);
-                float grassRate = GetHight(x + xOffset, y + yOffset, seed, biom.AOctaves, AoctaveNoises[biom.index]);
 
-                if (hight < y + yOffset)
+                for (int y = 0; y < chunkWide; y++)
                 {
-                    result[x, y] = BlockType.bgAir;
-                }
-                else if(danRate < biom.dungeonsRate)
-                {
-                    result[x, y] = BlockType.bgAir;
-                }
-                else if (danRate < biom.dungeonsRate && grassRate < biom.dungeonsRate + 5 || grassRate > biom.grassRate)
-                {
-                    result[x, y] = biom.grass;
-                }
-                else
-                {
-                    result[x, y] = biom.stone;
-                }
 
-                
+                    float hight = GetHight(x + xOffset, 0, seed, biom.HOctaves, HoctaveNoises[biom.index]);
+                    float danRate = GetHight(x + xOffset, y + yOffset, seed, biom.DOctaves, DoctaveNoises[biom.index]);
+                    float grassRate = GetHight(x + xOffset, y + yOffset, seed, biom.AOctaves, AoctaveNoises[biom.index]);
 
-                
+                    if (hight < y + yOffset)
+                    {
+                        result[x, y] = BlockType.bgAir;
+                    }
+                    else if (danRate < biom.dungeonsRate)
+                    {
+                        result[x, y] = BlockType.bgAir;
+                    }
+                    else if (danRate < biom.dungeonsRate && grassRate < biom.dungeonsRate + 5 || grassRate > biom.grassRate)
+                    {
+                        result[x, y] = biom.grass;
+                    }
+                    else
+                    {
+                        result[x, y] = biom.stone;
+                    }
+                }
             }
-        }
+        });
         return result;
     }
 
@@ -118,44 +108,45 @@ public class Teraingen : MonoBehaviour
         BiomInfo biom = SetBiom(xOffset, seed);
         int chunkWide = ChunkRenderer.chunkWide;
         var result = new BlockType[chunkWide, chunkWide];
-        for (int x = 0; x < chunkWide; x++)
+        Task.Factory.StartNew(() =>
         {
-            for (int y = 0; y < chunkWide; y++)
+            for (int x = 0; x < chunkWide; x++)
             {
-                float hight = GetHight(x + xOffset, 0, seed, biom.HOctaves, HoctaveNoises[biom.index]);
-                float bgRate = GetHight(x + xOffset, y + yOffset, seed, biom.DOctaves, DoctaveNoises[biom.index]);
-                float B = Mathf.PerlinNoise((x + xOffset + seed * 3) * 5f, (y + yOffset + seed * 2) * 5f);
 
-                if (bgRate < biom.dungeonsRate - 15 * B && hight > y + yOffset)
+                for (int y = 0; y < chunkWide; y++)
                 {
-                    result[x, y] = BlockType.bgDirt;
-                }
-                else
-                {
-                    result[x, y] = BlockType.bgAir;
+
+                    float hight = GetHight(x + xOffset, 0, seed, biom.HOctaves, HoctaveNoises[biom.index]);
+                    float bgRate = GetHight(x + xOffset, y + yOffset, seed, biom.DOctaves, DoctaveNoises[biom.index]);
+                    float B = Mathf.PerlinNoise((x + xOffset + seed * 3) * 5f, (y + yOffset + seed * 2) * 5f);
+
+                    if (bgRate < biom.dungeonsRate - 15 * B && hight > y + yOffset)
+                    {
+                        result[x, y] = BlockType.bgDirt;
+                    }
+                    else
+                    {
+                        result[x, y] = BlockType.bgAir;
+                    }
                 }
             }
-        }
+        });
         return result;
     }
 
      float GetHight(float x, float y, int seed, NoiseOctaveSettings[] Octaves, FastNoiseLite[] octaveNoises)
      {
         float result = BaseHight;
-
             for (int i = 0; i < Octaves.Length; i++)
             {
                     try
                     {
-
                         octaveNoises[i].SetSeed(seed);
                         float noise = octaveNoises[i].GetNoise(x, y);
                         result += noise * Octaves[i].Amplitude / 2;
                     }
                     catch { }
-            }
-     
-        
+            }     
         return result;
      }
 
@@ -168,7 +159,6 @@ public class Teraingen : MonoBehaviour
         int res = (int)Math.Ceiling(MathF.Abs(noise.GetNoise(xOffset, 0))) * bioms.Length;
         if (res == bioms.Length) { res--; }
         Debug.Log(res);
-        //res = 1;
         return bioms[res];
     }
 }

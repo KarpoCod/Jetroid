@@ -85,6 +85,5 @@ public class ChunkRenderer : MonoBehaviour
     {
         ChunkData.Blocks[position.x, position.y] = BlockType.bgAir;
         Chunk.SetTile(position, null);
-
     }
 }

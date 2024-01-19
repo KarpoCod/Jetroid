@@ -270,7 +270,7 @@ public class WorldGen : MonoBehaviour
         }
         else if (ChunkDatas[new Vector2Int(x, y)] != null)
         {
-            if (!ChunkDatas[new Vector2Int(x, y)].Chunk.gameObject.active) ChunkDatas[new Vector2Int(x, y)].Chunk.gameObject.SetActive(true);
+            if (!ChunkDatas[new Vector2Int(x, y)].Chunk.gameObject.activeSelf) ChunkDatas[new Vector2Int(x, y)].Chunk.gameObject.SetActive(true);
         }
     }
 
@@ -293,9 +293,9 @@ public class WorldGen : MonoBehaviour
             chunk.pos = new Vector2Int(x, y);
             chunk.ParentWorld = this;
         }
-        else if (ChunkDatas[new Vector2Int(x, y)] != null)
+        else
         {
-            if (!ChunkDatas[new Vector2Int(x, y)].Chunk.gameObject.active) ChunkDatas[new Vector2Int(x, y)].Chunk.gameObject.SetActive(true);
+            if (!ChunkDatas[new Vector2Int(x, y)].Chunk.gameObject.activeSelf) ChunkDatas[new Vector2Int(x, y)].Chunk.gameObject.SetActive(true);
         }
     }
 

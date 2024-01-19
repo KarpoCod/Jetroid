@@ -1,14 +1,16 @@
- using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Linq;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 public class LoadManager : MonoBehaviour
 {
+    public Button[] menu_but;
     public GameObject player;
     public BlockInfo[] blTyp;
     public WorldGen WorldPrefab;
@@ -75,7 +77,10 @@ public class LoadManager : MonoBehaviour
 
     public void Save_World()
     {
-        //(Dictionary<Vector2Int, ChunkData> ChunkDatas, Vector2 PlayerPos
+        foreach (Button but in menu_but)
+        {
+            but.interactable = false;
+        }
         Dictionary<Vector2Int, ChunkData> ChunkDatas = world.ChunkDatas;
         PlayerPos = player.transform.position;
         fToSave = PlayerPos.x + "p" + PlayerPos.y + "p" + world.seed + "p";
@@ -88,26 +93,8 @@ public class LoadManager : MonoBehaviour
                 //int count = 1;
                 foreach (int bl in ReadCh.Value.Blocks)
                 {
-                    /*//if (fToSave.Length == 0) { return; }
-                    if (chToSave.Substring(chToSave.Length - 2) == (bl / 10).ToString() + (bl % 10).ToString()) { count++; }
-                    else if (chToSave.Substring(chToSave.Length - 2) != (bl / 10).ToString() + (bl % 10).ToString() && count > 1)
-                    {
-                        chToSave = chToSave.Remove(chToSave.Length - 6, 6);
-                        chToSave += "n" + (count / 100).ToString() + (count % 100 / 10).ToString() + (count % 10).ToString() + (bl / 10).ToString() + (bl % 10).ToString();
-                        count = 1;
-                    }
-                    else { chToSave += "n" + "001" + (bl / 10).ToString() + (bl % 10).ToString(); }*/
-
                     chToSave += "n" + (bl / 10).ToString() + (bl % 10).ToString();
-
                 }
-                /*if (count != 1)
-                {
-                    int bl = int.Parse(chToSave.Substring(chToSave.Length - 2));
-                    chToSave = chToSave.Remove(chToSave.Length - 6, 6);
-                    chToSave += "n" + (count / 100).ToString() + ((count % 100) / 10).ToString() + (count % 10).ToString() + (bl / 10).ToString() + (bl % 10).ToString();
-                    count = 1;
-                }*/
                 fToSave += chToSave;
             }
             
@@ -118,6 +105,10 @@ public class LoadManager : MonoBehaviour
         FileStream stream = new FileStream(path, FileMode.Create);
         form.Serialize(stream, fToSave);
         stream.Close();
+        foreach (Button but in menu_but)
+        {
+            but.interactable = true;
+        }
     }
 
 
@@ -149,7 +140,6 @@ public class LoadManager : MonoBehaviour
             float posX = float.Parse(positionData[0]);
             float posY = float.Parse(positionData[1]);
             int seed = int.Parse(positionData[2]);
-            //player = Instantiate(PlayerPrefab, new Vector3(posX, posY, 0f), Quaternion.identity, transform);
 
             if (player == null) { Instantiate(PlayerPrefab, new Vector3(posX, posY, 0f), Quaternion.identity); }
             else { player.transform.position = new Vector3(posX, posY, 0f); }
@@ -177,21 +167,6 @@ public class LoadManager : MonoBehaviour
                 int con = 0;
                 foreach (string blockDat in blockData)
                 {
-                    /*if (blockDat.Length > 4)
-                    {
-                        int count = int.Parse(blockDat.Substring(0, 3));
-                        int blockID = int.Parse(blockDat.Substring(3, 2));
-                        for (int k = 0; k < count; k++)
-                        {
-                            //ChunkBlocks[con] = blockID;
-
-                            ChunkBlocks[con % ChunkRenderer.chunkWide, con / ChunkRenderer.chunkWide] = (blTyp.FirstOrDefault(b => b.ID == blockID)).BT;
-                            con++;
-                        }
-
-
-                    }*/
-
                     int blockID = int.Parse(blockDat);
                     ChunkBlocks[(con / ChunkRenderer.chunkWide), (con % ChunkRenderer.chunkWide)] = (blTyp.FirstOrDefault(b => b.ID == blockID)).BT;
                     con++;
@@ -206,7 +181,6 @@ public class LoadManager : MonoBehaviour
                 chunkData.Chunk = chunk;
                 chunkData.seed = world.seed;
                 chunk.ParentWorld = world;
-                //world.LoadChunk(ChunkDatas[new Vector2Int(x, y)]);
             }
 
             
@@ -219,8 +193,6 @@ public class LoadManager : MonoBehaviour
             player.SetActive(true);
             world.gen_world();
             world.ready = true;
-
-            //world.ChunkDatas = ChunkDatas;
         }
     }
 
@@ -246,9 +218,6 @@ public class LoadManager : MonoBehaviour
         world.destroy();
         Destroy(world.World);
         player.SetActive(false);
-        //Destroy(world);
-        //Destroy(player);
-        //Cam.target = LoadMan;
     }
 
     public void exit()
