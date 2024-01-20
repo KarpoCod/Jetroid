@@ -73,11 +73,11 @@ public class Teraingen : MonoBehaviour
         {
             for (int x = 0; x < chunkWide; x++)
             {
-
+                float hight = GetHight(x + xOffset, 0, seed, biom.HOctaves, HoctaveNoises[biom.index]);
                 for (int y = 0; y < chunkWide; y++)
                 {
 
-                    float hight = GetHight(x + xOffset, 0, seed, biom.HOctaves, HoctaveNoises[biom.index]);
+                    
                     float danRate = GetHight(x + xOffset, y + yOffset, seed, biom.DOctaves, DoctaveNoises[biom.index]);
                     float grassRate = GetHight(x + xOffset, y + yOffset, seed, biom.AOctaves, AoctaveNoises[biom.index]);
 
@@ -112,11 +112,11 @@ public class Teraingen : MonoBehaviour
         {
             for (int x = 0; x < chunkWide; x++)
             {
-
+                float hight = GetHight(x + xOffset, 0, seed, biom.HOctaves, HoctaveNoises[biom.index]);
                 for (int y = 0; y < chunkWide; y++)
                 {
 
-                    float hight = GetHight(x + xOffset, 0, seed, biom.HOctaves, HoctaveNoises[biom.index]);
+                    
                     float bgRate = GetHight(x + xOffset, y + yOffset, seed, biom.DOctaves, DoctaveNoises[biom.index]);
                     float B = Mathf.PerlinNoise((x + xOffset + seed * 3) * 5f, (y + yOffset + seed * 2) * 5f);
 
