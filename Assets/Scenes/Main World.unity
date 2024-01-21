@@ -666,6 +666,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b10a2968fee051d489c2d577925bfc5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menu_but:
+  - {fileID: 897346477}
+  - {fileID: 2139912399}
+  - {fileID: 1952748855}
   player: {fileID: 608271504}
   blTyp:
   - {fileID: 11400000, guid: f676c3b5f648ba64a834c66443cdaa95, type: 2}
@@ -1852,17 +1856,9 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4019706669996018544, guid: cde3a69248db4494d81fb716b93f03d7, type: 3}
-      propertyPath: bioms.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4019706669996018544, guid: cde3a69248db4494d81fb716b93f03d7, type: 3}
       propertyPath: Octaves.Array.size
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4019706669996018544, guid: cde3a69248db4494d81fb716b93f03d7, type: 3}
-      propertyPath: bioms.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: a29245ae056ce7943a353f6bc6fd61c0, type: 2}
     - target: {fileID: 4019706669996018544, guid: cde3a69248db4494d81fb716b93f03d7, type: 3}
       propertyPath: Octaves.Array.data[0].Amplitude
       value: 10
@@ -1894,6 +1890,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8061114378512599392, guid: 3c5de5b66be09a145818090a4575f413, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8061114378512599393, guid: 3c5de5b66be09a145818090a4575f413, type: 3}
       propertyPath: m_RootOrder
       value: 2

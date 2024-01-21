@@ -7,7 +7,7 @@ using System.Linq;
 
 public class ChunkRenderer : MonoBehaviour
 {
-    public const int chunkWide = 64;
+    public const int chunkWide = 16;
     public const int size = 1;
 
     public ChunkData ChunkData;
@@ -85,6 +85,5 @@ public class ChunkRenderer : MonoBehaviour
     {
         ChunkData.Blocks[position.x, position.y] = BlockType.bgAir;
         Chunk.SetTile(position, null);
-
     }
 }

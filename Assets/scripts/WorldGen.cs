@@ -9,7 +9,7 @@ using System;
 public class WorldGen : MonoBehaviour
 {
     private ConcurrentQueue <ChunkData> generatedResults = new ConcurrentQueue<ChunkData>();
-    private ConcurrentQueue<ChunkData> generatedResultsPrin = new ConcurrentQueue<ChunkData>();
+    private ConcurrentQueue<ChunkData> generatedResultsForsed = new ConcurrentQueue<ChunkData>();
 
     public int ChunkSpawnRad = 3;
     public float buildCD = 0.2f;
@@ -96,20 +96,23 @@ public class WorldGen : MonoBehaviour
             }
             if (CanBuild) CheckInput();
 
-            while (generatedResultsPrin.TryDequeue(out var chunkDat))
+            while (generatedResultsForsed.TryDequeue(out var chunkDat))
             {
                 if (Mathf.Abs(chunkDat.coords.x - PlayerChunk.x) <= ChunkSpawnRad || Mathf.Abs(chunkDat.coords.y - PlayerChunk.y) <= ChunkSpawnRad)
                 {
-                    if (ChunkDatas[chunkDat.coords] == null) createChunkPrin(chunkDat);
-                }
-                
+                    if (ChunkDatas[chunkDat.coords] == null) createChunkForced(chunkDat);
+                }                      
             }
 
-            if (generatedResults.TryDequeue(out var chunkData))
+            for (int i = 0; i < 4;  i++) 
             {
-                if (Mathf.Abs(chunkData.coords.x - PlayerChunk.x) <= ChunkSpawnRad || Mathf.Abs(chunkData.coords.y - PlayerChunk.y) <= ChunkSpawnRad)
+                if (generatedResults.TryDequeue(out var chunkData))
                 {
-                    createChunkPrin(chunkData);
+                    if (Mathf.Abs(chunkData.coords.x - PlayerChunk.x) <= ChunkSpawnRad || Mathf.Abs(chunkData.coords.y - PlayerChunk.y) <= ChunkSpawnRad)
+                    {
+                        createChunkForced(chunkData);
+                    }
+                    else { i--; }
                 }
             }
 
@@ -118,7 +121,7 @@ public class WorldGen : MonoBehaviour
         
     }
 
-    public void createChunkPrin(ChunkData chunkData)
+    public void createChunkForced(ChunkData chunkData)
     {
         ChunkDatas[new Vector2Int(chunkData.coords.x, chunkData.coords.y)] = chunkData;
         var chunk = Instantiate(ChunkPrefab, new Vector3(chunkData.coords.x * ChunkRenderer.chunkWide, chunkData.coords.y * ChunkRenderer.chunkWide, 0), Quaternion.identity, transform);
@@ -214,51 +217,38 @@ public class WorldGen : MonoBehaviour
     public void updateChunks(Vector2Int PChunk)
     {
         updtChunkPrin(PChunk.x, PChunk.y);
-        /*for (int x = 0; x <= ChunkSpawnRad; x++)
-        {
-            for (int y = 0; y <= ChunkSpawnRad; y++)
-            {
-                if (x == 0 && y == 0) yield return null;
-                updtChunk(x + PChunk.x, y + PChunk.y);
-                updtChunk(x + PChunk.x, -y + PChunk.y);
-                updtChunk(-x + PChunk.x, y + PChunk.y);
-                updtChunk(-x + PChunk.x, -y + PChunk.y);
-
-                yield return null;
-            }
-        }*/
-        bool prin = true;
+        bool forced = true;
         for (int i = 3; i <= ChunkSpawnRad*2 + 1; i += 2)
         {
-            if ((i - 1) / 2 > ChunkSpawnRad / 2) prin = false;
+            if ((i - 1) / 2 > ChunkSpawnRad / 2) forced = false;
             int x = -(i - 1) / 2;
             int y = -x;
             for (int xi = 0; xi < i; xi++)
             {
-                updtChunk(x + xi + PChunk.x, y + PChunk.y, prin);
+                updtChunk(x + xi + PChunk.x, y + PChunk.y, forced);
             }
             
             x += i-1;
             for (int yi = 0; yi < i; yi++)
             {
-                updtChunk(x + PChunk.x, y - yi + PChunk.y, prin);
+                updtChunk(x + PChunk.x, y - yi + PChunk.y, forced);
             }
           
             y -= i-1;
             for (int xi = 0; xi < i; xi++)
             {
-                updtChunk(x - xi + PChunk.x, y + PChunk.y, prin);
+                updtChunk(x - xi + PChunk.x, y + PChunk.y, forced);
             }
             x -= i-1;
             for (int yi = 0; yi < i; yi++)
             {
-                updtChunk(x + PChunk.x, y + yi + PChunk.y, prin);
+                updtChunk(x + PChunk.x, y + yi + PChunk.y, forced);
             }
 
         }
     }
 
-    void updtChunk(int x, int y, bool prin)
+    void updtChunk(int x, int y, bool forced)
     {
         if (!ChunkDatas.ContainsKey(new Vector2Int(x, y)))
         {
@@ -272,29 +262,15 @@ public class WorldGen : MonoBehaviour
                     chunkData.coords = new Vector2Int(x, y);
                     chunkData.Blocks = Teraingen.GenerateTaerrain(xpos, ypos, seed);
                     chunkData.BgBlocks = Teraingen.GenerateBG(xpos, ypos, seed);
-                    if (prin) generatedResultsPrin.Enqueue(chunkData);
+                    if (forced) generatedResultsForsed.Enqueue(chunkData);
                     else generatedResults.Enqueue(chunkData);             
             });
-
-            /*var chunkData = new ChunkData();
-            int xpos = x * ChunkRenderer.chunkWide;
-            int ypos = y * ChunkRenderer.chunkWide;
-            chunkData.coords = new Vector2Int(x, y);
-            chunkData.Blocks = Teraingen.GenerateTaerrain(xpos, ypos, seed);
-            chunkData.BgBlocks = Teraingen.GenerateBG(xpos, ypos, seed);
-            ChunkDatas.Add(new Vector2Int(x, y), chunkData);
-            var chunk = Instantiate(ChunkPrefab, new Vector3(xpos, ypos, 0), Quaternion.identity, transform);
-            chunk.ChunkData = chunkData;
-            chunkData.Chunk = chunk;
-            chunkData.seed = seed;
-            chunk.pos = new Vector2Int(x, y);
-            chunk.ParentWorld = this;*/
 
 
         }
         else if (ChunkDatas[new Vector2Int(x, y)] != null)
         {
-            if (!ChunkDatas[new Vector2Int(x, y)].Chunk.gameObject.active) ChunkDatas[new Vector2Int(x, y)].Chunk.gameObject.SetActive(true);
+            if (!ChunkDatas[new Vector2Int(x, y)].Chunk.gameObject.activeSelf) ChunkDatas[new Vector2Int(x, y)].Chunk.gameObject.SetActive(true);
         }
     }
 
@@ -317,39 +293,13 @@ public class WorldGen : MonoBehaviour
             chunk.pos = new Vector2Int(x, y);
             chunk.ParentWorld = this;
         }
-        else if (ChunkDatas[new Vector2Int(x, y)] != null)
+        else
         {
-            if (!ChunkDatas[new Vector2Int(x, y)].Chunk.gameObject.active) ChunkDatas[new Vector2Int(x, y)].Chunk.gameObject.SetActive(true);
+            if (!ChunkDatas[new Vector2Int(x, y)].Chunk.gameObject.activeSelf) ChunkDatas[new Vector2Int(x, y)].Chunk.gameObject.SetActive(true);
         }
     }
 
-        /*public IEnumerator updtChunk(int x, int y)
-        {
-                if (!ChunkDatas.ContainsKey(new Vector2Int(x, y)))
-                {
-                    var chunkData = new ChunkData();
-                    int xpos = x * ChunkRenderer.chunkWide;
-                    int ypos = y * ChunkRenderer.chunkWide;
-                    chunkData.Blocks = Teraingen.GenerateTaerrain(xpos, ypos, seed);
-                    chunkData.BgBlocks = Teraingen.GenerateBG(xpos, ypos, seed);
-                    ChunkDatas.Add(new Vector2Int(x, y), chunkData);
-                    var chunk = Instantiate(ChunkPrefab, new Vector3(xpos, ypos, 0), Quaternion.identity, transform);
-                    chunk.ChunkData = chunkData;
-                    chunkData.Chunk = chunk;
-                    chunkData.seed = seed;
-                    chunk.pos = new Vector2Int(x, y);
-                    chunk.ParentWorld = this;
-
-                }
-                else if (!ChunkDatas[new Vector2Int(x, y)].Chunk.gameObject.active)
-                {
-                    ChunkDatas[new Vector2Int(x, y)].Chunk.gameObject.SetActive(true);
-                }
-
-            yield return null;
-        }*/
-
-        int mod(int a, int b)
+    int mod(int a, int b)
     {
         int res;
         if (a >= 0)

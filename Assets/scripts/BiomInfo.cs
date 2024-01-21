@@ -4,7 +4,6 @@ using UnityEngine;
 public class BiomInfo : ScriptableObject
 {
     public int index;
-    public string name;
     public int mountRate;
     public int grassRate;
     public int dungeonsRate;

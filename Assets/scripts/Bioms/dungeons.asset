@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: dungeons
   m_EditorClassIdentifier: 
   index: 0
-  name: dungeons
-  mountRate: 10
-  grassRate: 0
-  dungeonsRate: 0
+  mountRate: 20
+  grassRate: 60
+  dungeonsRate: -20
   stone: 4
   grass: 3
-  dirt: 0
-  special: 0
+  dirt: 5
+  special: 2
   HOctaves:
   - NoiseType: 3
     Frequency: 0.01
@@ -34,5 +33,5 @@ MonoBehaviour:
     Amplitude: 300
   AOctaves:
   - NoiseType: 3
-    Frequency: -0.01
+    Frequency: 0.01
     Amplitude: 190

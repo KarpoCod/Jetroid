@@ -21,9 +21,15 @@ MonoBehaviour:
   grass: 6
   dirt: 5
   special: 0
-  HOctaves: []
+  HOctaves:
+  - NoiseType: 0
+    Frequency: 0.06
+    Amplitude: 60
   DOctaves:
   - NoiseType: 3
     Frequency: 0.0001
     Amplitude: 100
-  AOctaves: []
+  AOctaves:
+  - NoiseType: 0
+    Frequency: 0.2
+    Amplitude: 50
