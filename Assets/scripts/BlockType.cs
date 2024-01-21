@@ -5,5 +5,7 @@ public enum BlockType : byte
     dirt = 5,
     bgDirt = 1,
     bgAir = 0,
-    grass = 3
+    grass = 3,
+    virusDamDirt = 6,
+    lians = 7
 }
