@@ -4,43 +4,13 @@ using UnityEngine;
 
 public class InventoryOpen : MonoBehaviour
 { 
-    public GameObject InventoryRef;
-    public GameObject Minimap;
-
-    private bool InventoryOpened = false;
-
-
-    void Start()
-    {
-        InventoryRef.SetActive(false);
-    }
+    public GameObject[] Controlled_obj;
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.F))
+        if (Input.GetKeyUp(KeyCode.I))
         {
-            if (InventoryOpened)
-            {
-                CloseInventory();
-            }
-            else
-            {
-                OpenInventory();
-            }
+            foreach (GameObject go in Controlled_obj) { go.SetActive(!go.activeSelf); } 
         }
-    }
-
-    public void OpenInventory()
-    {
-        InventoryRef.SetActive(true);
-        InventoryOpened = true;
-        Minimap.SetActive(false);
-    }
-
-    public void CloseInventory()
-    {
-        InventoryRef.SetActive(false);
-        InventoryOpened = false;
-        Minimap.SetActive(true);
     }
 }
