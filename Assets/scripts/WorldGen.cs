@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Concurrent;
 using UnityEngine;
-using System.Threading;
 using System.Threading.Tasks;
 using System;
 
@@ -13,13 +11,12 @@ public class WorldGen : MonoBehaviour
     private ConcurrentQueue<ChunkData> generatedResultsForced = new ConcurrentQueue<ChunkData>();
 
     //настройки взаимодействия с миром
-    public float buildCD = 0.2f;
-    public float digCD = 0.15f;
+
+    [SerializeField]private float buildCD = 0.2f;
+    [SerializeField]private float digCD = 0.15f;
     private float CD = 1f;
     public Boolean CanBuild = true;
     public GameObject Player;
-
-    public Vector2 offset = new Vector2(0, 13);
 
     //параметры мира
     public Dictionary<Vector2Int, ChunkData> ChunkDatas = new Dictionary<Vector2Int, ChunkData>();
@@ -33,18 +30,18 @@ public class WorldGen : MonoBehaviour
     public bool ready = false;
 
     //"локальные" параметры
-    public ChunkData SpawnChunk;
+    private ChunkData SpawnChunk;
     private ChunkData CheckChunk;
 
     public Vector2Int CurrentChunk;
-    public Vector2Int PlayerChunk;
+    private Vector2Int PlayerChunk;
 
     private Camera Cam;
-    public Vector3 PPos;
+    private Vector3 PPos;
 
-    public Vector3Int BlockWorldPos;
-    public Vector3 BlockCenter;
-    public Vector2Int UptdChunk;
+    private Vector3Int BlockWorldPos;
+    private Vector3 BlockCenter;
+    private Vector2Int UptdChunk;
 
 
     public void gen_world()//дозагрузка мира сгенерированного\загруженного другими скриптами

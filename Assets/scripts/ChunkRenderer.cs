@@ -15,13 +15,13 @@ public class ChunkRenderer : MonoBehaviour
 
     public Vector2Int pos;
 
-    public Tilemap Chunk;
-    public Tilemap BgChunk;
+    private Tilemap Chunk;
+    private Tilemap BgChunk;
     public TileBase[] tileBlocks = new TileBase[0];
     public BlockInfo[] blTyp;
 
-    public BlockType[,] Blocks = new BlockType[chunkWide, chunkWide];
-    public BlockType[,] BgBlocks = new BlockType[chunkWide, chunkWide];
+    private BlockType[,] Blocks = new BlockType[chunkWide, chunkWide];
+    private BlockType[,] BgBlocks = new BlockType[chunkWide, chunkWide];
 
 
 

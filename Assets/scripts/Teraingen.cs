@@ -1,11 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
-
-
 
 
 public class Teraingen : MonoBehaviour
@@ -21,9 +18,9 @@ public class Teraingen : MonoBehaviour
         public float Amplitude = 1;
     }
 
-    public FastNoiseLite[][] HoctaveNoises;
-    public FastNoiseLite[][] DoctaveNoises;
-    public FastNoiseLite[][] AoctaveNoises;
+    private FastNoiseLite[][] HoctaveNoises;
+    private FastNoiseLite[][] DoctaveNoises;
+    private FastNoiseLite[][] AoctaveNoises;
 
     public void Awake()
     {
@@ -118,9 +115,9 @@ public class Teraingen : MonoBehaviour
 
                     
                     float bgRate = GetHight(x + xOffset, y + yOffset, seed, biom.DOctaves, DoctaveNoises[biom.index]);
-                    float B = Mathf.PerlinNoise((x + xOffset + seed * 3) * 5f, (y + yOffset + seed * 2) * 5f);
+                    float B = Mathf.PerlinNoise((x + xOffset + seed * 3) * 5f, (y + yOffset + seed * 2) * 5f) + 1;
 
-                    if (bgRate < biom.dungeonsRate - 15 * B && hight > y + yOffset)
+                    if (bgRate > biom.dungeonsRate - 17 * B && hight > y + yOffset)
                     {
                         result[x, y] = BlockType.bgDirt;
                     }

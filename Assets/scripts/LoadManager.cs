@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -18,16 +17,18 @@ public class LoadManager : MonoBehaviour
     private string fToSave = " ";
     public WorldGen world;
     private Vector3 PlayerPos;
-    public CameraFolow Cam;
-    public GameObject LoadMan;
+    private CameraFolow Cam;
+    private GameObject LoadMan;
     public GameObject Canvas;
-    public bool menu = false;
+    private bool menu = false;
 
 
     private void Awake()
     {
-        int op = DataHold.WorldOperation;
-        switch(op)
+        LoadMan = gameObject;
+        Cam = Camera.main.GetComponent<CameraFolow>();
+        int operation = DataHold.WorldOperation;
+        switch(operation)
         {
             case 0:
                 Save_World();
