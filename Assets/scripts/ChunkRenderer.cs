@@ -15,8 +15,8 @@ public class ChunkRenderer : MonoBehaviour
 
     public Vector2Int pos;
 
-    private Tilemap Chunk;
-    private Tilemap BgChunk;
+    public Tilemap Chunk;
+    public Tilemap BgChunk;
     public TileBase[] tileBlocks = new TileBase[0];
     public BlockInfo[] blTyp;
 

@@ -729,10 +729,7 @@ MonoBehaviour:
   WorldPrefab: {fileID: 3734662676031197142, guid: cde3a69248db4494d81fb716b93f03d7, type: 3}
   PlayerPrefab: {fileID: 8061114378512599394, guid: 3c5de5b66be09a145818090a4575f413, type: 3}
   world: {fileID: 1372933185}
-  Cam: {fileID: 519420033}
-  LoadMan: {fileID: 745731767}
   Canvas: {fileID: 1327785083}
-  menu: 0
 --- !u!4 &745731769
 Transform:
   m_ObjectHideFlags: 0
@@ -1172,6 +1169,7 @@ GameObject:
   - component: {fileID: 1513288645}
   - component: {fileID: 1513288647}
   - component: {fileID: 1513288646}
+  - component: {fileID: 1513288648}
   m_Layer: 5
   m_Name: Inventory tab
   m_TagString: Untagged
@@ -1237,6 +1235,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1513288644}
   m_CullTransparentMesh: 1
+--- !u!114 &1513288648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513288644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d6dd3d378af8844bbfc0a5c1bd72bc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: []
+  capacity: 10
+  gear: {fileID: 11400000, guid: 5fb10bb958c02d244875eb1ca50594ce, type: 2}
 --- !u!1 &1786387420
 GameObject:
   m_ObjectHideFlags: 0

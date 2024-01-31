@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 
 
@@ -66,8 +65,6 @@ public class Teraingen : MonoBehaviour
         BiomInfo biom = SetBiom(xOffset, seed);
         int chunkWide = ChunkRenderer.chunkWide;
         var result = new BlockType[chunkWide, chunkWide];
-        Task.Factory.StartNew(() =>
-        {
             for (int x = 0; x < chunkWide; x++)
             {
                 float hight = GetHight(x + xOffset, 0, seed, biom.HOctaves, HoctaveNoises[biom.index]);
@@ -96,7 +93,6 @@ public class Teraingen : MonoBehaviour
                     }
                 }
             }
-        });
         return result;
     }
 
@@ -105,8 +101,6 @@ public class Teraingen : MonoBehaviour
         BiomInfo biom = SetBiom(xOffset, seed);
         int chunkWide = ChunkRenderer.chunkWide;
         var result = new BlockType[chunkWide, chunkWide];
-        Task.Factory.StartNew(() =>
-        {
             for (int x = 0; x < chunkWide; x++)
             {
                 float hight = GetHight(x + xOffset, 0, seed, biom.HOctaves, HoctaveNoises[biom.index]);
@@ -127,7 +121,6 @@ public class Teraingen : MonoBehaviour
                     }
                 }
             }
-        });
         return result;
     }
 

@@ -2,12 +2,14 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
+[CreateAssetMenu(menuName = "item")]
 public class item : ScriptableObject
 {
     public Sprite icon;
-    public static int id;
-    public static string title;
-    public static string description;
-    public static int MaxCount = 10;
-    public static Vector2Int occupiedSpace;
+    public int id;
+    public string title;
+    public string description;
+    public int count;
+    public int maxCount;
+    public Vector2Int occupiedSpace;
 }
