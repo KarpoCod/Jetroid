@@ -8,20 +8,21 @@ public class MenuManager : MonoBehaviour
 {
     private bool bind;
     private bool isFullScreen;
-    public GameObject setCanv;
-    public GameObject mainCanv;
-    public WorldGen world;
-    public Camera cam;
+    [SerializeField] private GameObject setCanv;
+    [SerializeField] private GameObject mainCanv;
+    [SerializeField] private WorldGen world;
+    private Camera cam;
     public int speed;
 
-    Resolution[] rsl;
-    List<string> resolutions;
-    public Toggle FullScreenTog;
-    public Dropdown dropdown;
+    private Resolution[] rsl;
+    private List<string> resolutions;
+    [SerializeField] private Toggle FullScreenTog;
+    [SerializeField] private Dropdown dropdown;
 
 
     public void Start()
     {
+        cam = Camera.main;
         isFullScreen = Screen.fullScreen;
         resolutions = new List<string>();
         rsl = Screen.resolutions;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CameraFolow : MonoBehaviour
+public class CameraFollow : MonoBehaviour
 {
     public GameObject target;
     public float scale = 4f;

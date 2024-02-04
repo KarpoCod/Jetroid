@@ -17,7 +17,7 @@ public class LoadManager : MonoBehaviour
     private string fToSave = " ";
     public WorldGen world;
     private Vector3 PlayerPos;
-    private CameraFolow Cam;
+    private CameraFollow Cam;
     private GameObject LoadMan;
     public GameObject Canvas;
     private bool menu = false;
@@ -26,7 +26,7 @@ public class LoadManager : MonoBehaviour
     private void Awake()
     {
         LoadMan = gameObject;
-        Cam = Camera.main.GetComponent<CameraFolow>();
+        Cam = Camera.main.GetComponent<CameraFollow>();
         int operation = DataHold.WorldOperation;
         switch(operation)
         {
@@ -53,7 +53,6 @@ public class LoadManager : MonoBehaviour
         if (Input.GetButtonDown("Cancel"))
         {
             Pause();
-
         }
 
     }
@@ -100,7 +99,6 @@ public class LoadManager : MonoBehaviour
             }
             
         }
-      
         BinaryFormatter form = new BinaryFormatter();
         string path = Application.persistentDataPath + "WorldSave.dat";
         FileStream stream = new FileStream(path, FileMode.Create);
@@ -112,7 +110,6 @@ public class LoadManager : MonoBehaviour
         }
     }
 
-
     public void LoadWorld()
     {
         Time.timeScale = 1;
@@ -121,13 +118,10 @@ public class LoadManager : MonoBehaviour
         
         if (File.Exists(path))
         {
-            
-
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Open);
             string data = (string)formatter.Deserialize(stream);
             stream.Close();
-
 
             world.destroy();
             Destroy(world.World);
@@ -169,7 +163,7 @@ public class LoadManager : MonoBehaviour
                 foreach (string blockDat in blockData)
                 {
                     int blockID = int.Parse(blockDat);
-                    ChunkBlocks[(con / ChunkRenderer.chunkWide), (con % ChunkRenderer.chunkWide)] = (blTyp.FirstOrDefault(b => b.ID == blockID)).BT;
+                    ChunkBlocks[(con / ChunkRenderer.chunkWide), (con % ChunkRenderer.chunkWide)] = (blTyp.FirstOrDefault(b => b.BT == (BlockType)blockID)).BT;
                     con++;
                 }
                 chunkData.Blocks = ChunkBlocks;
@@ -183,11 +177,6 @@ public class LoadManager : MonoBehaviour
                 chunkData.seed = world.seed;
                 chunk.ParentWorld = world;
             }
-
-            
-
-            
-
             Cam.target = player;
             world.Player = player;
             player.transform.position = new Vector3(posX, posY, 0f);

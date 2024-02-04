@@ -254,7 +254,7 @@ public class WorldGen : MonoBehaviour
                     int xpos = x * ChunkRenderer.chunkWide;
                     int ypos = y * ChunkRenderer.chunkWide;
                     chunkData.coords = new Vector2Int(x, y);
-                    chunkData.Blocks = Teraingen.GenerateTaerrain(xpos, ypos, seed);
+                    chunkData.Blocks = Teraingen.GenerateTerrain(xpos, ypos, seed);
                     chunkData.BgBlocks = Teraingen.GenerateBG(xpos, ypos, seed);
                     if (forced) generatedResultsForced.Enqueue(chunkData);
                     else generatedResults.Enqueue(chunkData);             

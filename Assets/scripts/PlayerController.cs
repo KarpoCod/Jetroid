@@ -36,7 +36,6 @@ public class PlayerController : MonoBehaviour
         PlayerZ = transform.localRotation.z;
     }
 
-
     void Update()
     {
         float forceY = 0;
@@ -56,21 +55,14 @@ public class PlayerController : MonoBehaviour
         {
             standing = false;
         }
-        
-        /*if (absVelY < maxVelocity.y)
-        {
-            forceY = jetSpeed * Time.deltaTime * verticalInput;
-        }*/
+
         if (horizontalInput != 0)
         {
 			if (standing)
 			{
             	AnimSt = 1;
 			}
-   /*         if (absVelX < maxVelocity.x)
-            {
-                forceX = Speed * Time.deltaTime * horizontalInput;
-            }*/
+
             if (verticalInput < 0 && Jet)
             {
                 if (absVelX < maxVelocity.x) VelocityX = Speed * horizontalInput * boost;

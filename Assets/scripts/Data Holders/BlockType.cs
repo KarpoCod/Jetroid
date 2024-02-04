@@ -1,11 +1,11 @@
 public enum BlockType : byte
 {
-    stone = 4,
-    damagedStone = 2,
-    dirt = 5,
-    bgDirt = 1,
-    bgAir = 0,
-    grass = 3,
-    virusDamDirt = 6,
-    lians = 7
+    bgAir,
+    bgDirt,
+    damagedStone,
+    grass,
+    stone,
+    dirt,
+    virusDamDirt,
+    lians
 }
