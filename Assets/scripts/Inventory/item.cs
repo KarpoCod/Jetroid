@@ -12,4 +12,16 @@ public class item : ScriptableObject
     public int count;
     public int maxCount;
     public Vector2Int occupiedSpace;
+
+    public item(item it)
+    {
+        this.icon = it.icon;
+        this.id = it.id;
+        this.title = it.title;
+        this.description = it.description;
+        this.count = it.count;
+        this.maxCount = it.maxCount;
+        this.occupiedSpace = it.occupiedSpace;
+    }
+
 }

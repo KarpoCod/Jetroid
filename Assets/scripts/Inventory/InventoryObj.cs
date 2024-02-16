@@ -20,16 +20,18 @@ public class InventoryObj : MonoBehaviour
             item adding_slot = inventory.Find(x => (x.count < x.maxCount && x.id == it.id));
             if (adding_slot != null) {
                 int ind = inventory.IndexOf(adding_slot);
-                if (adding_slot.maxCount - adding_slot.count >= it.count)
+                if (adding_slot.maxCount >= adding_slot.count + it.count)
                 {
                     adding_slot.count += it.count;
-                    inventory[ind] = adding_slot;
+                    break;
+                    //inventory[ind] = adding_slot;
                 }
                 else
                 {
                     it.count -= adding_slot.maxCount - adding_slot.count;
                     adding_slot.count = adding_slot.maxCount;
-                    inventory[ind] = adding_slot;
+                    Debug.Log(("Adding slot {0} not enough place", adding_slot.count));
+                    //inventory[ind] = adding_slot;
                 }
             }
             else if (inventory.Count < capacity)
@@ -63,8 +65,8 @@ public class InventoryObj : MonoBehaviour
 
     public void Add_air()
     {
-        item it = gear;
-        it.count = 1;
+        item it = new item(gear);
+        it.count = 2;
         Add_item(it);
     }
 
