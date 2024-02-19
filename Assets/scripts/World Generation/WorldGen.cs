@@ -90,8 +90,8 @@ public class WorldGen : MonoBehaviour
             {
                 CurrentChunk = PlayerChunk;
                 updateChunks(PlayerChunk);
-
             }
+
             if (CanBuild) CheckInput();
 
             while (generatedResultsForced.TryDequeue(out var chunkDat))//попытка достать с других потоков свежесгенерированные чанки(с большим приоритетом)
@@ -110,7 +110,6 @@ public class WorldGen : MonoBehaviour
                     else { i--; }
                 }
             }
-
             if (CD < 1) CD += Time.deltaTime;
         }
         
@@ -130,9 +129,7 @@ public class WorldGen : MonoBehaviour
 
     void CheckInput()//проверка нажатий и попадания по блокам
     {
-       
         Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition) - PPos;
-
 
         Ray2D ray = new Ray2D(PPos, mouse);
         RaycastHit2D hitInfo = Physics2D.Raycast(PPos, mouse, 10, LayerMask.GetMask("FG"));
@@ -160,7 +157,6 @@ public class WorldGen : MonoBehaviour
                 if(!Physics2D.Raycast(PPos, mouse, 3, LayerMask.GetMask("FG")))
                 {
                     BlockCenter = hitInfo.point;
-
                     for (int x = -ChunkRenderer.size; x <= ChunkRenderer.size; x++)
                     {
                         for (int y = -ChunkRenderer.size; y <= ChunkRenderer.size; y++)
@@ -194,7 +190,6 @@ public class WorldGen : MonoBehaviour
 
     public void DeleteBlock(Vector3Int BlockWorldPos)
     {
-        
         if (BlockWorldPos.x < 0) BlockWorldPos.x -= ChunkRenderer.chunkWide - 1;
         if (BlockWorldPos.y < 0) BlockWorldPos.y -= ChunkRenderer.chunkWide - 1;
 
@@ -206,7 +201,6 @@ public class WorldGen : MonoBehaviour
         ChunkDatas[UptdChunk].Chunk.DeleteBlock(new Vector3Int(BlockChunkPos.x, BlockChunkPos.y, 0));
         ChunkDatas[UptdChunk].Blocks[BlockChunkPos.x, BlockChunkPos.y] = BlockType.bgAir;//затирание данных о блоке в чанке
     }
-
 
     public void updateChunks(Vector2Int PChunk)//обновление чанков по спирали в области  ChunkSpawnRad*2 + 1
     {
@@ -238,7 +232,6 @@ public class WorldGen : MonoBehaviour
             {
                 updtChunk(x + PChunk.x, y + yi + PChunk.y, forced);
             }
-
         }
     }
 
@@ -249,7 +242,6 @@ public class WorldGen : MonoBehaviour
             ChunkDatas.Add(new Vector2Int(x, y), null);
             Task.Factory.StartNew(() =>
             {
-                
                     var chunkData = new ChunkData();
                     int xpos = x * ChunkRenderer.chunkWide;
                     int ypos = y * ChunkRenderer.chunkWide;
@@ -259,7 +251,6 @@ public class WorldGen : MonoBehaviour
                     if (forced) generatedResultsForced.Enqueue(chunkData);
                     else generatedResults.Enqueue(chunkData);             
             });
-
 
         }
         else if (ChunkDatas[new Vector2Int(x, y)] != null)

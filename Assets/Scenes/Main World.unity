@@ -549,7 +549,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1513288648}
-        m_TargetAssemblyTypeName: InventoryObj, Assembly-CSharp
+        m_TargetAssemblyTypeName: InventoryFront, Assembly-CSharp
         m_MethodName: Add_air
         m_Mode: 1
         m_Arguments:
@@ -1488,13 +1488,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1513288644}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d6dd3d378af8844bbfc0a5c1bd72bc1, type: 3}
+  m_Script: {fileID: 11500000, guid: a289f7392dcfa8b4ca63a536cd832760, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: []
-  capacity: 10
+  capacity: 2
   gear: {fileID: 11400000, guid: 5fb10bb958c02d244875eb1ca50594ce, type: 2}
-  graf: 
+  dfg: 
 --- !u!1 &1786387420
 GameObject:
   m_ObjectHideFlags: 0

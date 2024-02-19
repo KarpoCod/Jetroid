@@ -1,18 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class InventoryObj : MonoBehaviour
+public class InventoryBack
 {
-    public List<item> inventory;
-    public int capacity = 10;
-    public item gear;
-    public string graf;
-
-    void Start()
+    public InventoryBack(int cap, List<item> inv)
     {
+        this.capacity = cap;
+        this.inventory = inv;
+    }
+    public InventoryBack(int cap)
+    {
+        this.capacity = cap;
         inventory = new List<item>(capacity);
     }
+
+    public List<item> inventory;
+    public int capacity = 10;
+    public string graf;
+
 
     public bool Add_item(item it)
     {
@@ -24,14 +29,11 @@ public class InventoryObj : MonoBehaviour
                 {
                     adding_slot.count += it.count;
                     break;
-                    //inventory[ind] = adding_slot;
                 }
                 else
                 {
                     it.count -= adding_slot.maxCount - adding_slot.count;
                     adding_slot.count = adding_slot.maxCount;
-                    Debug.Log(("Adding slot {0} not enough place", adding_slot.count));
-                    //inventory[ind] = adding_slot;
                 }
             }
             else if (inventory.Count < capacity)
@@ -63,10 +65,10 @@ public class InventoryObj : MonoBehaviour
         return true;
     }
 
-    public void Add_air()
+    public void Add_air(item i, int count)
     {
-        item it = new item(gear);
-        it.count = 2;
+        item it = new item(i);
+        it.count = count;
         Add_item(it);
     }
 

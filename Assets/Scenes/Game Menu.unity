@@ -155,7 +155,6 @@ MonoBehaviour:
   setCanv: {fileID: 266571420}
   mainCanv: {fileID: 2066989157}
   world: {fileID: 3734662675625734555}
-  cam: {fileID: 1724541270}
   speed: 5
   FullScreenTog: {fileID: 1243827331}
   dropdown: {fileID: 1608208573}
@@ -1533,7 +1532,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 299.9999, y: -80}
+  m_AnchoredPosition: {x: 299.99994, y: -80}
   m_SizeDelta: {x: 320, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &790334094
@@ -2659,7 +2658,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 299.9999, y: 100}
+  m_AnchoredPosition: {x: 299.99994, y: 100}
   m_SizeDelta: {x: 320, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1243827331
@@ -3674,7 +3673,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 299.9999, y: 40}
+  m_AnchoredPosition: {x: 299.99994, y: 40}
   m_SizeDelta: {x: 320, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1608208571
@@ -4807,7 +4806,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3734662675625734556}
   - component: {fileID: 3734662675625734555}
-  - component: {fileID: 4019706670665610557}
+  - component: {fileID: 3734662675625734557}
   m_Layer: 2
   m_Name: world
   m_TagString: Untagged
@@ -4827,23 +4826,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 412f25bdafd25d5479b68416b648656d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChunkSpawnRad: 4
   buildCD: 0.2
   digCD: 0.15
   CanBuild: 0
-  offset: {x: 0, y: 15}
-  ChunkPrefab: {fileID: 5204137682881531203, guid: 8e179ca5b9edd3f4c9c390c57bb15e3f, type: 3}
   Player: {fileID: 1724541268}
+  ChunkSpawnRad: 4
+  ChunkPrefab: {fileID: 5204137682881531203, guid: 8e179ca5b9edd3f4c9c390c57bb15e3f, type: 3}
   World: {fileID: 3734662675625734554}
   seed: 0
-  Teraingen: {fileID: 4019706670665610557}
+  Teraingen: {fileID: 3734662675625734557}
   ready: 0
   CurrentChunk: {x: 0, y: 0}
-  PlayerChunk: {x: 0, y: 0}
-  PPos: {x: 0, y: 80, z: 0}
-  BlockWorldPos: {x: 0, y: 0, z: 0}
-  BlockCenter: {x: 0, y: 0, z: 0}
-  UptdChunk: {x: 0, y: 0}
 --- !u!4 &3734662675625734556
 Transform:
   m_ObjectHideFlags: 0
@@ -4859,7 +4852,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4019706670665610557
+--- !u!114 &3734662675625734557
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -47,7 +47,6 @@ public class PlayerController : MonoBehaviour
         PlayerZ = transform.localRotation.z;
     }
 
-
     void Update()
     {
         float forceY = 0;
@@ -131,7 +130,6 @@ public class PlayerController : MonoBehaviour
             {
                 jumpCd = 0.1f;
                 VelocityY = jumpForce * 75;
-                Debug.Log("Jumping!");
             }
         }
         if (!standing && (verticalInput == 0 || !Jet)) // אממאמאמממממ ןאהא‏
