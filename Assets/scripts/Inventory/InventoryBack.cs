@@ -77,7 +77,7 @@ public class InventoryBack
         int ind = 0;
         foreach (var item in inventory)
         {
-            graf += ind + item.name + ", " + item.count + "\n";
+            graf += ind + item.title + ", " + item.count + "\n";
             ind++;
         }
     }
