@@ -150,7 +150,7 @@ public class PlayerController : MonoBehaviour
 
         if (fuel < 0) fuel = 0; // обнуление топлива если оно ушло в минус
 
-        if (fuel > 1) fuel = 1; // обнуление топлива если оно больше 100
+        if (fuel > 1) fuel = 1; // откат на 1 топлива если оно больше 1
 
         if (standing && canFly) fuel += Fuel_Recovery * Time.deltaTime; // восстановление топлива
 
