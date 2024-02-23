@@ -65,13 +65,6 @@ public class InventoryBack
         return true;
     }
 
-    public void Add_air(item i, int count)
-    {
-        item it = new item(i);
-        it.count = count;
-        Add_item(it);
-    }
-
     void Add_Graphics(){
         graf = "";
         int ind = 0;
