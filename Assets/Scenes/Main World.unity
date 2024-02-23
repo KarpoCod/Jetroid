@@ -1304,9 +1304,9 @@ RectTransform:
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -583.1338, y: -343.17377}
-  m_SizeDelta: {x: -1198.424, y: -718.505}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 153, y: 46}
+  m_SizeDelta: {x: -111.42395, y: -200.505}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &999180137
 MonoBehaviour:
@@ -2744,13 +2744,9 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8061114378512599398, guid: 3c5de5b66be09a145818090a4575f413, type: 3}
-      propertyPath: Fuel_Recovery
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 8061114378512599399, guid: 3c5de5b66be09a145818090a4575f413, type: 3}
       propertyPath: m_Mass
-      value: 5.8672457
+      value: 1.9793593
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

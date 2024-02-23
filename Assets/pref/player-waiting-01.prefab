@@ -152,6 +152,10 @@ MonoBehaviour:
   boost: 3
   maxVelocity: {x: 50, y: 15}
   Player: {fileID: 8061114378512599394}
+  Fuel_Waste_Boost: 0.5
+  Fuel_Waste_Fly: 0.1
+  Fuel_Recovery: 0.25
+  FlyCD_const: 1
   Jet: 1
   AnimSt: 0
 --- !u!60 &8061114378512599396
