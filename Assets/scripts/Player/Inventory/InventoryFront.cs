@@ -14,33 +14,25 @@ public class InventoryFront : MonoBehaviour
         InventoryBack = new InventoryBack(capacity);
     }
 
-    public void Add_item(item itm, int count)
+    public void Add_item(item it)
     {
-        item it = new item(itm);
-        it.count = count;
         bool can_add = InventoryBack.Add_item(it);
         if (!can_add) { Debug.Log(("невозможно добавить", it.count, it.title, "в выбранный инвентарь")); }
         Add_Graphics();
     }
 
-    public void Remove_item(item itm, int count)
+    public void Remove_item(item it)
     {
-        item it = new item(itm);
-        it.count = count;
         bool can_rem = InventoryBack.Remove_item(it);
         if (!can_rem) { Debug.Log(("невозможно убрать", it.count, it.title, "из выбранного инвентаря")); }
         Add_Graphics();
     }
 
-    public void Remove_air()
-    {
-        Remove_item(gear, 2);
-    }
-
     public void Add_air()
-    { 
+    {
         item it = new item(gear);
-        Add_item(it, 2);
+        it.count = 2;
+        Add_item(it);
     }
 
     void Add_Graphics()
