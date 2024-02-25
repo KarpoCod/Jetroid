@@ -5,54 +5,32 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float PlayerXScale;
-    public float PlayerYScale;
-    public float PlayerZ;
-    public float Speed = 50;
-    public float jetForce = 40;
-    public float jumpForce = 5;
-    public float airMultiplier = 0.4f;
     public float standingThreshold = 4f;
-    public float boost = 4f;
-    public Vector2 maxVelocity = new Vector2(60, 100);
     private float jumpCd;
     private Rigidbody2D body2D;
-    public GameObject Player;
     public static float fuel = 1f;
+    private float MaxFuel = 1f;
 
-    [SerializeField] private float Fuel_Waste_Boost = 0.18f;
-    [SerializeField] private float Fuel_Waste_Fly = 0.03f;
-    [SerializeField] private float Fuel_Recovery = 0.02f;
+    [SerializeField] private float Fuel_Waste_Boost = 0.5f;
+    [SerializeField] private float Fuel_Waste_Fly = 0.1f;
+    [SerializeField] private float Fuel_Recovery = 0.25f;
 
-    [SerializeField] private float FlyCD_const = 3f;
-    private float FlyCD;
     private bool canFly = true;
 
     public bool Jet;
-    public int AnimSt;
 
     private bool standing;
 
-    private Animator animator;
+    private Character character;
 
     void Start()
     {
-        jumpCd = 0;
-        FlyCD = FlyCD_const;
         body2D = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-
-        PlayerXScale = transform.localScale.x;
-        PlayerYScale = transform.localScale.y;
-        PlayerZ = transform.localRotation.z;
+        character = GetComponent<Character>();
     }
 
     void Update()
     {
-        float forceY = 0;
-        float forceX = 0;
-        float VelocityX = 0;
-        float VelocityY = 0;
         var absVelX = Mathf.Abs(body2D.velocity.x);
         var absVelY = Mathf.Abs(body2D.velocity.y);
         float horizontalInput = Input.GetAxis("Horizontal");
@@ -70,99 +48,38 @@ public class PlayerController : MonoBehaviour
 
         if (horizontalInput != 0)
         {
-            if (standing)
+            if (verticalInput == 0)
             {
-                AnimSt = 1;
+                character.Walk(horizontalInput, standing);
             }
-            if (verticalInput < 0 && Jet && fuel > 0 && canFly) // токийское наваливание боком
+            else if (verticalInput > 0 && canFly && fuel > 0)
             {
-                if (absVelX < maxVelocity.x) VelocityX = Speed * horizontalInput * boost;
-
-                if (horizontalInput < 0)
-                {
-                    transform.localScale = new Vector3(-1 * PlayerXScale, 1 * PlayerYScale, 1);
-
-                }
-                else if (horizontalInput > 0)
-                {
-                    transform.localScale = new Vector3(1 * PlayerXScale, 1 * PlayerYScale, 1);
-
-                }
-                AnimSt = 4;
-
-                fuel -= Time.deltaTime * Fuel_Waste_Boost;
+                character.Fly(horizontalInput);
+                fuel -= Fuel_Waste_Fly * Time.deltaTime;
             }
-            else if (absVelX < maxVelocity.x) // можем добавить скорости если она не достигла максимума
+            else if (verticalInput < 0 && canFly && fuel > 0)
             {
-                transform.rotation = Quaternion.Euler(0, 0, 0);
-                var newSpeed = Speed * horizontalInput;
-                VelocityX = standing ? newSpeed : (newSpeed * airMultiplier);
-                if (horizontalInput < 0)
-                {
-                    transform.localScale = new Vector3(-1 * PlayerXScale, 1 * PlayerYScale, 1);
-                }
-                else if (horizontalInput > 0)
-                {
-                    transform.localScale = new Vector3(1 * PlayerXScale, 1 * PlayerYScale, 1);
-                }
-                AnimSt = standing ? 1 : 3;
+                character.Boost(horizontalInput, standing);
+                fuel -= Fuel_Waste_Boost * Time.deltaTime;
             }
+            else { character.Walk(0, standing); }
         }
-        else // не можем
+        else if (verticalInput > 0 && canFly && fuel > 0)
         {
-            transform.rotation = Quaternion.Euler(0, 0, PlayerZ);
-            AnimSt = 0;
+            character.Fly(0);
+            fuel -= Fuel_Waste_Fly * Time.deltaTime;
         }
+        else { character.Walk(0, standing); }
+        if (fuel <= 0) { canFly = false; }
 
-        if (verticalInput > 0 && Jet && fuel > 0 && canFly) // взлет с баконура
+        if (verticalInput == 0)
         {
-            if (absVelY < maxVelocity.y)
+            if (fuel < MaxFuel)
             {
-                forceY = jetForce * Time.deltaTime * verticalInput;
+                fuel += Fuel_Recovery * Time.deltaTime;
             }
-            AnimSt = 2;
-
-            fuel -= Time.deltaTime * Fuel_Waste_Fly;
-        }
-        else if (verticalInput > 0 && !Jet && standing) // прыг скок
-        {
-            if (jumpCd <= 0)
-            {
-                jumpCd = 0.1f;
-                VelocityY = jumpForce * 75;
-            }
-        }
-        if (!standing && (verticalInput == 0 || !Jet)) // аооаоаооооо падаю
-        {
-            AnimSt = 3;
+            if (!canFly && fuel > 0.5 * MaxFuel) { canFly = true; }
         }
 
-        if (jumpCd >= 0) // кд на прыг скок
-        {
-            jumpCd -= Time.deltaTime;
-        }
-
-        animator.SetBool("jet", Jet);
-        animator.SetInteger("AnimState", AnimSt);
-
-        body2D.velocity = new Vector2((Mathf.Abs(body2D.velocity.x) < Mathf.Abs(VelocityX)) ? VelocityX : body2D.velocity.x, (forceY == 0 && standing) ? VelocityY : body2D.velocity.y);
-        body2D.AddForce(new Vector2(forceX, forceY));
-
-        if (fuel < 0) fuel = 0; // обнуление топлива если оно ушло в минус
-
-        if (fuel > 1) fuel = 1; // откат на 1 топлива если оно больше 1
-
-        if (standing && canFly) fuel += Fuel_Recovery * Time.deltaTime; // восстановление топлива
-
-        if (fuel == 0)
-        {
-            canFly = false;
-            FlyCD -= Time.deltaTime;
-        }
-        if (FlyCD <= 0)
-        {
-            canFly = true;
-            FlyCD = FlyCD_const;
-        }
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-[CreateAssetMenu(menuName = "item")]
+[CreateAssetMenu(menuName = "Jet objects/item")]
 public class item : ScriptableObject
 {
     public Sprite icon;
@@ -12,6 +12,7 @@ public class item : ScriptableObject
     public int count;
     public int maxCount;
     public Vector2Int occupiedSpace;
+    public ItemClass itemClass;
 
     public item(item it)
     {
@@ -22,6 +23,6 @@ public class item : ScriptableObject
         this.count = it.count;
         this.maxCount = it.maxCount;
         this.occupiedSpace = it.occupiedSpace;
+        this.itemClass = it.itemClass;
     }
-
 }

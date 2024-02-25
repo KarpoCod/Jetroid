@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Biom")]
+[CreateAssetMenu(menuName = "Jet objects/Biom")]
 public class BiomInfo : ScriptableObject
 {
     public int index;

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: lians
   m_EditorClassIdentifier: 
   BT: 7
-  Texture: {fileID: 0}
+  Texture: {fileID: 11400000, guid: 99e7b1f8d3938a644839bb899593f1b4, type: 2}
