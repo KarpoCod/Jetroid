@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    [SerializeField] private int Health = 100;
+    [SerializeField] public static int Health = 100;
     public float speed = 7;
     public float jumpVelocity = 5f;
     public float jetSpeed = 5f;
@@ -40,7 +40,7 @@ public class Character : MonoBehaviour
         body2D.velocity = new Vector2(VelosX, (standing) ? 0 : body2D.velocity.y);
         if (standing && Direction != 0) { animator.SetInteger("AnimState", 1); }
         else if (standing) { animator.SetInteger("AnimState", 0); }
-        else { animator.SetInteger("AnimState", 3); }
+        else { animator.SetInteger("AnimState", 2); }
         JetPack.Fly(false);
     }
 
@@ -61,7 +61,7 @@ public class Character : MonoBehaviour
         float VelosX = boostMultiplier * Direction * speed;
         if (Mathf.Abs(VelosX) < Mathf.Abs(body2D.velocity.x) && body2D.velocity.x / VelosX > 0) { VelosX = body2D.velocity.x; }
         body2D.velocity = new Vector2(VelosX, (standing) ? 0 : body2D.velocity.y);
-        animator.SetInteger("AnimState", 4);
+        animator.SetInteger("AnimState", 3);
         JetPack.Fly(true);
     }
 }
