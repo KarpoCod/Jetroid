@@ -144,23 +144,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 999d5c6a5d6fca748bf122cff7fa1058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerXScale: 0.125
-  PlayerYScale: 0.125
-  PlayerZ: 0
-  Speed: 7
-  jetForce: 3000
-  jumpForce: 5
-  airMultiplier: 0.5
   standingThreshold: 0.1
-  boost: 3
-  maxVelocity: {x: 50, y: 15}
-  Player: {fileID: 8061114378512599394}
   Fuel_Waste_Boost: 0.5
   Fuel_Waste_Fly: 0.1
   Fuel_Recovery: 0.25
-  FlyCD_const: 1
   Jet: 1
-  AnimSt: 0
 --- !u!114 &4662412315682161356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,6 +161,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 972a3f08d67bee24d9524492f224cbc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 100
+  speed: 7
+  jumpVelocity: 5
+  jetSpeed: 10
+  boostMultiplier: 3
+  airMultiplier: 0.5
+  canFly: 1
 --- !u!60 &8061114378512599396
 PolygonCollider2D:
   m_ObjectHideFlags: 0

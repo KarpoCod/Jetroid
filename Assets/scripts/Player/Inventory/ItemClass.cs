@@ -1,6 +1,6 @@
 public enum ItemClass : byte
 {
     block,
-    jet,
+    equipment,
     tool
 }
