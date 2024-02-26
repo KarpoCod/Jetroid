@@ -13,6 +13,7 @@ public class Character : MonoBehaviour
     public bool canFly = true;
     private Animator animator;
     private Rigidbody2D body2D;
+    [SerializeField]private JetController JetPack;
 
     private float VelosX = 0;
 
@@ -40,6 +41,7 @@ public class Character : MonoBehaviour
         if (standing && Direction != 0) { animator.SetInteger("AnimState", 1); }
         else if (standing) { animator.SetInteger("AnimState", 0); }
         else { animator.SetInteger("AnimState", 3); }
+        JetPack.Fly(false);
     }
 
     public void Fly(float Direction)
@@ -49,6 +51,7 @@ public class Character : MonoBehaviour
         if (Mathf.Abs(VelosX) < Mathf.Abs(body2D.velocity.x) && body2D.velocity.x / VelosX > 0) { VelosX = body2D.velocity.x; }
         body2D.velocity = new Vector2(VelosX, jetSpeed);
         animator.SetInteger("AnimState", 2);
+        JetPack.Fly(true);
     }
 
 
@@ -59,5 +62,6 @@ public class Character : MonoBehaviour
         if (Mathf.Abs(VelosX) < Mathf.Abs(body2D.velocity.x) && body2D.velocity.x / VelosX > 0) { VelosX = body2D.velocity.x; }
         body2D.velocity = new Vector2(VelosX, (standing) ? 0 : body2D.velocity.y);
         animator.SetInteger("AnimState", 4);
+        JetPack.Fly(true);
     }
 }
