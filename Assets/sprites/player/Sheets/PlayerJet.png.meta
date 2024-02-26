@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 1
+  spritePixelsToUnits: 2
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -145,9 +145,9 @@ TextureImporter:
       name: PlayerJet_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 233
-        width: 22
+        x: 10
+        y: 241
+        width: 17
         height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -166,9 +166,9 @@ TextureImporter:
       name: PlayerJet_1
       rect:
         serializedVersion: 2
-        x: 37
-        y: 233
-        width: 22
+        x: 42
+        y: 241
+        width: 17
         height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -187,9 +187,9 @@ TextureImporter:
       name: PlayerJet_2
       rect:
         serializedVersion: 2
-        x: 69
-        y: 233
-        width: 22
+        x: 74
+        y: 241
+        width: 17
         height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -208,9 +208,9 @@ TextureImporter:
       name: PlayerJet_3
       rect:
         serializedVersion: 2
-        x: 101
-        y: 233
-        width: 22
+        x: 106
+        y: 241
+        width: 17
         height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -229,9 +229,9 @@ TextureImporter:
       name: PlayerJet_4
       rect:
         serializedVersion: 2
-        x: 5
-        y: 200
-        width: 22
+        x: 10
+        y: 208
+        width: 17
         height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -250,9 +250,9 @@ TextureImporter:
       name: PlayerJet_5
       rect:
         serializedVersion: 2
-        x: 39
-        y: 200
-        width: 22
+        x: 44
+        y: 208
+        width: 17
         height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -271,9 +271,9 @@ TextureImporter:
       name: PlayerJet_6
       rect:
         serializedVersion: 2
-        x: 69
-        y: 201
-        width: 22
+        x: 74
+        y: 208
+        width: 17
         height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -292,9 +292,9 @@ TextureImporter:
       name: PlayerJet_7
       rect:
         serializedVersion: 2
-        x: 101
-        y: 201
-        width: 22
+        x: 106
+        y: 208
+        width: 17
         height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -313,9 +313,9 @@ TextureImporter:
       name: PlayerJet_8
       rect:
         serializedVersion: 2
-        x: 5
-        y: 169
-        width: 22
+        x: 10
+        y: 177
+        width: 17
         height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -334,9 +334,9 @@ TextureImporter:
       name: PlayerJet_9
       rect:
         serializedVersion: 2
-        x: 39
-        y: 169
-        width: 22
+        x: 44
+        y: 177
+        width: 17
         height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -356,9 +356,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 66
-        y: 172
+        y: 180
         width: 29
-        height: 22
+        height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -377,9 +377,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 99
-        y: 172
+        y: 180
         width: 29
-        height: 22
+        height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -397,10 +397,10 @@ TextureImporter:
       name: PlayerJet_12
       rect:
         serializedVersion: 2
-        x: 1
-        y: 139
-        width: 30
-        height: 22
+        x: 2
+        y: 147
+        width: 29
+        height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -418,9 +418,9 @@ TextureImporter:
       name: PlayerJet_13
       rect:
         serializedVersion: 2
-        x: 39
-        y: 137
-        width: 20
+        x: 44
+        y: 145
+        width: 15
         height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -439,10 +439,10 @@ TextureImporter:
       name: PlayerJet_14
       rect:
         serializedVersion: 2
-        x: 68
-        y: 137
-        width: 21
-        height: 28
+        x: 72
+        y: 145
+        width: 17
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -460,9 +460,9 @@ TextureImporter:
       name: PlayerJet_15
       rect:
         serializedVersion: 2
-        x: 100
-        y: 137
-        width: 20
+        x: 105
+        y: 145
+        width: 15
         height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -481,9 +481,9 @@ TextureImporter:
       name: PlayerJet_16
       rect:
         serializedVersion: 2
-        x: 5
-        y: 102
-        width: 19
+        x: 10
+        y: 110
+        width: 14
         height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -502,9 +502,9 @@ TextureImporter:
       name: PlayerJet_17
       rect:
         serializedVersion: 2
-        x: 39
-        y: 102
-        width: 19
+        x: 44
+        y: 110
+        width: 14
         height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -523,9 +523,9 @@ TextureImporter:
       name: PlayerJet_18
       rect:
         serializedVersion: 2
-        x: 68
-        y: 102
-        width: 19
+        x: 73
+        y: 110
+        width: 14
         height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -544,9 +544,9 @@ TextureImporter:
       name: PlayerJet_19
       rect:
         serializedVersion: 2
-        x: 100
-        y: 102
-        width: 19
+        x: 105
+        y: 110
+        width: 14
         height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -565,9 +565,9 @@ TextureImporter:
       name: PlayerJet_20
       rect:
         serializedVersion: 2
-        x: 5
-        y: 69
-        width: 19
+        x: 10
+        y: 77
+        width: 14
         height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -586,9 +586,9 @@ TextureImporter:
       name: PlayerJet_21
       rect:
         serializedVersion: 2
-        x: 39
-        y: 69
-        width: 22
+        x: 44
+        y: 77
+        width: 17
         height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -597,7 +597,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 04681a2ba66fc3d4aabf24fb77adc72b
+      spriteID: 98e1bdf8bee131c4bae08e8edad8c0db
       internalID: 496649774
       vertices: []
       indices: 
@@ -607,9 +607,9 @@ TextureImporter:
       name: PlayerJet_22
       rect:
         serializedVersion: 2
-        x: 68
-        y: 69
-        width: 22
+        x: 73
+        y: 77
+        width: 17
         height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -618,7 +618,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db738e12fc9e02f4a9b2829b13347319
+      spriteID: eb52d13f363d71746bc6519058cf4287
       internalID: -567652870
       vertices: []
       indices: 
@@ -628,9 +628,9 @@ TextureImporter:
       name: PlayerJet_23
       rect:
         serializedVersion: 2
-        x: 99
-        y: 69
-        width: 22
+        x: 104
+        y: 77
+        width: 17
         height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -639,7 +639,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cad1c33ae1d60b04993880c5af1970a2
+      spriteID: 09f08f376e5015d4aacd8000e43f18c7
       internalID: 1120362561
       vertices: []
       indices: 
@@ -649,9 +649,9 @@ TextureImporter:
       name: PlayerJet_24
       rect:
         serializedVersion: 2
-        x: 5
-        y: 37
-        width: 22
+        x: 10
+        y: 45
+        width: 17
         height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -660,7 +660,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 651ccba151da2fa42a1f73ceb42e533c
+      spriteID: 7d35d61ca46a9a942beff315914c6835
       internalID: 655411711
       vertices: []
       indices: 
@@ -670,9 +670,9 @@ TextureImporter:
       name: PlayerJet_25
       rect:
         serializedVersion: 2
-        x: 39
-        y: 37
-        width: 22
+        x: 44
+        y: 45
+        width: 17
         height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -681,7 +681,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 18e5a86411657474384361b0f29e8a23
+      spriteID: cb56753685c21f24bbc9999a1b7dc39d
       internalID: -184997760
       vertices: []
       indices: 
@@ -691,9 +691,9 @@ TextureImporter:
       name: PlayerJet_26
       rect:
         serializedVersion: 2
-        x: 68
-        y: 37
-        width: 22
+        x: 73
+        y: 45
+        width: 17
         height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -702,7 +702,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ad647aec3d341ad428258bc14d6dbc7a
+      spriteID: f87dde6c3d0be3e46a889adbd1bc9a32
       internalID: 2045562558
       vertices: []
       indices: 
@@ -712,9 +712,9 @@ TextureImporter:
       name: PlayerJet_27
       rect:
         serializedVersion: 2
-        x: 99
-        y: 37
-        width: 22
+        x: 104
+        y: 45
+        width: 17
         height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -723,7 +723,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0ce54417f33341c4fb8875cb16896aae
+      spriteID: 3214177f94c96c84ca7f85dc2c823758
       internalID: 2012386038
       vertices: []
       indices: 
@@ -733,9 +733,9 @@ TextureImporter:
       name: PlayerJet_28
       rect:
         serializedVersion: 2
-        x: 5
-        y: 4
-        width: 22
+        x: 10
+        y: 12
+        width: 17
         height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -744,7 +744,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c72691e90d24704b8126692bda57949
+      spriteID: cfb5a79350057264d9f450388addea86
       internalID: 57499662
       vertices: []
       indices: 
@@ -754,9 +754,9 @@ TextureImporter:
       name: PlayerJet_29
       rect:
         serializedVersion: 2
-        x: 39
-        y: 4
-        width: 22
+        x: 44
+        y: 12
+        width: 17
         height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -765,7 +765,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 31e9386d4b825da4a9f695dc04c2874f
+      spriteID: 3e2b90fc37f30164e9a38c479b66f819
       internalID: -1007444597
       vertices: []
       indices: 
@@ -775,9 +775,9 @@ TextureImporter:
       name: PlayerJet_30
       rect:
         serializedVersion: 2
-        x: 68
-        y: 4
-        width: 22
+        x: 73
+        y: 12
+        width: 17
         height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -786,7 +786,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5b47fb7dfc0293f4d99aa16e3778de60
+      spriteID: 0447c3d148788284b854364b481cfce6
       internalID: 1391582583
       vertices: []
       indices: 
@@ -796,9 +796,9 @@ TextureImporter:
       name: PlayerJet_31
       rect:
         serializedVersion: 2
-        x: 99
-        y: 4
-        width: 22
+        x: 104
+        y: 12
+        width: 17
         height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -807,7 +807,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d72d36180808a454ead0ed3217026863
+      spriteID: 3aba634ae3abcec4f8b214e1fd2f7be4
       internalID: 2110147934
       vertices: []
       indices: 
