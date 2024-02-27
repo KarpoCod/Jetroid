@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: dungeons
   m_EditorClassIdentifier: 
   index: 0
-  mountRate: 20
-  grassRate: 60
-  dungeonsRate: -20
+  mountRate: 0
+  grassRate: 30
+  dungeonsRate: 0
   stone: 4
   grass: 3
   dirt: 5
