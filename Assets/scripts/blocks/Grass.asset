@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efca21dc5538dac4c8d15ae9bbed79b0, type: 3}
   m_Name: Grass
   m_EditorClassIdentifier: 
-  ID: 3
   BT: 3
-  TileNumber: 13
   Texture: {fileID: 11400000, guid: f9a69569fff97cf4cb5291b3a94b88e2, type: 2}
+  Additional: {fileID: 3735015919199837107, guid: b2fda2078587e224a9bb71a815fd8925, type: 3}

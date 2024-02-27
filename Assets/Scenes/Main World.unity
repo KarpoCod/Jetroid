@@ -215,7 +215,6 @@ GameObject:
   - component: {fileID: 37484668}
   - component: {fileID: 37484667}
   - component: {fileID: 37484666}
-  - component: {fileID: 37484669}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -310,18 +309,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 10
   m_TargetDisplay: 0
---- !u!114 &37484669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 37484664}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5b7566c3f38f3d4282699221c64927e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &97033859
 GameObject:
   m_ObjectHideFlags: 0
@@ -959,7 +946,7 @@ Camera:
   m_TargetEye: 0
   m_HDR: 1
   m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
+  m_AllowDynamicResolution: 1
   m_ForceIntoRT: 0
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
@@ -1092,7 +1079,6 @@ GameObject:
   - component: {fileID: 745731768}
   - component: {fileID: 745731770}
   - component: {fileID: 745731772}
-  - component: {fileID: 745731773}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1170,18 +1156,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jetBar: {fileID: 1521652670}
   HPBar: {fileID: 1126764891}
---- !u!114 &745731773
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 745731767}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5b7566c3f38f3d4282699221c64927e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &796980563
 GameObject:
   m_ObjectHideFlags: 0
@@ -1706,7 +1680,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.01
+  m_Intensity: 0.03
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -2652,6 +2626,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2045912665}
   - component: {fileID: 2045912667}
+  - component: {fileID: 2045912668}
   m_Layer: 0
   m_Name: minimap
   m_TagString: Untagged
@@ -2701,7 +2676,7 @@ Camera:
   far clip plane: 1000
   field of view: 26.991467
   orthographic: 1
-  orthographic size: 60
+  orthographic size: 100
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -2717,6 +2692,39 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &2045912668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2045912664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &2133467668
 GameObject:
   m_ObjectHideFlags: 0

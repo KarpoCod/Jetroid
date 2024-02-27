@@ -8,4 +8,5 @@ public class BlockInfo : ScriptableObject
 {
     public BlockType BT;
     public TileBase Texture;
+    public GameObject Additional;
 }

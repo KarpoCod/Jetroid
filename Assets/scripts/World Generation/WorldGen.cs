@@ -83,9 +83,7 @@ public class WorldGen : MonoBehaviour
         if (ready)
         {
             PPos = Player.transform.position;
-            if (PPos.x < 0) PPos.x-=1;
-            if (PPos.y < 0) PPos.y-=1;
-            PlayerChunk = new Vector2Int((int)Math.Floor(PPos.x / ChunkRenderer.chunkWide), (int)Math.Floor(PPos.y / ChunkRenderer.chunkWide));//нахождение координат чанка в котором находится игрок в массиве чанков
+            PlayerChunk = new Vector2Int((int)Math.Floor(((PPos.x > 0) ? PPos.x : PPos.x - 1) / ChunkRenderer.chunkWide), (int)Math.Floor(((PPos.y > 0) ? PPos.y : PPos.y - 1) / ChunkRenderer.chunkWide));//нахождение координат чанка в котором находится игрок в массиве чанков
             if (CurrentChunk != PlayerChunk)
             {
                 CurrentChunk = PlayerChunk;
@@ -119,6 +117,7 @@ public class WorldGen : MonoBehaviour
     {
         ChunkDatas[new Vector2Int(chunkData.coords.x, chunkData.coords.y)] = chunkData;
         var chunk = Instantiate(ChunkPrefab, new Vector3(chunkData.coords.x * ChunkRenderer.chunkWide, chunkData.coords.y * ChunkRenderer.chunkWide, 0), Quaternion.identity, transform);
+        chunk.name = (chunkData.coords.x + " " + chunkData.coords.y);
         chunk.ChunkData = chunkData;
         chunkData.Chunk = chunk;
         chunkData.seed = seed;
@@ -129,15 +128,16 @@ public class WorldGen : MonoBehaviour
 
     void CheckInput()//проверка нажатий и попадания по блокам
     {
-        Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition) - PPos;
+        Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition) - Camera.main.transform.position;
+        Vector2 PPos2 = new Vector2(PPos.x, PPos.y);
+        Vector2 mouse2 = new Vector2(mouse.x, mouse.y);
+        RaycastHit2D hitInfo = Physics2D.Raycast(PPos2, mouse2, 10, LayerMask.GetMask("FG"));
+        Vector2 hitP = new Vector2(hitInfo.point.x, hitInfo.point.y);
 
-        Ray2D ray = new Ray2D(PPos, mouse);
-        RaycastHit2D hitInfo = Physics2D.Raycast(PPos, mouse, 10, LayerMask.GetMask("FG"));
-        Vector2 hitP = new Vector2(hitInfo.point.x - PPos.x, hitInfo.point.y - PPos.y);
-        
+
         if (hitInfo != false)//проверка попадания в блок
         {
-            Debug.DrawRay(PPos, hitP, Color.yellow);
+
             if (Input.GetButton("Fire1") && CD > digCD)//вскапывания области (2*chunkRenderer.size Х 2*chunkRenderer.size)
             {
                 CD = 0;
@@ -151,7 +151,7 @@ public class WorldGen : MonoBehaviour
                     }
                 }
             }
-            else if (Input.GetButton("Fire2") && CD > buildCD && Mathf.Abs(hitP.x) > 0.5 && Mathf.Abs(hitP.y) > 0.5)//постройка блоками в области (2*chunkRenderer.size Х 2*chunkRenderer.size)
+            else if (Input.GetButton("Fire2") && CD > buildCD && Mathf.Abs(hitInfo.point.x) > 0.5 && Mathf.Abs(hitInfo.point.y) > 0.5)//постройка блоками в области (2*chunkRenderer.size Х 2*chunkRenderer.size)
             {
                 CD = 0;
                 if(!Physics2D.Raycast(PPos, mouse, 3, LayerMask.GetMask("FG")))
