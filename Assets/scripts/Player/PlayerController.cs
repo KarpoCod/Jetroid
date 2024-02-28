@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float standingThreshold = 4f;
-    private float jumpCd;
+    private bool canJump;
     private Rigidbody2D body2D;
     public static float fuel = 1f;
     private float MaxFuel = 1f;
@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
         var absVelY = Mathf.Abs(body2D.velocity.y);
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
+        float jumpInput = Input.GetAxis("Jump");
 
         if (absVelY <= standingThreshold && Physics2D.Raycast(transform.position + new Vector3(0.5f, 0, 0), -Vector2.up, 1.05f, LayerMask.GetMask("FG"))
             || Physics2D.Raycast(transform.position + new Vector3(-0.5f, 0, 0), -Vector2.up, 1.05f, LayerMask.GetMask("FG"))) // проверка если чел завтыкал на земле
@@ -70,6 +71,12 @@ public class PlayerController : MonoBehaviour
             fuel -= Fuel_Waste_Fly * Time.deltaTime;
         }
         else { character.Walk(0, standing); }
+        if (canJump && jumpInput > 0) 
+        {
+            character.Jump();
+            canJump = false;
+        }
+        
         if (fuel <= 0) { canFly = false; }
 
         if (verticalInput == 0)
@@ -81,5 +88,6 @@ public class PlayerController : MonoBehaviour
             if (!canFly && fuel > 0.5 * MaxFuel) { canFly = true; }
         }
 
+        if (standing && !canJump) canJump = true;
     }
 }

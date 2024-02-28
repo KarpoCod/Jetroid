@@ -6,7 +6,7 @@ public class Character : MonoBehaviour
 {
     [SerializeField] public static int Health = 100;
     public float speed = 7;
-    public float jumpVelocity = 5f;
+    public float jumpSpeed = 5f;
     public float jetSpeed = 5f;
     public float boostMultiplier = 3f;
     public float airMultiplier = 0.5f;
@@ -17,7 +17,7 @@ public class Character : MonoBehaviour
 
     private float VelosX = 0;
 
-    void Start()
+    void Awake()
     {
         body2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -54,6 +54,10 @@ public class Character : MonoBehaviour
         JetPack.Fly(true);
     }
 
+    public void Jump()
+    {
+        body2D.velocity = new Vector2(body2D.velocity.x, jumpSpeed);
+    }
 
     public void Boost(float Direction,bool standing)
     {
