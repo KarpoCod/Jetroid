@@ -18,10 +18,14 @@ public class MenuManager : MonoBehaviour
     private List<string> resolutions;
     [SerializeField] private Toggle FullScreenTog;
     [SerializeField] private Dropdown dropdown;
-
+    public GameObject Layer1;
+    public GameObject Layer2;
 
     public void Start()
     {
+        Layer1 = GameObject.Find("Layer1");
+        Layer2 = GameObject.Find("Layer2");
+
         cam = Camera.main;
         isFullScreen = Screen.fullScreen;
         resolutions = new List<string>();
@@ -37,6 +41,7 @@ public class MenuManager : MonoBehaviour
         dropdown.value = resolutions.IndexOf(resol);
         world.create_world();
         world.ready = true;
+        Layer2.SetActive(false);
     }
 
     public void Update()
@@ -97,4 +102,17 @@ public class MenuManager : MonoBehaviour
     {
         Screen.SetResolution(rsl[r].width, rsl[r].height, isFullScreen);
     }
+
+    public void ShowUILayer2()
+    {
+        Layer1.SetActive(false);
+        Layer2.SetActive(true);
+    }
+
+    public void ShowUILayer1()
+    {
+        Layer2.SetActive(false);
+        Layer1.SetActive(true);
+    }
+
 }
