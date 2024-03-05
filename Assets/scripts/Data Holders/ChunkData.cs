@@ -6,5 +6,6 @@ public class ChunkData
     public ChunkRenderer Chunk;
     public BlockType[,] Blocks;
     public BlockType[,] BgBlocks;
+    public WorldGen ParentWorld;
+    public bool[,] Edited;
 }
-

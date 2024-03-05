@@ -120,9 +120,6 @@ public class WorldGen : MonoBehaviour
         chunk.name = (chunkData.coords.x + " " + chunkData.coords.y);
         chunk.ChunkData = chunkData;
         chunkData.Chunk = chunk;
-        chunkData.seed = seed;
-        chunk.pos = new Vector2Int(chunkData.coords.x, chunkData.coords.y);
-        chunk.ParentWorld = this;
     }
 
 
@@ -248,6 +245,8 @@ public class WorldGen : MonoBehaviour
                     chunkData.coords = new Vector2Int(x, y);
                     chunkData.Blocks = Teraingen.GenerateTerrain(xpos, ypos, seed);
                     chunkData.BgBlocks = Teraingen.GenerateBG(xpos, ypos, seed);
+                    chunkData.seed = seed;
+                    chunkData.ParentWorld = this;
                     if (forced) generatedResultsForced.Enqueue(chunkData);
                     else generatedResults.Enqueue(chunkData);             
             });

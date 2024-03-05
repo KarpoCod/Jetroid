@@ -5,4 +5,5 @@ using UnityEngine;
 public static class DataHold
 {
     public static int WorldOperation;
+    public static string SaveName = "DefaultName";
 }

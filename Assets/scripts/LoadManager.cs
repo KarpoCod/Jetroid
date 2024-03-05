@@ -21,14 +21,15 @@ public class LoadManager : MonoBehaviour
     private GameObject LoadMan;
     public GameObject Canvas;
     private bool menu = false;
-
+    public string SaveName;
 
     private void Awake()
     {
         LoadMan = gameObject;
         Cam = Camera.main.GetComponent<CameraFollow>();
         int operation = DataHold.WorldOperation;
-        switch(operation)
+        SaveName = DataHold.SaveName;
+        switch (operation)
         {
             case 0:
                 Save_World();
@@ -100,7 +101,7 @@ public class LoadManager : MonoBehaviour
             
         }
         BinaryFormatter form = new BinaryFormatter();
-        string path = Application.persistentDataPath + "WorldSave.dat";
+        string path = Application.persistentDataPath + "saves/{SaveName}.dat";
         FileStream stream = new FileStream(path, FileMode.Create);
         form.Serialize(stream, fToSave);
         stream.Close();
@@ -175,7 +176,7 @@ public class LoadManager : MonoBehaviour
                 chunk.ChunkData = chunkData;
                 chunkData.Chunk = chunk;
                 chunkData.seed = world.seed;
-                chunk.ParentWorld = world;
+                chunkData.ParentWorld = world;
             }
             Cam.target = player;
             world.Player = player;
