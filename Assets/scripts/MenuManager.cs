@@ -18,13 +18,16 @@ public class MenuManager : MonoBehaviour
     private List<string> resolutions;
     [SerializeField] private Toggle FullScreenTog;
     [SerializeField] private Dropdown dropdown;
+
     public GameObject Layer1;
-    public GameObject Layer2;
+    public GameObject ChooseWorld;
+    public GameObject CreateWorld;
 
     public void Start()
     {
         Layer1 = GameObject.Find("Layer1");
-        Layer2 = GameObject.Find("Layer2");
+        ChooseWorld = GameObject.Find("ChooseWorld");
+        CreateWorld = GameObject.Find("NewGame");
 
         cam = Camera.main;
         isFullScreen = Screen.fullScreen;
@@ -41,7 +44,8 @@ public class MenuManager : MonoBehaviour
         dropdown.value = resolutions.IndexOf(resol);
         world.create_world();
         world.ready = true;
-        Layer2.SetActive(false);
+        ChooseWorld.SetActive(false);
+        CreateWorld.SetActive(false);
     }
 
     public void Update()
@@ -103,16 +107,24 @@ public class MenuManager : MonoBehaviour
         Screen.SetResolution(rsl[r].width, rsl[r].height, isFullScreen);
     }
 
-    public void ShowUILayer2()
-    {
-        Layer1.SetActive(false);
-        Layer2.SetActive(true);
-    }
-
     public void ShowUILayer1()
     {
-        Layer2.SetActive(false);
         Layer1.SetActive(true);
+        CreateWorld.SetActive(false);
+        ChooseWorld.SetActive(false);
     }
 
+    public void ShowUIChooseWorld()
+    {
+        ChooseWorld.SetActive(true);
+        CreateWorld.SetActive(false);
+        Layer1.SetActive(false);
+    }
+
+    public void ShowUICreateWorld()
+    {
+        ChooseWorld.SetActive(false);
+        Layer1.SetActive(false);
+        CreateWorld.SetActive(true);
+    }
 }
