@@ -70,6 +70,7 @@ public class MenuManager : MonoBehaviour
     public void NewGame()
     {
         DataHold.WorldOperation = 2;
+        DataHold.SaveName = "New Game";
         SceneManager.LoadScene("Main World");
     }
 
