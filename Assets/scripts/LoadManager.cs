@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Linq;
+using System.Xml;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -14,7 +15,6 @@ public class LoadManager : MonoBehaviour
     public BlockInfo[] blTyp;
     public WorldGen WorldPrefab;
     public GameObject PlayerPrefab;
-    private string fToSave = " ";
     public WorldGen world;
     private Vector3 PlayerPos;
     private CameraFollow Cam;
@@ -76,7 +76,7 @@ public class LoadManager : MonoBehaviour
         }
     }
 
-    public void Save_World()
+    /*public void Save_World()
     {
         foreach (Button but in menu_but)
         {
@@ -109,9 +109,66 @@ public class LoadManager : MonoBehaviour
         {
             but.interactable = true;
         }
+    }*/
+
+
+    public void Save_World()
+    {
+        foreach (Button but in menu_but)
+        {
+            but.interactable = false;
+        }
+        Dictionary<Vector2Int, ChunkData> ChunkDatas = world.ChunkDatas;
+        PlayerPos = player.transform.position;
+
+        XmlDocument doc = new XmlDocument();
+        XmlElement root = doc.CreateElement("World");
+        doc.AppendChild(root);
+
+        // Player data
+        XmlElement playerElement = doc.CreateElement("Player");
+        playerElement.SetAttribute("x", PlayerPos.x.ToString());
+        playerElement.SetAttribute("y", PlayerPos.y.ToString());
+        playerElement.SetAttribute("seed", world.seed.ToString());
+        root.AppendChild(playerElement);
+
+        // World data
+        foreach (KeyValuePair<Vector2Int, ChunkData> ReadCh in ChunkDatas)
+        {
+            if (ReadCh.Value != null)
+            {
+                XmlElement chunkElement = doc.CreateElement("Chunk");
+                chunkElement.SetAttribute("x", ReadCh.Key.x.ToString());
+                chunkElement.SetAttribute("y", ReadCh.Key.y.ToString());
+
+                foreach (int bl in ReadCh.Value.Blocks)
+                {
+                    XmlElement blockElement = doc.CreateElement("Block");
+                    blockElement.SetAttribute("value", bl.ToString());
+                    chunkElement.AppendChild(blockElement);
+                }
+
+                root.AppendChild(chunkElement);
+            }
+        }
+
+        // Save XML to file
+        string savesPath = Application.persistentDataPath + "/saves";
+        if (!Directory.Exists(savesPath))
+        {
+            Directory.CreateDirectory(savesPath);
+        }
+        string path = savesPath + "/" + SaveName + ".xml";
+        doc.Save(path);
+
+        foreach (Button but in menu_but)
+        {
+            but.interactable = true;
+        }
     }
 
-    public void LoadWorld()
+
+    /*public void LoadWorld()
     {
         Time.timeScale = 1;
         if(world != null) { destroy(); }
@@ -185,7 +242,90 @@ public class LoadManager : MonoBehaviour
             world.gen_world();
             world.ready = true;
         }
+    }*/
+
+    public void LoadWorld()
+    {
+        Time.timeScale = 1;
+        if (world != null) { destroy(); }
+        
+        foreach (Button but in menu_but)
+        {
+            but.interactable = false;
+        }
+
+        string path = Application.persistentDataPath + "/saves/" + SaveName + ".xml";
+        if (!File.Exists(path))
+        {
+            Debug.LogError("Save file not found: " + path);
+            foreach (Button but in menu_but)
+            {
+                but.interactable = true;
+            }
+            return;
+        }
+
+        XmlDocument doc = new XmlDocument();
+        doc.Load(path);
+        XmlNode root = doc.DocumentElement;
+
+        // Load player data
+        XmlNode playerNode = root.SelectSingleNode("Player");
+        float PosX = float.Parse(playerNode.Attributes["x"].Value);
+        float PosY = float.Parse(playerNode.Attributes["y"].Value);
+        int seed = int.Parse(playerNode.Attributes["seed"].Value);
+        player.transform.position = new Vector3(PosX, PosY, 0);
+        world.seed = seed;
+
+        world = Instantiate(WorldPrefab, new Vector3(0, 0, 0), Quaternion.identity, transform);
+
+        if (player == null) { Instantiate(PlayerPrefab, new Vector3(PosX, PosY, 0f), Quaternion.identity); }
+        else { player.transform.position = new Vector3(PosX, PosY, 0f); }
+
+        world.World.SetActive(true);
+        world.Player = player;
+
+        // Load world data
+        foreach (XmlNode chunkNode in root.SelectNodes("Chunk"))
+        {
+            int x = int.Parse(chunkNode.Attributes["x"].Value);
+            int y = int.Parse(chunkNode.Attributes["y"].Value);
+            Vector2Int chunkPos = new Vector2Int(x, y);
+            ChunkData chunkData = new ChunkData();
+            chunkData.Blocks = new BlockType[ChunkRenderer.chunkWide, ChunkRenderer.chunkWide];
+
+            int con = 0;
+
+            foreach (XmlNode blockNode in chunkNode.SelectNodes("Block"))
+            {
+                int blockID = int.Parse(blockNode.Attributes["value"].Value);
+                chunkData.Blocks[(con / ChunkRenderer.chunkWide), (con % ChunkRenderer.chunkWide)] = (blTyp.FirstOrDefault(b => b.BT == (BlockType)blockID)).BT; 
+                con++;
+            }
+            Debug.Log((x, y));
+
+            world.ChunkDatas[chunkPos] = chunkData;
+            chunkData.BgBlocks = world.Teraingen.GenerateBG(x, y, seed);
+
+            var chunk = Instantiate(world.ChunkPrefab, new Vector3(x * ChunkRenderer.chunkWide, y * ChunkRenderer.chunkWide, 0), Quaternion.identity, world.World.transform);
+            chunk.ChunkData = chunkData;
+            chunkData.Chunk = chunk;
+            chunkData.seed = seed;
+            chunkData.ParentWorld = world;
+        }
+        Cam.target = player;
+        world.Player = player;
+        player.SetActive(true);
+        world.gen_world();
+        world.ready = true;
+    
+
+        foreach (Button but in menu_but)
+        {
+            but.interactable = true;
+        }
     }
+
 
     public void create()
     {
