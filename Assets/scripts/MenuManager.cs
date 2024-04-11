@@ -107,6 +107,8 @@ public class MenuManager : MonoBehaviour
         Screen.SetResolution(rsl[r].width, rsl[r].height, isFullScreen);
     }
 
+    ///Layers
+
     public void ShowUILayer1()
     {
         Layer1.SetActive(true);
