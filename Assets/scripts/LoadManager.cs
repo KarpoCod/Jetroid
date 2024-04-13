@@ -141,12 +141,15 @@ public class LoadManager : MonoBehaviour
                 chunkElement.SetAttribute("x", ReadCh.Key.x.ToString());
                 chunkElement.SetAttribute("y", ReadCh.Key.y.ToString());
 
+                Debug.Log(string.Join(",", ReadCh.Value.Blocks));
+                string chunkBl = "";
                 foreach (int bl in ReadCh.Value.Blocks)
                 {
-                    XmlElement blockElement = doc.CreateElement("Block");
-                    blockElement.SetAttribute("value", bl.ToString());
-                    chunkElement.AppendChild(blockElement);
+                    chunkBl += bl.ToString() + ",";
                 }
+                XmlElement blocksElement = doc.CreateElement("Blocks");
+                blocksElement.SetAttribute("value", chunkBl);
+                chunkElement.AppendChild(blocksElement);
 
                 root.AppendChild(chunkElement);
             }
@@ -272,7 +275,7 @@ public class LoadManager : MonoBehaviour
         // Load player data
         XmlNode playerNode = root.SelectSingleNode("Player");
         float PosX = float.Parse(playerNode.Attributes["x"].Value);
-        float PosY = float.Parse(playerNode.Attributes["y"].Value);
+        float PosY = float.Parse(playerNode.Attributes["y"].Value) + 1f;
         int seed = int.Parse(playerNode.Attributes["seed"].Value);
         player.transform.position = new Vector3(PosX, PosY, 0);
         world.seed = seed;
@@ -296,11 +299,16 @@ public class LoadManager : MonoBehaviour
 
             int con = 0;
 
-            foreach (XmlNode blockNode in chunkNode.SelectNodes("Block"))
+            XmlElement blocksElement = (XmlElement)chunkNode.SelectSingleNode("Blocks");
+            string[] blockValues = blocksElement.GetAttribute("value").Split(',');
+            foreach (string blockNode in blockValues)
             {
-                int blockID = int.Parse(blockNode.Attributes["value"].Value);
-                chunkData.Blocks[(con / ChunkRenderer.chunkWide), (con % ChunkRenderer.chunkWide)] = (blTyp.FirstOrDefault(b => b.BT == (BlockType)blockID)).BT; 
-                con++;
+                if (blockNode != "")
+                {
+                    int blockID = int.Parse(blockNode);
+                    chunkData.Blocks[(con / ChunkRenderer.chunkWide), (con % ChunkRenderer.chunkWide)] = (blTyp.FirstOrDefault(b => b.BT == (BlockType)blockID)).BT;
+                    con++;
+                } 
             }
             Debug.Log((x, y));
 
