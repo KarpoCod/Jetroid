@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
+//using System.Diagnostics;
 
 public class MenuManager : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class MenuManager : MonoBehaviour
     public GameObject Layer1;
     public GameObject ChooseWorld;
     public GameObject CreateWorld;
+
+    private string field_world_name;
 
     public void Start()
     {
@@ -67,10 +70,16 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene("Main World");
     }
 
+    public void ReadInputField(string s)
+    {
+        field_world_name = s;
+    }
+
     public void NewGame()
     {
         DataHold.WorldOperation = 2;
-        DataHold.SaveName = "New Game";
+        DataHold.SaveName = field_world_name;
+        Debug.Log(field_world_name);
         SceneManager.LoadScene("Main World");
     }
 
