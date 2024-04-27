@@ -73,9 +73,51 @@ namespace Inventory
             return array;
         }
 
-        public bool AddItems(string itemId, int amount)
+        public AddItemsToInventoryGridResult AddItems(string itemId, int amount = 1)
         {
             throw new NotImplementedException();
+        }
+
+        public AddItemsToInventoryGridResult AddItems(Vectior2Int slotCoords, string itemId, int amount = 1)
+        {
+            var slot = _slotsMap[slotCoords];
+            var newValue = slot.Amount + amount;
+            var itemsAddedAmount = 0;
+
+            if (slot.IsEmpty)
+            {
+                slot.ItemId= itemId;
+            }
+
+            var itemSlotCapacity = GetItemSlotCapacity(itemId);
+
+            if (newValue > itemSlotCapacity)
+            {
+                var remainingItems = newValue - itemSlotCapacity;
+                var itemsToAddAmount = itemSlotCapacity - slot.Amount;
+                itemsAddedAmount += itemsToAddAmount;
+                slot.Amount = itemSlotCapacity;
+
+                var result = AddItems(itemId, remainingItems);
+                itemsAddedAmount += result.ItemsAddedAmount;
+            }
+            else
+            {
+                itemsAddedAmount = amount;
+                slot.Amount = newValue;
+            }
+
+            return new AddItemsToInventoryGridResult(OwnerId, amount, itemsAddedAmount);
+        }
+
+        public AddItemsToInventoryGridResult RemoveItems(Vectior2Int slotCoords, string itemId, int amount = 1)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetItemSlotCapacity(string itemId)
+        {
+            return 64;
         }
     }
 }
