@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace Inventory
@@ -49,12 +50,25 @@ namespace Inventory
 
         public int GetAmount(string itemId)
         {
-            throw new NotImplementedException();
+            var amount = 0;
+            var slots = _data.Slots;
+
+            foreach (var slot in slots)
+            {
+                if (slot.ItemId == itemId)
+                {
+                    amount += slot.Amount;
+                }
+            }
+            return amount;
+
+            //throw new NotImplementedException();
         }
 
         public bool Has(string itemId, int amount)
         {
-            throw new NotImplementedException();
+            var amountExists = GetAmount(itemId);
+            return amountExists >= amount;
         }
 
         public ReadOnly.IReadOnlyInventorySlot[,] GetSlots()
@@ -80,7 +94,7 @@ namespace Inventory
 
             if (remainingAmount <= 0)
             {
-                return new AddItemsToInventoryGridResult(OwnerId, amount, itemsAddedToSlotWithSameItemsAmount)
+                return new AddItemsToInventoryGridResult(OwnerId, amount, itemsAddedToSlotWithSameItemsAmount);
             }
 
             var itemsAddedToAvailableSlotsAmount = AddToFirstAvailableSlots(itemId, remainingAmount, out remainingAmount);
@@ -138,6 +152,49 @@ namespace Inventory
             }
 
             return new RemoveItemsToInventoryGridResult(OwnerId, amount, true);
+        }
+
+        public RemoveItemsToInventoryGridResult RemoveItems(string itemId, int amount = 1)
+        {
+            if (!Has(itemId, amount))
+            {
+                return new RemoveItemsToInventoryGridResult(OwnerId, amount, false);
+            }
+
+            var amountToRemove = amount;
+
+            for (var i = 0; i < Size.x;  i++)
+            {
+                for (var j = 0; j < Size.y; j++)
+                {
+                    var slotCoords = new Vector2int(i, j);
+                    var slot = _slotsMap[slotCoords];
+
+                    if (slot.ItemId != itemId)
+                    {
+                        continue;
+                    }
+
+                    if (amountToRemove > slot.Amount)
+                    {
+                        amountToRemove -= slot.Amount;
+
+                        RemoveItemsFromSlot(slotCoords, itemId, slot.Amount);
+
+                        if (amountToRemove == 0)
+                        {
+                            return new RemoveItemsToInventoryGridResult(OwnerId, amount, true);
+                        }
+                    }
+                    else
+                    {
+                        RemoveItemsFromSlot(slotCoords, itemId, amountToRemove);
+                    }
+
+                }
+            }
+
+            throw new Exception("couldn't remove some items...");
         }
 
         private int AddToSlotsWithSameItems(string itemId, int amount, out int remainingAmount)
