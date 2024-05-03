@@ -305,7 +305,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 10
   m_TargetDisplay: 0
@@ -1114,6 +1114,7 @@ MonoBehaviour:
   PlayerPrefab: {fileID: 8061114378512599394, guid: 3c5de5b66be09a145818090a4575f413, type: 3}
   world: {fileID: 1372933185}
   Canvas: {fileID: 1327785083}
+  SaveName: 
 --- !u!4 &745731769
 Transform:
   m_ObjectHideFlags: 0
