@@ -6,8 +6,7 @@
         public readonly int ItemsToRemoveAmount;
         public readonly bool Success;
 
-        public int ItemsNotAddedAmount => ItemsToAddAddAmount - ItemsAddedAmount;
-
+        
         public RemoveItemsToInventoryGridResult(
             string inventoryOwnerId, int itemsToRemoveAmount, bool success)
         {

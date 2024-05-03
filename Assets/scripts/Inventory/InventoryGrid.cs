@@ -87,10 +87,22 @@ namespace Inventory
             return array;
         }
 
+        public void SwitchSlots(Vector2Int SlotCordsA, Vector2Int SlotCordB)
+        {
+            var slotA = _slotsMap[SlotCordsA];
+            var slotB = _slotsMap[SlotCordB];
+            var tempSlotItemId = slotA.ItemId;
+            var tempSlotAmount = slotA.Amount;
+            slotA.ItemId = slotB.ItemId;
+            slotA.Amount = slotB.Amount;
+            slotB.ItemId = tempSlotItemId;
+            slotB.Amount = tempSlotAmount;
+        }
+
         public AddItemsToInventoryGridResult AddItems(string itemId, int amount = 1)
         {
             var remainingAmount = amount;
-            var itemsAddedToSlotWithSameItemsAmount = AddToSlotWithSameItems(itemId, remainingAmount, out remainingAmount);
+            var itemsAddedToSlotWithSameItemsAmount = AddToSlotsWithSameItems(itemId, remainingAmount, out remainingAmount);
 
             if (remainingAmount <= 0)
             {
@@ -103,7 +115,7 @@ namespace Inventory
             return new AddItemsToInventoryGridResult(OwnerId, amount, totalAddedItemsAmount);
         }
 
-        public AddItemsToInventoryGridResult AddItems(Vectior2Int slotCoords, string itemId, int amount = 1)
+        public AddItemsToInventoryGridResult AddItems(Vector2Int slotCoords, string itemId, int amount = 1)
         {
             var slot = _slotsMap[slotCoords];
             var newValue = slot.Amount + amount;
@@ -135,7 +147,7 @@ namespace Inventory
             return new AddItemsToInventoryGridResult(OwnerId, amount, itemsAddedAmount);
         }
 
-        public RemoveItemsToInventoryGridResult RemoveItems(Vectior2Int slotCoords, string itemId, int amount = 1)
+        public RemoveItemsToInventoryGridResult RemoveItems(Vector2Int slotCoords, string itemId, int amount = 1)
         {
             var slot = _slotsMap[slotCoords];
 
@@ -167,7 +179,7 @@ namespace Inventory
             {
                 for (var j = 0; j < Size.y; j++)
                 {
-                    var slotCoords = new Vector2int(i, j);
+                    var slotCoords = new Vector2Int(i, j);
                     var slot = _slotsMap[slotCoords];
 
                     if (slot.ItemId != itemId)
@@ -179,7 +191,7 @@ namespace Inventory
                     {
                         amountToRemove -= slot.Amount;
 
-                        RemoveItemsFromSlot(slotCoords, itemId, slot.Amount);
+                        RemoveItems(slotCoords, itemId, slot.Amount);
 
                         if (amountToRemove == 0)
                         {
@@ -188,7 +200,7 @@ namespace Inventory
                     }
                     else
                     {
-                        RemoveItemsFromSlot(slotCoords, itemId, amountToRemove);
+                        RemoveItems(slotCoords, itemId, amountToRemove);
                     }
 
                 }
@@ -243,6 +255,7 @@ namespace Inventory
                     }
                 }
             }
+            return itemsAddedAmount;
         }
 
         private int AddToFirstAvailableSlots(string itemId, int amount, out int remainingAmount)
