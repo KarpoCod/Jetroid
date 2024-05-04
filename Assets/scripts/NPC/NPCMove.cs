@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NPCMove : MonoBehaviour
@@ -8,26 +6,32 @@ public class NPCMove : MonoBehaviour
 
     private float dirX;
 
-    [SerializeField]
+    [SerializeField] private JumpCheck jumpCheck;
     public int moveSpeed = 3;
     public int JumpForce = 450;
 
+    private float JumpCd = 0.1f;
+
     private Rigidbody2D rb;
 
-    private float JumpCd = 0f;
+    public bool standing = true;
 
     private Vector3 localScale;
 
     public void Rotate()
     {
+        JumpCd = 0.2f;
         localScale = transform.localScale;
         localScale.x *= -1;
         transform.localScale = localScale;
+        Debug.Log("rotated");
     }
 
     public void Jump()
     {
         rb.AddForce(Vector2.up * JumpForce);
+        JumpCd = 0.2f;
+        Debug.Log("jumped");
     }
 
     void Start()
@@ -40,6 +44,8 @@ public class NPCMove : MonoBehaviour
     void Update()
     {
         if (JumpCd > 0) { JumpCd -= Time.deltaTime; }
+        if (Physics2D.Raycast(transform.position, -Vector2.up, 1.05f, LayerMask.GetMask("FG"))) { standing = true; }
+        else { standing = false; }
         MoveForward();
     }
 
@@ -57,7 +63,11 @@ public class NPCMove : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == "bigstump" && JumpCd <= 0)
+        if (jumpCheck.posible && standing && JumpCd <= 0)
+        {
+            Jump();
+        }
+        else if((!jumpCheck.posible) && standing)
         {
             Rotate();
         }
