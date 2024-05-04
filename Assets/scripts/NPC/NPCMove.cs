@@ -7,6 +7,7 @@ public class NPCMove : MonoBehaviour
     private float dirX;
 
     [SerializeField] private JumpCheck jumpCheck;
+    [SerializeField] private ForwardCheck forwardCheck;
     public int moveSpeed = 3;
     public int JumpForce = 450;
 
@@ -20,7 +21,7 @@ public class NPCMove : MonoBehaviour
 
     public void Rotate()
     {
-        JumpCd = 0.2f;
+        JumpCd = 0.4f;
         localScale = transform.localScale;
         localScale.x *= -1;
         transform.localScale = localScale;
@@ -44,9 +45,26 @@ public class NPCMove : MonoBehaviour
     void Update()
     {
         if (JumpCd > 0) { JumpCd -= Time.deltaTime; }
-        if (Physics2D.Raycast(transform.position, -Vector2.up, 1.05f, LayerMask.GetMask("FG"))) { standing = true; }
+        if (Physics2D.Raycast(transform.position, -Vector2.up, 1.05f, LayerMask.GetMask("FG"))) 
+        { 
+            standing = true;
+            if (forwardCheck.posible)
+            {
+                MoveForward();
+            }
+            else if (jumpCheck.posible && JumpCd <= 0)
+            {
+                Jump();
+                MoveForward();
+            }
+            else if (!jumpCheck.posible)
+            {
+                Rotate();
+            }
+        }
         else { standing = false; }
-        MoveForward();
+       
+
     }
 
     void MoveForward()
@@ -58,19 +76,6 @@ public class NPCMove : MonoBehaviour
             localScale.x *= -1;
 
         transform.localScale = localScale; 
-    }
-
-
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        if (jumpCheck.posible && standing && JumpCd <= 0)
-        {
-            Jump();
-        }
-        else if((!jumpCheck.posible) && standing)
-        {
-            Rotate();
-        }
     }
 
 }

@@ -1,21 +1,18 @@
+using System.Diagnostics;
 using UnityEngine;
 
 public class FallingCheck : MonoBehaviour
 {
     [SerializeField]private NPCMove NPC;
-    private bool col;
+    private int counter;
     private void OnTriggerExit2D()
     {
-        if (!col) NPC.Rotate();
+        counter--;
+        if (counter == 0) NPC.Rotate();
     }
 
-    private void OnTriggerStay2D()
+    private void OnTriggerEnter2D()
     {
-        col = true;
-    }
-
-    void Update()
-    {
-        if (col == true) { col = false;}
+        counter ++;
     }
 }

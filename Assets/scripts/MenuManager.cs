@@ -20,7 +20,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private Toggle FullScreenTog;
     [SerializeField] private Dropdown dropdown;
 
-    public GameObject Layer1;
+    public GameObject MainLayer;
     public GameObject ChooseWorld;
     public GameObject CreateWorld;
 
@@ -28,10 +28,6 @@ public class MenuManager : MonoBehaviour
 
     public void Start()
     {
-        Layer1 = GameObject.Find("Layer1");
-        ChooseWorld = GameObject.Find("ChooseWorld");
-        CreateWorld = GameObject.Find("NewGame");
-
         cam = Camera.main;
         isFullScreen = Screen.fullScreen;
         resolutions = new List<string>();
@@ -67,6 +63,7 @@ public class MenuManager : MonoBehaviour
     public void Load()
     {
         DataHold.WorldOperation = 1;
+        DataHold.SaveName = field_world_name;
         SceneManager.LoadScene("Main World");
     }
 
@@ -119,9 +116,9 @@ public class MenuManager : MonoBehaviour
 
     ///Layers
 
-    public void ShowUILayer1()
+    public void ShowUIMainLayer()
     {
-        Layer1.SetActive(true);
+        MainLayer.SetActive(true);
         CreateWorld.SetActive(false);
         ChooseWorld.SetActive(false);
     }
@@ -130,13 +127,13 @@ public class MenuManager : MonoBehaviour
     {
         ChooseWorld.SetActive(true);
         CreateWorld.SetActive(false);
-        Layer1.SetActive(false);
+        MainLayer.SetActive(false);
     }
 
     public void ShowUICreateWorld()
     {
         ChooseWorld.SetActive(false);
-        Layer1.SetActive(false);
+        MainLayer.SetActive(false);
         CreateWorld.SetActive(true);
     }
 }
