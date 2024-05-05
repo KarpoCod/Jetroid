@@ -28,7 +28,7 @@ namespace Inventory
         }
 
         private readonly InventoryGridData _data;
-        private readonly Dictionary<Vector2Int, InventorySlot> _slotsMap;
+        private Dictionary<Vector2Int, InventorySlot> _slotsMap;
 
         public InventoryGrid(InventoryGridData data)
         {

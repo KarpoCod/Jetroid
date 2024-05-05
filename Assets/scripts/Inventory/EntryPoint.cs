@@ -50,6 +50,7 @@ namespace Inventory
             for (var i = 0; i < length; i++)
             {
                 createdInventorySlots.Add(new InventorySlotData());
+                Debug.Log(i);
             }
 
             var createdInventoryData = new InventoryGridData
