@@ -1,18 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
-public class InventoryView : MonoBehaviour
+namespace Inventory
 {
-    // Start is called before the first frame update
-    void Start()
+    public class InventoryView : MonoBehaviour
     {
-        
-    }
+        [SerializeField] private InventorySlotView[] _slots;
+        [SerializeField] private TMP_Text _textOwner;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public string OwnerId
+        {
+            get => _textOwner.text;
+            set => _textOwner.text = value;
+        }
+
+        public InventorySlotView GetInventorySlotView(int index)
+        {
+            return _slots[index];
+        }
     }
 }
+

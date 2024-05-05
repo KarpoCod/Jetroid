@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace Inventory
@@ -28,7 +26,7 @@ namespace Inventory
         }
 
         private readonly InventoryGridData _data;
-        private Dictionary<Vector2Int, InventorySlot> _slotsMap;
+        private readonly Dictionary<Vector2Int, InventorySlot> _slotsMap = new();
 
         public InventoryGrid(InventoryGridData data)
         {
@@ -61,8 +59,6 @@ namespace Inventory
                 }
             }
             return amount;
-
-            //throw new NotImplementedException();
         }
 
         public bool Has(string itemId, int amount)

@@ -1106,7 +1106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7
-  jumpVelocity: 5
+  jumpSpeed: 5
   jetSpeed: 10
   boostMultiplier: 3
   airMultiplier: 0.5
