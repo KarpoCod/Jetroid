@@ -125,7 +125,7 @@ public class WorldGen : MonoBehaviour
 
     void CheckInput()//проверка нажатий и попадания по блокам
     {
-        Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition) - Camera.main.transform.position;
+        Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition) - PPos;
         Vector2 PPos2 = new Vector2(PPos.x, PPos.y);
         Vector2 mouse2 = new Vector2(mouse.x, mouse.y);
         RaycastHit2D hitInfo = Physics2D.Raycast(PPos2, mouse2, 10, LayerMask.GetMask("FG"));
@@ -134,16 +134,15 @@ public class WorldGen : MonoBehaviour
 
         if (hitInfo != false)//проверка попадания в блок
         {
-
             if (Input.GetButton("Fire1") && CD > digCD)//вскапывания области (2*chunkRenderer.size Х 2*chunkRenderer.size)
             {
                 CD = 0;
-                BlockCenter = hitInfo.point;
+                BlockCenter = hitInfo.point + (hitInfo.point - PPos2) * 0.1f;
                 for (int x = -ChunkRenderer.size; x <= ChunkRenderer.size; x++)
                 {
                     for (int y = -ChunkRenderer.size; y <= ChunkRenderer.size; y++)
                     {
-                        BlockWorldPos = Vector3Int.FloorToInt(BlockCenter) + new Vector3Int(x, y, 0);
+                        BlockWorldPos = Vector3Int.RoundToInt(BlockCenter) + new Vector3Int(x, y, 0);
                         DeleteBlock(BlockWorldPos);
                     }
                 }
@@ -153,21 +152,17 @@ public class WorldGen : MonoBehaviour
                 CD = 0;
                 if(!Physics2D.Raycast(PPos, mouse, 3, LayerMask.GetMask("FG")))
                 {
-                    BlockCenter = hitInfo.point;
+                    BlockCenter = hitInfo.point + (hitInfo.point - PPos2) * 0.1f;
                     for (int x = -ChunkRenderer.size; x <= ChunkRenderer.size; x++)
                     {
                         for (int y = -ChunkRenderer.size; y <= ChunkRenderer.size; y++)
                         {
-                            BlockWorldPos = Vector3Int.FloorToInt(BlockCenter) + new Vector3Int(x, y, 0);
+                            BlockWorldPos = Vector3Int.RoundToInt(BlockCenter) + new Vector3Int(x, y, 0);
                             SetBlock(BlockType.damagedStone, BlockWorldPos);
                         }
                     }
                 } 
             }
-        }
-        else
-        {
-            Debug.DrawRay(PPos, mouse, Color.red);
         }
     }
 
@@ -267,7 +262,7 @@ public class WorldGen : MonoBehaviour
         }
         else
         {
-            res = ChunkRenderer.chunkWide - ((-a-1) % b)-1 ;
+            res = b - ((-a-1) % b)-1 ;
         }
         return res;
     }

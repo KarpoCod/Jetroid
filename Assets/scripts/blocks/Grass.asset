@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BT: 3
   Texture: {fileID: 11400000, guid: f9a69569fff97cf4cb5291b3a94b88e2, type: 2}
-  Additional: {fileID: 3735015919199837107, guid: b2fda2078587e224a9bb71a815fd8925, type: 3}
+  Additional: {fileID: 0}
