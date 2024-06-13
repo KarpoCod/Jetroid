@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   mountRate: 0
-  grassRate: 30
+  grassRate: 15
   dungeonsRate: 0
   stone: 4
   grass: 3
@@ -29,9 +29,12 @@ MonoBehaviour:
     Amplitude: 30
   DOctaves:
   - NoiseType: 3
-    Frequency: 0.04
-    Amplitude: 300
+    Frequency: 0
+    Amplitude: 0
+  - NoiseType: 5
+    Frequency: 0.1
+    Amplitude: 500
   AOctaves:
   - NoiseType: 3
-    Frequency: 0.01
-    Amplitude: 190
+    Frequency: 0.1
+    Amplitude: 80

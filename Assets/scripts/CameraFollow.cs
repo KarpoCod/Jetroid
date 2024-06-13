@@ -5,9 +5,6 @@ public class CameraFollow : MonoBehaviour
     public GameObject target;
     public float scale = 4f;
 
-    public const int offsetX = 0;
-    public const int offsetY = 0;
-
     private Transform t;
 
     private void Awake()
@@ -23,10 +20,10 @@ public class CameraFollow : MonoBehaviour
 
     void Update()
     {
+        t = target.transform;
         if (target != null)
         {
-            transform.position = new Vector3(t.position.x + offsetX, t.position.y + offsetY, transform.position.z);
+            transform.position = new Vector3(t.position.x, t.position.y, transform.position.z);
         }
-        t = target.transform;
     }
 }

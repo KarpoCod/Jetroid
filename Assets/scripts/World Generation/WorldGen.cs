@@ -125,11 +125,9 @@ public class WorldGen : MonoBehaviour
 
     void CheckInput()//проверка нажатий и попадания по блокам
     {
-        Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition) - PPos;
+        Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D hitInfo = Physics2D.Raycast(PPos, mouse-PPos, 10, LayerMask.GetMask("FG"));
         Vector2 PPos2 = new Vector2(PPos.x, PPos.y);
-        Vector2 mouse2 = new Vector2(mouse.x, mouse.y);
-        RaycastHit2D hitInfo = Physics2D.Raycast(PPos2, mouse2, 10, LayerMask.GetMask("FG"));
-        Vector2 hitP = new Vector2(hitInfo.point.x, hitInfo.point.y);
 
 
         if (hitInfo != false)//проверка попадания в блок
