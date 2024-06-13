@@ -3,6 +3,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
+using System.Collections.Specialized;
+//using static System.Net.Mime.MediaTypeNames;
+using System.IO;
 //using System.Diagnostics;
 
 public class MenuManager : MonoBehaviour
@@ -58,6 +61,25 @@ public class MenuManager : MonoBehaviour
             cam.transform.position = new Vector3(cam.transform.position.x + s, ys, -5);
         }
         catch{ }
+    }
+
+    public List<string> ReadSaveDirectory()
+    {
+        string savesPath = Application.persistentDataPath + "/saves";
+        List<string> worldNames = new List<string>();
+        if (Directory.Exists(savesPath))
+        {
+            DirectoryInfo dir = new DirectoryInfo(savesPath);
+            foreach (FileInfo file in dir.GetFiles())
+            {
+                worldNames.Add(file.Name.Substring(0, file.Name.IndexOf('.')));
+            }
+        }
+        /*foreach (string s in  worldNames)
+        {
+            Debug.Log(s);
+        }*/
+        return worldNames;
     }
 
     public void Load()
