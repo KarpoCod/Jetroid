@@ -27,6 +27,9 @@ public class MenuManager : MonoBehaviour
     public GameObject ChooseWorld;
     public GameObject CreateWorld;
 
+    public GameObject buttonPrefab;
+    public GameObject buttonParent;
+
     private string field_world_name;
 
     public void Start()
@@ -82,10 +85,23 @@ public class MenuManager : MonoBehaviour
         return worldNames;
     }
 
-    public void Load()
+    public void create_Buttons()
+    {
+        List<string> names = ReadSaveDirectory();
+
+        foreach (string name in names)
+        {
+            GameObject newButton = Instantiate(buttonPrefab, buttonParent.transform);
+            newButton.GetComponent<LevelButton>().levelText.text = name;
+            newButton.GetComponent<Button>().onClick.AddListener(() => Load(name));
+            Debug.Log(name);
+        }
+    }
+
+    public void Load(string world_name)
     {
         DataHold.WorldOperation = 1;
-        DataHold.SaveName = field_world_name;
+        DataHold.SaveName = world_name;
         SceneManager.LoadScene("Main World");
     }
 
@@ -150,6 +166,7 @@ public class MenuManager : MonoBehaviour
         ChooseWorld.SetActive(true);
         CreateWorld.SetActive(false);
         MainLayer.SetActive(false);
+        create_Buttons();
     }
 
     public void ShowUICreateWorld()
