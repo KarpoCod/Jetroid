@@ -1,13 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using static Teraingen;
 
-public class Teraingen : MonoBehaviour
+public class Teraingen
 {
+    public int BaseHight;
+    public int seed;
+
+
     public BiomInfo[] bioms;
-    public int BaseHight = 0;
+    
 
     [Serializable]
     public class NoiseOctaveSettings
@@ -18,10 +21,18 @@ public class Teraingen : MonoBehaviour
     }
     TerrainMath TerrainMath;
 
-    public void Awake()
+    public Teraingen(BiomInfo[] bms, int s = 0, int bh = 0)
     {
+        seed = s;
+        BaseHight = bh;
+        bioms = bms;
         TerrainMath = new TerrainMath(bioms, BaseHight);
         TerrainMath.INIT();
+    }
+
+    public void Generate(int seed, int width, int hight)
+    {
+
     }
 
     public int GetFirstAir(int xOffset, int seed)
@@ -143,7 +154,7 @@ class TerrainMath{
 
 
                 float bgRate = GetHight(x + xOffset, y + yOffset, seed, biom.DOctaves, DoctaveNoises[biom.index]);
-                float B = Mathf.PerlinNoise((x + xOffset + seed * 3) * 5f, (y + yOffset + seed * 2) * 5f) + 1;
+                float B = GetHight((x + xOffset + seed * 3), (y + yOffset + seed * 2), 547, biom.DOctaves, DoctaveNoises[biom.index]) + 1;
 
                 if (bgRate > biom.dungeonsRate - 17 * B && hight > y + yOffset)
                 {

@@ -7570,7 +7570,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3734662675625734556}
   - component: {fileID: 3734662675625734555}
-  - component: {fileID: 3734662675625734557}
   m_Layer: 2
   m_Name: world
   m_TagString: Untagged
@@ -7598,7 +7597,8 @@ MonoBehaviour:
   ChunkPrefab: {fileID: 5204137682881531203, guid: 8e179ca5b9edd3f4c9c390c57bb15e3f, type: 3}
   World: {fileID: 3734662675625734554}
   seed: 0
-  Teraingen: {fileID: 3734662675625734557}
+  bioms:
+  - {fileID: 11400000, guid: 44b58ae955e6f914586891ca661808fb, type: 2}
   ready: 0
   CurrentChunk: {x: 0, y: 0}
 --- !u!4 &3734662675625734556
@@ -7616,18 +7616,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3734662675625734557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3734662675625734554}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87ec961cf940b69448015c3bc453fb9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bioms:
-  - {fileID: 11400000, guid: 44b58ae955e6f914586891ca661808fb, type: 2}
-  BaseHight: 0

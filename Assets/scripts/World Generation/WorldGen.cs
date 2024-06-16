@@ -25,7 +25,9 @@ public class WorldGen : MonoBehaviour
     public ChunkRenderer ChunkPrefab;
     public GameObject World;
     public int seed;
+    public BiomInfo[] bioms;
     public Teraingen Teraingen;
+
 
     public bool ready = false;
 
@@ -72,6 +74,7 @@ public class WorldGen : MonoBehaviour
     public void create_world()
     {
         seed = (int)(Time.realtimeSinceStartup * 1000000 % 10000);
+        Teraingen = new Teraingen(bioms, seed);
         Cam = Camera.main;
 
         gen_world();
