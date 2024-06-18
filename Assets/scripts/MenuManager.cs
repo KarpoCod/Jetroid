@@ -89,17 +89,23 @@ public class MenuManager : MonoBehaviour
     {
         List<string> names = ReadSaveDirectory();
 
+        foreach (Transform button in buttonParent.transform)
+        {
+            Destroy(button.gameObject);
+        }
+
         foreach (string name in names)
         {
             GameObject newButton = Instantiate(buttonPrefab, buttonParent.transform);
             newButton.GetComponent<LevelButton>().levelText.text = name;
             newButton.GetComponent<Button>().onClick.AddListener(() => Load(name));
-            Debug.Log(name);
+            //Debug.Log(name);
         }
     }
 
     public void Load(string world_name)
     {
+        Debug.Log("Load");
         DataHold.WorldOperation = 1;
         DataHold.SaveName = world_name;
         SceneManager.LoadScene("Main World");
