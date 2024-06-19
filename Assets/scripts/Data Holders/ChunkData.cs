@@ -7,5 +7,5 @@ public class ChunkData
     public BlockType[,] Blocks;
     public BlockType[,] BgBlocks;
     public WorldGen ParentWorld;
-    public int[,] Light;
+    public int[,] Lights;
 }

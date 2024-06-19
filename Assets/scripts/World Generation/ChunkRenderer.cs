@@ -31,14 +31,14 @@ public class ChunkRenderer : MonoBehaviour
 
     void Start()
     {
-        ChunkData.Light = new int[chunkWide, chunkWide];
+        ChunkData.Lights = new int[chunkWide, chunkWide];
         pos = ChunkData.coords;
 
         for (int y=0; y < chunkWide; y++)
         {
             for(int x=0; x < chunkWide; x++)
             {
-                ChunkData.Edited[x, y] = false;
+                //ChunkData.Edited[x, y] = false;
                 GenerateBlock(x, y);
                 GenerateBgBlock(x, y);
             }
@@ -83,7 +83,7 @@ public class ChunkRenderer : MonoBehaviour
     public void DeleteBlock(Vector3Int position)
     {
         string ToFind = (position.x + " " + position.y);
-        ChunkData.Edited[position.x, position.y] = true;
+        //ChunkData.Edited[position.x, position.y] = true;
         var Addition = transform.Find(ToFind);
         if (Addition != null) Destroy(Addition.gameObject);
         ChunkData.Blocks[position.x, position.y] = BlockType.bgAir;
