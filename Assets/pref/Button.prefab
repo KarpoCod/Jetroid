@@ -38,8 +38,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 280, y: 0}
-  m_SizeDelta: {x: 68, y: 100}
+  m_AnchoredPosition: {x: 280, y: -26.708}
+  m_SizeDelta: {x: 68, y: 47}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2326045282452173811
 CanvasRenderer:
@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 8842191558744809435}
   - component: {fileID: 3678258838597642910}
   m_Layer: 5
-  m_Name: Delete (1)
+  m_Name: Info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -161,8 +161,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 354, y: 0}
-  m_SizeDelta: {x: 68, y: 100}
+  m_AnchoredPosition: {x: 280, y: 26.9161}
+  m_SizeDelta: {x: 68, y: 47}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2481458109867253548
 CanvasRenderer:
@@ -368,7 +368,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6548672521370638954}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11500000, guid: 70fd1db83a2df3d47a1b1c9a5b0ae02e, type: 3}
+        m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!1 &4494045622276968825
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,8 +416,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00019526, y: 0}
-  m_SizeDelta: {x: 67.438, y: 100}
+  m_AnchoredPosition: {x: 0.000077069, y: 0}
+  m_SizeDelta: {x: 68, y: 47}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8939025960856413729
 CanvasRenderer:
@@ -846,6 +858,7 @@ MonoBehaviour:
   button: {fileID: 6548672521370638959}
   EditName: {fileID: 1804696013096028218}
   Delete: {fileID: 871057338294506914}
+  Info: {fileID: 1361838651772910147}
 --- !u!61 &1155966886226477761
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -907,7 +920,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4.2, y: -8.4}
+  m_AnchoredPosition: {x: 6, y: -6.2}
   m_SizeDelta: {x: 34.8457, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5157801582018699891
@@ -1118,8 +1131,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00019526, y: 0}
-  m_SizeDelta: {x: 67.438, y: 100}
+  m_AnchoredPosition: {x: -0.000045866, y: -0.000013903}
+  m_SizeDelta: {x: 68, y: 47}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &909677923804182352
 CanvasRenderer:

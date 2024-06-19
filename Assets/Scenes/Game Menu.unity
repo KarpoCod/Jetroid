@@ -4936,8 +4936,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 12.033001, y: 78.998}
-  m_SizeDelta: {x: 561.129, y: 281.519}
+  m_AnchoredPosition: {x: 44.652, y: 78.998}
+  m_SizeDelta: {x: 626.367, y: 281.519}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1397248693
 MonoBehaviour:
@@ -5356,7 +5356,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 330, y: 0}
+  m_AnchoredPosition: {x: 455.9, y: -0.9}
   m_SizeDelta: {x: 380, y: 23}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1555757330
@@ -7593,13 +7593,13 @@ MonoBehaviour:
   digCD: 0.15
   CanBuild: 0
   Player: {fileID: 1724541268}
+  ready: 0
   ChunkSpawnRad: 4
   ChunkPrefab: {fileID: 5204137682881531203, guid: 8e179ca5b9edd3f4c9c390c57bb15e3f, type: 3}
   World: {fileID: 3734662675625734554}
   seed: 0
   bioms:
   - {fileID: 11400000, guid: 44b58ae955e6f914586891ca661808fb, type: 2}
-  ready: 0
   CurrentChunk: {x: 0, y: 0}
 --- !u!4 &3734662675625734556
 Transform:
