@@ -17,6 +17,7 @@ public class WorldGen : MonoBehaviour
     private float CD = 1f;
     public Boolean CanBuild = true;
     public GameObject Player;
+    public bool ready = false;
 
     //параметры мира
     public Dictionary<Vector2Int, ChunkData> ChunkDatas = new Dictionary<Vector2Int, ChunkData>();
@@ -28,8 +29,8 @@ public class WorldGen : MonoBehaviour
     public BiomInfo[] bioms;
     public Teraingen Teraingen;
 
-
-    public bool ready = false;
+    //события
+    public static Action<Vector2Int> ChunkChanged;
 
     //"локальные" параметры
     private ChunkData SpawnChunk;
@@ -90,6 +91,7 @@ public class WorldGen : MonoBehaviour
             if (CurrentChunk != PlayerChunk)
             {
                 CurrentChunk = PlayerChunk;
+                ChunkChanged?.Invoke(CurrentChunk);
                 updateChunks(PlayerChunk);
             }
 

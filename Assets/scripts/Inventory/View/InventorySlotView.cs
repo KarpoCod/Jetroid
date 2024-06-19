@@ -19,7 +19,7 @@ namespace Inventory
         public int Amount
         {
             get => Convert.ToInt32(_textAmount.text);
-            set => _textAmount.text = value == 0 ? "" : value.ToString();
+            set => _textAmount.text = (value == 0 || value == 1) ? "" : value.ToString();
         }
     }
 

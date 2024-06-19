@@ -19,9 +19,19 @@ public class ChunkRenderer : MonoBehaviour
     public TileBase[] tileBlocks = new TileBase[0];
     public BlockInfo[] blTyp;
 
+    private void onEnable()
+    {
+        WorldGen.ChunkChanged += ActUpdate;
+    }
+
+    private void onDisable()
+    {
+        WorldGen.ChunkChanged -= ActUpdate;
+    }
+
     void Start()
     {
-        ChunkData.Edited = new bool[chunkWide, chunkWide];
+        ChunkData.Light = new int[chunkWide, chunkWide];
         pos = ChunkData.coords;
 
         for (int y=0; y < chunkWide; y++)
@@ -35,18 +45,21 @@ public class ChunkRenderer : MonoBehaviour
         }
     }
 
-    private void Update()
+    public void ActUpdate(Vector2Int CurrentChunk)
     {
-        if (Mathf.Abs(ChunkData.ParentWorld.CurrentChunk.x - pos.x) > ChunkData.ParentWorld.ChunkSpawnRad || Mathf.Abs(ChunkData.ParentWorld.CurrentChunk.y - pos.y) > ChunkData.ParentWorld.ChunkSpawnRad) gameObject.SetActive(false);
+        if (Mathf.Abs(CurrentChunk.x - pos.x) > ChunkData.ParentWorld.ChunkSpawnRad || Mathf.Abs(CurrentChunk.y - pos.y) > ChunkData.ParentWorld.ChunkSpawnRad) gameObject.SetActive(false);
     }
 
     public void SetBlock(Vector3Int blockPos, BlockType BlockT)
     {
-        ChunkData.Edited[blockPos.x, blockPos.y] = true;
+        //ChunkData.Edited[blockPos.x, blockPos.y] = true;
+        ChunkData.Lights[blockPos.x, blockPos.y] = 1;
         ChunkData.Blocks[blockPos.x, blockPos.y] = BlockT;
         BlockInfo inf = blTyp.FirstOrDefault(b => b.BT == ChunkData.Blocks[blockPos.x, blockPos.y]);
         Chunk.SetTile(blockPos, inf.Texture);
+
         if (inf.Additional != null) { var blockAd = Instantiate(inf.Additional, blockPos, Quaternion.identity, transform); blockAd.name = (blockPos.x + " " + blockPos.y); }
+        
     }
 
     private void GenerateBlock(int x, int y)

@@ -251,11 +251,6 @@ public class LoadManager : MonoBehaviour
     {
         Time.timeScale = 1;
         if (world != null) { destroy(); }
-        
-        foreach (Button but in menu_but)
-        {
-            but.interactable = false;
-        }
 
         string path = Application.persistentDataPath + "/saves/" + SaveName + ".xml";
         if (!File.Exists(path))
@@ -326,14 +321,7 @@ public class LoadManager : MonoBehaviour
         player.SetActive(true);
         world.gen_world();
         world.ready = true;
-    
-
-        foreach (Button but in menu_but)
-        {
-            but.interactable = true;
-        }
     }
-
 
     public void create()
     {
@@ -362,7 +350,7 @@ public class LoadManager : MonoBehaviour
     public void exit()
     {
         Save_World();
-        Time.timeScale = 1;
+        destroy();
         SceneManager.LoadScene("Game Menu");
     }
 
