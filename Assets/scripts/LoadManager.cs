@@ -308,7 +308,7 @@ public class LoadManager : MonoBehaviour
             Debug.Log((x, y));
 
             world.ChunkDatas[chunkPos] = chunkData;
-            chunkData.BgBlocks = world.Teraingen.GenerateBG(x, y, seed);
+            //chunkData.BgBlocks = world.Teraingen.GenerateBG(x, y, seed);
 
             var chunk = Instantiate(world.ChunkPrefab, new Vector3(x * ChunkRenderer.chunkWide, y * ChunkRenderer.chunkWide, 0), Quaternion.identity, world.World.transform);
             chunk.ChunkData = chunkData;
