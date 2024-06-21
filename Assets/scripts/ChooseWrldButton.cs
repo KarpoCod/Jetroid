@@ -1,6 +1,9 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.Specialized;
 using UnityEngine;
 
-public class ChooseWrldButtManager : MonoBehaviour
+public class ChooseWrldButt : MonoBehaviour
 {
     public GameObject button;
     public GameObject EditName;
